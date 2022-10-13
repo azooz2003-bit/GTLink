@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257928F22E4400919640 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257828F22E4400919640 /* ContentView.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257828F22E4400919640 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -32,6 +34,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		205BBADE28F8BD97001C00F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			path = "New Group/Model";
+			sourceTree = "<group>";
+		};
+		205BBAE028F8BDBD001C00F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		A306256A28F22E4400919640 = {
 			isa = PBXGroup;
 			children = (
@@ -53,6 +71,8 @@
 			children = (
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
 				A306257828F22E4400919640 /* ContentView.swift */,
+				205BBAE028F8BDBD001C00F7 /* View */,
+				205BBADE28F8BD97001C00F7 /* Model */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
 				A306257C28F22E4500919640 /* Preview Content */,
 			);
@@ -138,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
+				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
