@@ -28,8 +28,6 @@ struct Card: View {
     }
     
     var body: some View {
-        VStack {
-            
             //card view
             VStack {
                 
@@ -76,7 +74,6 @@ struct Card: View {
             }.frame(width: phone_size.width * 35/39, height: phone_size.height * 140/844)
                 .cornerRadius(15)
                 .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 1))
-        }
     }
     
     func date_to_string(date: Date) -> String {
