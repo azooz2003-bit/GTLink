@@ -9,7 +9,45 @@ import SwiftUI
 
 struct PostScreen: View {
     var body: some View {
-        Text("Feed")
+        NavigationView {
+            Text("Hello, SwiftUI!")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .principal) {
+                            HStack {
+                                Image(systemName: "arrow.left")
+                                    .foregroundColor(.black)
+                                    .bold()
+                                Spacer()
+                                Text("Create a Post").font(.system(size: 30, weight: .bold))
+                                    .font(.largeTitle.bold())
+                                    .accessibilityAddTraits(.isHeader)
+                                Spacer()
+                            }
+                        }
+                    }
+//            Text("Create a Post").font(.system(size: 30, weight: .bold))
+//            .navigationTitle("Create a Post")
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button {
+//
+//                    } label: {
+//                        Image(systemName: "arrow.left")
+//                            .foregroundColor(.black)
+//                            .bold()
+//                    }
+//                }
+//            }
+//            .navigationBarItems(leading: Button(action: { }) {
+//                HStack {
+//                    Image(systemName: "arrow.left")
+//                        .foregroundColor(.black)
+//                        .bold()
+//                }
+//            })
+            
+        }
     }
 }
 
