@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeedScreen: View {
+struct PostScreen: View {
     var body: some View {
         Text("Feed")
     }
@@ -15,6 +15,6 @@ struct FeedScreen: View {
 
 struct FeedScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FeedScreen()
+        PostScreen()
     }
 }
