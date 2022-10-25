@@ -17,6 +17,7 @@
 		B2695F092908ABAC0003A63D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B2695F082908ABAC0003A63D /* FirebaseFirestore */; };
 		B2695F0B2908ABAC0003A63D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B2695F0A2908ABAC0003A63D /* FirebaseFirestoreSwift */; };
 		B2695F0D2908ABAC0003A63D /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B2695F0C2908ABAC0003A63D /* FirebaseStorage */; };
+		B2695F0F2908AC840003A63D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2695F0E2908AC840003A63D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B2683E7428F8D29900F127CE /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		B2695F0E2908AC840003A63D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 		A306257528F22E4400919640 /* GTLink */ = {
 			isa = PBXGroup;
 			children = (
+				B2695F0E2908AC840003A63D /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
 				A306257828F22E4400919640 /* ContentView.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */,
+				B2695F0F2908AC840003A63D /* GoogleService-Info.plist in Resources */,
 				A306257B28F22E4500919640 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
