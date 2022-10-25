@@ -58,14 +58,12 @@ struct Card: View {
                             .padding(.trailing, 10)
                         
                         //tags list
-                        ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 Text(tags[0]).padding(5).background(Color.red).clipShape(Capsule())
                                 Text(tags[1]).padding(5).background(Color.green).clipShape(Capsule())
-                                Text(tags[2]).padding(5).background(Color.red).clipShape(Capsule())
+                                Text("+3").padding(5).background(Color.gray).clipShape(Capsule())
                             }.font(.system(size: 12))
                                 .foregroundColor(Color.white)
-                        }
                         
                         //description of post
                         Text(description)
