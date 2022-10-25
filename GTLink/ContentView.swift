@@ -4,7 +4,12 @@
 //
 //  Created by Abdulaziz Albahar on 10/8/22.
 //
-
+import Foundation
+import Firebase
+import FirebaseFirestore
+import FirebaseFirestoreSwift
+import FirebaseAuth
+import FirebaseStorage
 import SwiftUI
 
 struct ContentView: View {
@@ -14,6 +19,9 @@ struct ContentView: View {
                 .imageScale(.large)
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
+            Button("Login") {
+                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+            }
         }
         .padding()
     }
