@@ -58,11 +58,14 @@ struct Card: View {
                             .padding(.trailing, 10)
                         
                         //tags list
-                        HStack {
-                            Text(tags[0])
-                            Text(tags[1])
-                        }.font(.system(size: 12))
-                        
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                Text(tags[0]).padding(5).background(Color.red).clipShape(Capsule())
+                                Text(tags[1]).padding(5).background(Color.green).clipShape(Capsule())
+                                Text(tags[2]).padding(5).background(Color.red).clipShape(Capsule())
+                            }.font(.system(size: 12))
+                                .foregroundColor(Color.white)
+                        }
                         
                         //description of post
                         Text(description)
@@ -85,6 +88,6 @@ struct Card: View {
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: ["CS 1999", "Class Project"], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: ["CS 1999", "Class Project", "Homework"], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
     }
 }
