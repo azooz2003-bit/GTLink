@@ -12,7 +12,7 @@ import FirebaseAuth
 import Firebase
 import SwiftUI
 
-class UserViewMode: ObservableObject {
+class UserViewModel: ObservableObject {
     @Published var user: User?
     @Published var isAuthenticating: Bool = false
     
@@ -39,7 +39,7 @@ class UserViewMode: ObservableObject {
     func signOut() {
         //let firebaseAuth = Auth.auth() PS: don't need this we have it initialized in the auth variable
         do {
-            try firebaseAuth.signOut()
+            try auth.signOut()
         } catch let signOutError as NSError {
             print("Error Signing Out: %@", signOutError)
         }
