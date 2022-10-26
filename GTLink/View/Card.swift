@@ -2,7 +2,7 @@
 //  Card.swift
 //  GTLink
 //
-//  Created by Nicholas Candello on 10/13/22.
+//  Created by Abdulaziz Albahar on 10/25/22.
 //
 
 import SwiftUI
