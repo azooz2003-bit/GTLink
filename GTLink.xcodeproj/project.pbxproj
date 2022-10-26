@@ -12,6 +12,7 @@
 		A306257928F22E4400919640 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257828F22E4400919640 /* ContentView.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
+		A374BF7E2908CA0F00AAA661 /* Model in Resources */ = {isa = PBXBuildFile; fileRef = A374BF7D2908CA0F00AAA661 /* Model */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		A306257828F22E4400919640 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A374BF7D2908CA0F00AAA661 /* Model */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Model; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,14 +36,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		205BBADE28F8BD97001C00F7 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Model;
-			path = "New Group/Model";
-			sourceTree = "<group>";
-		};
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -72,7 +66,7 @@
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
 				A306257828F22E4400919640 /* ContentView.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
-				205BBADE28F8BD97001C00F7 /* Model */,
+				A374BF7D2908CA0F00AAA661 /* Model */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
 				A306257C28F22E4500919640 /* Preview Content */,
 			);
@@ -145,6 +139,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A374BF7E2908CA0F00AAA661 /* Model in Resources */,
 				A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */,
 				A306257B28F22E4500919640 /* Assets.xcassets in Resources */,
 			);
