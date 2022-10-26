@@ -19,6 +19,10 @@ class UserViewMode: ObservableObject {
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
     
+    var provider = OAuthProvider(providerID: "microsoft.com");
+    let kGraphURI = "https://graph.microsoft.com/v1.0/me/";
+    // provider.customParameters = ["tenant": "9089e228-c3ec-4434-9cdb-ecc7d3e21270"]; // Correct one?
+    
     var uuid: String? {
         auth.currentUser?.uid
     }
@@ -31,12 +35,9 @@ class UserViewMode: ObservableObject {
         user != nil && userIsAuthenticated
     }
     
-    var provider = OAuthProvider(providerID: "microsoft.com");
-    let kGraphURI = "https://graph.microsoft.com/v1.0/me/";
-    // provider.customParameters = ["tenant": "9089e228-c3ec-4434-9cdb-ecc7d3e21270"]; // Correct one?
     
     func signOut() {
-        let firebaseAuth = Auth.auth()
+        //let firebaseAuth = Auth.auth() PS: don't need this we have it initialized in the auth variable
         do {
             try firebaseAuth.signOut()
         } catch let signOutError as NSError {
