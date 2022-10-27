@@ -6,6 +6,9 @@ GTLink is an app being developed by students of the Georgia Tech iOS Club.
 
 https://www.notion.so/Completing-Tasks-on-Github-iOS-Club-ade3292757264274848c1264ec82d520
 
+# Database + Backend Diagram: 
+(soon)
+
 # Figma file: 
 
 https://www.figma.com/file/Sws4VX2MEnptrNOnGLawIp/GTLink
