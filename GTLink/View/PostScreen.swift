@@ -48,7 +48,85 @@ struct PostScreen: View {
 //                        .fill(Color(red:0.93, green: 0.93, blue: 0.93))
 //                        .frame(width: 181, height: 39)
                 }
-                Spacer()
+                // Title text field
+                TextField("Title", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                    .multilineTextAlignment(.center)
+                    .font(.title)
+                    .foregroundColor(.black)
+                    .padding(.top, 20)
+                Divider()
+                    .frame(width: 200, height: 2)
+                    .background(Color.black.opacity(0.2))
+                // Username and date
+                HStack {
+                    Image(systemName: "person")
+                        .padding(.leading, 20)
+                        .foregroundColor(.black)
+                        .font(.system(size: 20.0))
+                    Text("gburdell")
+                    Text(Date(), style: .date)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                        .padding(.trailing, 20)
+                }
+                .padding(.top, 20)
+                // Description
+                VStack {
+                    Text("Description")
+                        .multilineTextAlignment(.leading)
+                        .underline()
+                        .padding(.top, 20)
+                        .padding(.leading, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    TextField("Enter project description here.", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        .padding(.leading, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                // Select post type
+                VStack {
+                    Text("Category")
+                        .multilineTextAlignment(.leading)
+                        .underline()
+                        .padding(.top, 50)
+                        .padding(.leading, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    HStack {
+                        Button("Study") {
+                            print("Project button clicked.")
+                        }
+                        .frame(width: 90, height: 30)
+                        .foregroundColor(Color.black)
+                        .overlay(RoundedRectangle(cornerRadius: 25) .stroke(Color.black) )
+                        .padding(.leading, 20)
+                        
+                        Button("Project") {
+                            print("Project button clicked.")
+                        }
+                        .frame(width: 90, height: 30)
+                        .foregroundColor(Color.black)
+                        .overlay(RoundedRectangle(cornerRadius: 25) .stroke(Color.black) )
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                }
+                // Additional Information
+                VStack {
+                    Text("Additional Information")
+                        .multilineTextAlignment(.leading)
+                        .underline()
+                        .padding(.top, 50)
+                        .padding(.leading, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    TextField("Enter any additional information here.", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                        .padding(.leading, 20)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                Button("Post") {
+                    print("Next button clicked.")
+                }
+                    .frame(width: 120, height: 50)
+                    .foregroundColor(Color.black)
+                    .overlay(RoundedRectangle(cornerRadius: 25) .stroke(Color.black) )
+                    .padding(.top, 20)
+                
             }
                     .navigationBarTitleDisplayMode(.inline)
                     .toolbar {
@@ -59,16 +137,13 @@ struct PostScreen: View {
                                     .bold()
                                     .scaleEffect(1.2)
                                 Spacer()
-                                Text("Create a Post").font(.system(size: 30, weight: .bold))
+                                Text("Create a Post").font(.system(size: 25, weight: .bold))
                                     .font(.largeTitle.bold())
                                     .accessibilityAddTraits(.isHeader)
                                 Spacer()
                             }
                         }
                     }
-        }
-        VStack {
-            Text("HEllo")
         }
 
     }
