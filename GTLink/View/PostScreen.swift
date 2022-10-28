@@ -15,22 +15,33 @@ extension View {
      }
  }
 
+
 struct PostScreen: View {
+    
+    @State private var image = UIImage()
+    @State private var showSheet = false
+    
     var body: some View {
         NavigationView {
             VStack {
                 ZStack {
-                    Rectangle()
-                        .fill(Color(red:0.882, green: 0.882, blue: 0.882))
-                        .frame(height: 200)
                     
-                        Button(action: {
-                            print("button clicked")
-                        }) {
-                            HStack {
-                                Image(systemName: "photo")
-                                Text("Add Image").font(.system(size: 17, weight: .bold))
-                            }
+                    // Empty frame where the image will be stored
+                    Image(uiImage: self.image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 400, height: 200)
+                        .background(Color.black.opacity(0.2))
+                        .clipped()
+                    
+                    // Add Image button
+                    Button(action: {
+                            showSheet = true
+                    }) {
+                        HStack {
+                            Image(systemName: "photo")
+                            Text("Add Image").font(.system(size: 17, weight: .bold))
+                        }
                             .padding(.leading,25)
                             .padding(.bottom, 5)
                             .padding(.top, 5)
@@ -42,6 +53,11 @@ struct PostScreen: View {
                             )
                             .background(.white, in: RoundedRectangle(cornerRadius: 10))
                         }
+                        // When showSheet is true, let the user pick an image from their photo gallery
+                        .sheet(isPresented: $showSheet) {
+                            ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
+                        }
+
 
 //                    RoundedRectangle(cornerRadius: 10)
 //                        .background(RoundedRectangle(cornerRadius: 4.0).stroke(Color.red, lineWidth: 4))

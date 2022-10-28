@@ -34,7 +34,6 @@
 		02A2A98D2901F50D005E42A6 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2A98C2901F50D005E42A6 /* FirebaseRemoteConfigSwift */; };
 		02A2A98F2901F50D005E42A6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2A98E2901F50D005E42A6 /* FirebaseStorage */; };
 		02A2A9912901F50D005E42A6 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 02A2A9902901F50D005E42A6 /* FirebaseStorageCombine-Community */; };
-		02A447C8290B420100D06883 /* RiverFileTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A447C7290B420100D06883 /* RiverFileTemp.swift */; };
 		02A447CC290B428800D06883 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02A447CB290B428800D06883 /* ImagePicker.swift */; };
 		205BBAE228F8BDE3001C00F7 /* PostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* PostScreen.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
@@ -45,7 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02A447C7290B420100D06883 /* RiverFileTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiverFileTemp.swift; sourceTree = "<group>"; };
 		02A447CB290B428800D06883 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImagePicker.swift; path = GTLink/View/ImagePicker.swift; sourceTree = SOURCE_ROOT; };
 		205BBAE128F8BDE3001C00F7 /* PostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostScreen.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,7 +105,6 @@
 			isa = PBXGroup;
 			children = (
 				205BBAE128F8BDE3001C00F7 /* PostScreen.swift */,
-				02A447C7290B420100D06883 /* RiverFileTemp.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,7 +250,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02A447C8290B420100D06883 /* RiverFileTemp.swift in Sources */,
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				02A447CC290B428800D06883 /* ImagePicker.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* PostScreen.swift in Sources */,
