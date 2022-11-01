@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
+		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257928F22E4400919640 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257828F22E4400919640 /* ContentView.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
+		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257828F22E4400919640 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -46,6 +48,7 @@
 			isa = PBXGroup;
 			children = (
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
+				5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
