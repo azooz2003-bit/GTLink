@@ -83,8 +83,9 @@ struct Card: View {
                 }.padding(5)
             }
         }.frame(width: phone_size.width * 35/39, height: phone_size.height * 140/844)
+            .background(Color.white)
             .cornerRadius(15)
-            .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.black, lineWidth: 1))
+            .shadow(radius: 10)
     }
     
     func date_to_string(date: Date) -> String {
