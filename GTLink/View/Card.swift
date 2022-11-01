@@ -62,9 +62,13 @@ struct Card: View {
                         if(tags.count >= 3) {
                             Spacer()
                         }
-                        Text(tags[0].rawValue).padding(5).background(Color.red).clipShape(Capsule())
-                        Text(tags[1].rawValue).padding(5).background(Color.green).clipShape(Capsule())
-                        if(tags.count >= 3) {
+                        if(tags.count > 0) {
+                            Text(tags[0].rawValue).padding(5).background(tags[0].color).clipShape(Capsule())
+                        }
+                        if(tags.count > 1) {
+                            Text(tags[1].rawValue).padding(5).background(tags[1].color).clipShape(Capsule())
+                        }
+                        if(tags.count > 2) {
                             Text("+\(tags.count - 2)").padding(5).background(Color.gray).clipShape(Capsule())
                         }
                     }.font(.system(size: 10.7))
@@ -92,6 +96,6 @@ struct Card: View {
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tag.homework, Tag.class_project, Tag.cs1999], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus, Tag.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
     }
 }
