@@ -9,10 +9,10 @@ import Firebase
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
-import FirebaseStorage
 import SwiftUI
 
 struct ContentView: View {
+    var userViewModel = UserViewModel()
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,7 +20,7 @@ struct ContentView: View {
                 .foregroundColor(.accentColor)
             Text("Hello, world!")
             Button("Login") {
-                /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/ /*@END_MENU_TOKEN@*/
+                 userViewModel.buttonTapped()
             }
         }
         .padding()
