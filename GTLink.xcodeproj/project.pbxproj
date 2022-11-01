@@ -15,6 +15,7 @@
 		A340B91F2908C0E100FF96A4 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340B91E2908C0E100FF96A4 /* Tag.swift */; };
 		A36E154028F8EE3400239E22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */; };
 		A3C815242908C78600E4215F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C815232908C78600E4215F /* Card.swift */; };
+		A3DD32702911DF0700B870F2 /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD326F2911DF0600B870F2 /* LandingPage.swift */; };
 		A3FA2CA129089FFF00D80262 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA029089FFF00D80262 /* FirebaseAuth */; };
 		A3FA2CA329089FFF00D80262 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA229089FFF00D80262 /* FirebaseFirestore */; };
 		A3FA2CA529089FFF00D80262 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA429089FFF00D80262 /* FirebaseFirestoreSwift */; };
@@ -32,6 +33,7 @@
 		A340B91E2908C0E100FF96A4 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = ../../../../../../Tag.swift; sourceTree = "<group>"; };
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		A3DD326F2911DF0600B870F2 /* LandingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
+				A3DD326F2911DF0600B870F2 /* LandingPage.swift */,
 				A3C815232908C78600E4215F /* Card.swift */,
 			);
 			path = View;
@@ -189,6 +192,7 @@
 			files = (
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
+				A3DD32702911DF0700B870F2 /* LandingPage.swift in Sources */,
 				A3C815242908C78600E4215F /* Card.swift in Sources */,
 				A340B91F2908C0E100FF96A4 /* Tag.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
