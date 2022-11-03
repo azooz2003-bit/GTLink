@@ -5,7 +5,6 @@
 //  Created by Nicholas Candello on 10/25/22.
 //
 import SwiftUI
-
 import Foundation
 
 enum Tag: String {
@@ -20,26 +19,26 @@ enum Tag: String {
     case homework = "Homework"
     case c_cplusplus = "C/C++"
     
+    
     //color assigned with each Tag type
     var color: Color {
-        
+        var col: Color
         switch self {
         case .ios, .cs1999, .c_cplusplus:
-            return Color(red: 0, green: 163, blue: 255) // medium blue
+            col = Color(red: 0, green: 163/255, blue: 255/255) // medium blue
         case .developer, .cs1301:
-            return Color(red: 5, green: 0, blue: 252)   // dark blue
+            col = Color(red: 5/255, green: 0, blue: 252/255)   // dark blue
         case .beginner:
-            return Color(red: 255, green: 153, blue: 0) // orange
+            col = Color(red: 255/255, green: 153/255, blue: 0) // orange
         case .designer:
-            return Color(red: 0, green: 255, blue: 240) // neon blue
+            col = Color(red: 0, green: 255/255, blue: 240/255) // neon blue
         case .class_project:
-            return Color(red: 112, green: 255, blue: 0) // neon green
+            col = Color(red: 112/255, green: 255/255, blue: 0) // neon green
         case .homework:
-            return Color(red: 200, green: 83, blue: 255)// purple
-        default:
-            return Color(red: 0, green: 163, blue: 255) // medium blue (default)
+            col = Color(red: 200/255, green: 83/255, blue: 255/255)// purple
         }
+        return col
         
     }
-        
+    
 }
