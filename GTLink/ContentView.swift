@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  GTLink
 //
-//  Created by Abdulaziz Albahar on 10/8/22.
+//  Created by Johnny Sanchez-Lopez on 11/03/22.
 //
 
 import SwiftUI
@@ -29,9 +29,6 @@ struct ContentView: View {
             }.padding(50)
             
         }
-    }
-    func logOut() {
-        dummy = true;
     }
 }
 
