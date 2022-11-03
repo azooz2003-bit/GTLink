@@ -110,6 +110,7 @@ struct OwnedPostScreen: View {
                                         .stroke(Color.red, lineWidth: 1)
                             )
                 }
+                // Great job. Add a little padding to the bottom of the buttons, otherwise when you open up smaller iphone screens, it looks weird.
                 
                 
 
