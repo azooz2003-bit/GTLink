@@ -94,7 +94,7 @@ struct TagView: View {
     // splitting array when it exceeds screen size
     func getRows() -> [[Tag]] {
         var rows: [[Tag]] = []
-        var currentRow: [Tag] = []
+        var currentRow: [Tag] = [] // tags row with empty spots
         
         // calculating text width
         var totalWidth: CGFloat = 0
@@ -105,7 +105,7 @@ struct TagView: View {
         tags.forEach { tag in
             // updating total width
             // adding capsule size to total width with spacing
-            totalWidth += (tag.size + 40)
+            totalWidth += (tag.size + 40) // accounting for horizontal spaces
             
             if totalWidth > screenWidth {
                 // adding row in rows
@@ -120,8 +120,8 @@ struct TagView: View {
             }
         }
         if !currentRow.isEmpty {
-            rows.append(currentRow)
-            currentRow.removeAll()
+            rows.append(currentRow) // appending current row after adding new tag to it
+            //currentRow.removeAll()
         }
         
         return rows
