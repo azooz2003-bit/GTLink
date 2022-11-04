@@ -27,8 +27,19 @@ struct FeedScreen: View {
         ZStack {
             VStack {
                 HStack {
-                    Text("Projects found info and filter button to come.")
+                    Text("\(postsFound.count) project\(postsFound.count > 1 ? "s" : "") found based on your tags")
+                        .font(.system(size: 17))
+                    Spacer()
+                    Button {
+                        // show filter sheet view
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .font(.system(size: 32))
+                            .foregroundColor(.black)
+                    }.padding(.trailing, 14)
+
                 }
+                .padding([.leading], 39)
                 ScrollView {
                     ForEach(postsFound, id: \.self) { post in
                         generate_card(post: post)
