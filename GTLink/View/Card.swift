@@ -11,7 +11,7 @@ struct Card: View {
     
     let phone_size = UIScreen.main.bounds.size
     
-    let post_picture: Image
+    let post_picture: Image?
     let title: String
     let username: String
     let post_date: Date
@@ -34,7 +34,7 @@ struct Card: View {
             HStack(alignment: .top) {
                 
                 //post image
-                post_picture
+                post_picture?
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 140, height: 140)
@@ -59,9 +59,9 @@ struct Card: View {
                     
                     //tags list
                     HStack {
-                        if(tags.count >= 3) {
-                            Spacer()
-                        }
+//                        if(tags.count >= 3) {
+//                            Spacer()
+//                        }
                         if(tags.count > 0) {
                             Text(tags[0].rawValue).padding(5).background(tags[0].color).clipShape(Capsule())
                         }
