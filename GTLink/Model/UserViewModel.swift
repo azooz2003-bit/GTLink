@@ -52,7 +52,7 @@ class UserViewModel: ObservableObject {
             }
         }
         
-        func loginByMicrosoft(_ sender: Any, completion: @escaping (Bool) -> Void) {
+        func loginByMicrosoft(completion: @escaping (Bool) -> Void) {
             isAuthenticating = true
             
             provider.getCredentialWith(_: nil) {credential, error in
@@ -79,15 +79,19 @@ class UserViewModel: ObservableObject {
                         let microCredential = authResult.credential as! OAuthCredential
                         let token = microCredential.accessToken!
                         
-                        self?.sync() { result in // Trying to add sync function, though not sure if it's needed; not done yet
+                        /*self?.sync() { result in // Trying to add sync function, though not sure if it's needed; not done yet
                             self?.isAuthenticating = false
                             completion(result)
-                        }
+                        }*/
                         // use token to call Microsoft Graph API
                         //getGraphContentWithToken(accessToken: token)
                     }
                 }
             }
+        }
+        
+        loginByMicrosoft() { result in
+            print(result)
         }
         
         /*func getGraphContentWithToken(accessToken: String) {
@@ -112,7 +116,8 @@ class UserViewModel: ObservableObject {
                 
             }.resume()
         } // Maybe don't have?*/
-        func sync(completion: @escaping (Bool) -> Void) {
+        
+        /*func sync(completion: @escaping (Bool) -> Void) {
             if !userIsAuthenticated {
                 print("pre-sync abort")
                 completion(false)
@@ -136,6 +141,6 @@ class UserViewModel: ObservableObject {
                     completion(false)
                 }
             }
-        }
+        }*/
     }// End of ButtonTapped
 }
