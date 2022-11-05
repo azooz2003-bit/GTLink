@@ -17,6 +17,7 @@
 		A3B6AFF3291724FD00E0F56E /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A3B6AFF2291724FD00E0F56E /* FirebaseFirestore */; };
 		A3B6AFF5291724FD00E0F56E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3B6AFF4291724FD00E0F56E /* FirebaseFirestoreSwift */; };
 		A3B6AFF7291724FD00E0F56E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3B6AFF6291724FD00E0F56E /* FirebaseStorage */; };
+		A3E48C3529172B2A00B28EE2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3E48C3429172B2A00B28EE2 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A3E48C3429172B2A00B28EE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = GTLink/ContentView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
+				A3E48C3429172B2A00B28EE2 /* ContentView.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
 				205BBADE28F8BD97001C00F7 /* Model */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
+				A3E48C3529172B2A00B28EE2 /* ContentView.swift in Sources */,
 				5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
