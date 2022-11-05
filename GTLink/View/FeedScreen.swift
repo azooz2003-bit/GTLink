@@ -9,7 +9,9 @@ import SwiftUI
 
 struct FeedScreen: View {
     var body: some View {
-        Text("Feed")
+        VStack {
+            
+        }
     }
 }
 
