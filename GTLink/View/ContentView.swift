@@ -12,15 +12,12 @@ import FirebaseAuth
 import SwiftUI
 
 struct ContentView: View {
-    var userViewModel = UserViewModel()
+    @StateObject var userViewModel = UserViewModel()
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-            Button("Login") {
-                 userViewModel.buttonTapped()
+            Button("Login with Microsoft") {
+                userViewModel.loginWithProvider()
             }
         }
         .padding()
