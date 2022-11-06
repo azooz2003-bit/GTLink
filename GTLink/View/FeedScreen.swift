@@ -57,7 +57,7 @@ struct FeedScreen: View {
             }.frame(width: phone_size.width)
                 .sheet(isPresented: $viewModel.showFilterSheet) {
                     VStack {
-                        FeedFilterView(viewModel: self.viewModel, tags: [], projectType: Post_Type.project)
+                        FeedFilterView(viewModel: self.viewModel, tags: viewModel.selectedTags, projectType: viewModel.selectedType)
                     }.padding(.leading)
                         .presentationDetents([.medium])
                 }
