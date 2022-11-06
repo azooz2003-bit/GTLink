@@ -59,9 +59,6 @@ struct Card: View {
                     
                     //tags list
                     HStack {
-//                        if(tags.count >= 3) {
-//                            Spacer()
-//                        }
                         if(tags.count > 0) {
                             Text(tags[0].rawValue).padding(5).background(tags[0].color).clipShape(Capsule())
                         }

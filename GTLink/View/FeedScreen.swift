@@ -23,6 +23,8 @@ struct FeedScreen: View {
     let phone_size = UIScreen.main.bounds.size
     
     var postsFound: [Post]
+    
+    @State private var showFilterSheet: Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -31,7 +33,7 @@ struct FeedScreen: View {
                         .font(.system(size: 17))
                     Spacer()
                     Button {
-                        // show filter sheet view
+                        self.showFilterSheet.toggle()
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                             .font(.system(size: 32))
@@ -42,12 +44,23 @@ struct FeedScreen: View {
                 .padding([.leading], 39)
                 ScrollView {
                     ForEach(postsFound, id: \.self) { post in
-                        generate_card(post: post)
-                            .padding()
+                        Button(action: {
+                            // opens detailed view of post
+                        }, label: {
+                            generate_card(post: post)
+                                .foregroundColor(.black)
+                                .padding()
+                        })
                     }
                 }.frame(width: phone_size.width)
                 
             }.frame(width: phone_size.width)
+                .sheet(isPresented: $showFilterSheet) {
+                    VStack {
+                        Text("Filter Sheet View")
+                    }
+                    .presentationDetents([.medium])
+                }
             
             //create button
             VStack {
