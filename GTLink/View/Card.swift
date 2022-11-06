@@ -15,10 +15,10 @@ struct Card: View {
     let title: String
     let username: String
     let post_date: Date
-    let tags: [Tag]
+    let tags: [Tags]
     let description: String
     
-    init(post_picture: Image, title: String, username: String, post_date: Date, tags: [Tag], description: String) {
+    init(post_picture: Image, title: String, username: String, post_date: Date, tags: [Tags], description: String) {
         self.post_picture = post_picture
         self.title = title
         self.username = username
@@ -97,6 +97,6 @@ struct Card: View {
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus, Tag.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+        Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
     }
 }
