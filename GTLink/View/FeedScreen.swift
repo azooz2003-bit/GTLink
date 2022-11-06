@@ -57,8 +57,8 @@ struct FeedScreen: View {
             }.frame(width: phone_size.width)
                 .sheet(isPresented: $showFilterSheet) {
                     VStack {
-                        FeedFilterView(tags: [], projectType: "Project")
-                    }
+                        FeedFilterView(tags: [], projectType: Post_Type.project)
+                    }.padding(.leading)
                     .presentationDetents([.medium])
                 }
             

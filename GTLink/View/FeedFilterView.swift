@@ -8,14 +8,19 @@
 import SwiftUI
 import Foundation
 
+enum Post_Type: String, Hashable, CaseIterable {
+    case project = "Project"
+    case study_group = "Study Group"
+}
+
 struct FeedFilterView: View {
     
     @State private var tagsSelected: [Tag]
-    @State private var projectType: String = "Project"
+    @State private var projectType: Post_Type = Post_Type.project
     
-    init(tags: [Tag], projectType: String) {
+    init(tags: [Tag], projectType: Post_Type) {
         self.tagsSelected = tags
-        self.projectType = projectType
+        self.projectType  = projectType
         
     }
     
@@ -32,30 +37,72 @@ struct FeedFilterView: View {
                     .bold()
                     .font(.system(size: 20))
                 VStack(alignment: .leading, spacing: 5) {
-                        VStack(alignment: .leading, spacing: 10) {
-                            
-                            // diplaying tags
-                            ForEach(getRows(), id: \.self) { rows in
-                                HStack(spacing: 6) {
-                                    ForEach(rows, id: \.hashValue) { row in
-                                        RowView(tag: row)
-                                    }
+                    VStack(alignment: .leading, spacing: 10) {
+                        
+                        // diplaying tags
+                        ForEach(getRows(), id: \.self) { rows in
+                            HStack(spacing: 6) {
+                                ForEach(rows, id: \.hashValue) { row in
+                                    RowView(tag: row)
                                 }
                             }
                         }
-                        .frame(width: UIScreen.main.bounds.width - 30, alignment: .leading)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 30, alignment: .leading)
                     
-                    // uncomment to see border of where the tags are displayed
-                    /*
-                     .background (
-                     RoundedRectangle(cornerRadius: 8)
-                     .strokeBorder(.black)
-                     )
-                     */
-                    .padding(10)
                 }
-                .font(.system(size: 16))
+                
+                
+                Text("Type")
+                    .bold()
+                    .font(.system(size: 20))
+                    .padding(.top, 10)
+                
+                // 2 Type buttons
+                HStack {
+                    Spacer()
+                    Button {
+                        switchProjectType(newType: .project)
+                    } label: {
+                        Text(Post_Type.project.rawValue).padding(10).background(projectType == Post_Type.project ? Color.cyan : Color.clear).cornerRadius(15).foregroundColor(projectType == Post_Type.project ? Color.white : Color.gray)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(projectType == Post_Type.project ? Color.clear : Color.cyan)
+                            )
+                            .padding(10)
+                    }
+                    Button {
+                        switchProjectType(newType: .study_group)
+                    } label: {
+                        Text(Post_Type.study_group.rawValue).padding(10).background(projectType == Post_Type.study_group ? Color.green : Color.clear).cornerRadius(15).foregroundColor(projectType == Post_Type.study_group ? Color.white : Color.gray)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(projectType == Post_Type.study_group ? Color.clear : Color.green)
+                            )
+                            .padding(10)
+                    }
+                    Spacer()
+                }
+                .font(.system(size: 20))
+                
+                
+                // "Apply" button
+                Button {
+                    //to do later
+                } label: {
+                    Text("Apply")
+                        .font(.system(size: 16))
+                        .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 48)
+                        .background(LinearGradient(colors: [Color.blue, Color.blue, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .foregroundColor(Color.white)
+                        .cornerRadius(15)
+                        .padding([.leading, .trailing], 40)
+                        .padding(.top, 15)
+                }
+                
+
             }.frame(width: UIScreen.main.bounds.size.width)
+                .padding()
             Spacer()
         }
     }
@@ -135,10 +182,19 @@ struct FeedFilterView: View {
         
         return size.width + 20
     }
+    
+    func switchProjectType(newType: Post_Type) {
+        if(self.projectType == newType) {
+            return
+        } else {
+            self.projectType = newType
+            return
+        }
+    }
 }
 
 struct FeedFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedFilterView(tags: [Tag.homework, Tag.cs1301, Tag.ios, Tag.designer], projectType: "Project")
+        FeedFilterView(tags: [Tag.homework, Tag.cs1301, Tag.ios, Tag.designer], projectType: Post_Type.project)
     }
 }
