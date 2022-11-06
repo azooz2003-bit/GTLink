@@ -20,11 +20,11 @@ struct Post: Hashable, Identifiable {
 
 struct FeedScreen: View {
     
+    @ObservedObject var viewModel = FeedViewModel()
     let phone_size = UIScreen.main.bounds.size
     
     var postsFound: [Post]
     
-    @State private var showFilterSheet: Bool = false
     var body: some View {
         ZStack {
             VStack {
@@ -33,7 +33,7 @@ struct FeedScreen: View {
                         .font(.system(size: 17))
                     Spacer()
                     Button {
-                        self.showFilterSheet.toggle()
+                        viewModel.showFilterSheet.toggle()
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                             .font(.system(size: 32))
@@ -55,11 +55,11 @@ struct FeedScreen: View {
                 }.frame(width: phone_size.width)
                 
             }.frame(width: phone_size.width)
-                .sheet(isPresented: $showFilterSheet) {
+                .sheet(isPresented: $viewModel.showFilterSheet) {
                     VStack {
-                        FeedFilterView(tags: [], projectType: Post_Type.project)
+                        FeedFilterView(viewModel: self.viewModel, tags: [], projectType: Post_Type.project)
                     }.padding(.leading)
-                    .presentationDetents([.medium])
+                        .presentationDetents([.medium])
                 }
             
             //create button

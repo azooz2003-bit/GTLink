@@ -15,15 +15,18 @@ enum Post_Type: String, Hashable, CaseIterable {
 
 struct FeedFilterView: View {
     
+    @ObservedObject var viewModel: FeedViewModel
+    
     @State private var tagsSelected: [Tag]
     @State private var projectType: Post_Type = Post_Type.project
     
-    init(tags: [Tag], projectType: Post_Type) {
+    
+    init(viewModel: FeedViewModel, tags: [Tag], projectType: Post_Type) {
         self.tagsSelected = tags
         self.projectType  = projectType
+        self.viewModel = viewModel
         
     }
-    
     
     var body: some View {
         VStack(alignment: .center) {
@@ -88,12 +91,12 @@ struct FeedFilterView: View {
                 
                 // "Apply" button
                 Button {
-                    //to do later
+                    self.applyChanges()
                 } label: {
                     Text("Apply")
                         .font(.system(size: 16))
                         .frame(maxWidth: .infinity, minHeight: 40, maxHeight: 48)
-                        .background(LinearGradient(colors: [Color.blue, Color.blue, Color.black], startPoint: .topLeading, endPoint: .bottomTrailing))
+                        .background(LinearGradient(colors: [Color(red: 62/255, green: 127/255, blue: 204/255), Color(red: 38/255, green: 87/255, blue: 145/255)], startPoint: .leading, endPoint: .trailing))
                         .foregroundColor(Color.white)
                         .cornerRadius(15)
                         .padding([.leading, .trailing], 40)
@@ -105,6 +108,12 @@ struct FeedFilterView: View {
                 .padding()
             Spacer()
         }
+    }
+    
+    func applyChanges() {
+        viewModel.selectedTags = self.tagsSelected
+        viewModel.selectedType = self.projectType
+        viewModel.showFilterSheet = false
     }
     func buttonClicked(tag: Tag) {
         if(tagsSelected.contains(tag)) {
@@ -195,6 +204,6 @@ struct FeedFilterView: View {
 
 struct FeedFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedFilterView(tags: [Tag.homework, Tag.cs1301, Tag.ios, Tag.designer], projectType: Post_Type.project)
+        FeedFilterView(viewModel: FeedViewModel(), tags: [Tag.homework, Tag.cs1301, Tag.ios, Tag.designer], projectType: Post_Type.project)
     }
 }
