@@ -21,7 +21,6 @@
 		A3FA2CA929089FFF00D80262 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA829089FFF00D80262 /* FirebaseStorage */; };
 		B23C37CC290B4334000B2B8A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23C37CB290B4334000B2B8A /* Tag.swift */; };
 		B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2649E992918105200DD08EE /* FeedFilterView.swift */; };
-		B2649E9C291816EC00DD08EE /* FeedFilterTagView in Sources */ = {isa = PBXBuildFile; fileRef = B2649E9B291816EC00DD08EE /* FeedFilterTagView */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +34,6 @@
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		B23C37CB290B4334000B2B8A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		B2649E992918105200DD08EE /* FeedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilterView.swift; sourceTree = "<group>"; };
-		B2649E9B291816EC00DD08EE /* FeedFilterTagView */ = {isa = PBXFileReference; lastKnownFileType = text; path = FeedFilterTagView; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,7 +66,6 @@
 			children = (
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
 				B2649E992918105200DD08EE /* FeedFilterView.swift */,
-				B2649E9B291816EC00DD08EE /* FeedFilterTagView */,
 				A3C815232908C78600E4215F /* Card.swift */,
 			);
 			path = View;
@@ -197,7 +194,6 @@
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A3C815242908C78600E4215F /* Card.swift in Sources */,
-				B2649E9C291816EC00DD08EE /* FeedFilterTagView in Sources */,
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);
