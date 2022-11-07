@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LandingPage: View {
+struct LandingPagev1: View {
     var body: some View {
         VStack {
             Text("GT Link")
@@ -63,8 +63,8 @@ struct LandingPage: View {
     }
 }
 
-struct LandingPage_Previews: PreviewProvider {
+struct LandingPagev1_Previews: PreviewProvider {
     static var previews: some View {
-        LandingPage()
+        LandingPagev1()
     }
 }
