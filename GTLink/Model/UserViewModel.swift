@@ -40,6 +40,13 @@ class UserViewModel: ObservableObject {
         ];
     }
     
+    /*
+     Logs the user in using their outlook credentials.
+     Notes:
+     - Checks for whether the user exists in the database (i.e logged into the app before)
+     - Handles the errors using completion handlers and the Error enum (Google may help with that).
+     - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
+     */
     func loginWithProvider() {
         self.initialize()
         print("Login with provider")
@@ -63,5 +70,38 @@ class UserViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func syncUserData() {
+        
+    }
+    
+    func addProfileData() {
+        
+    }
+    
+    func signOut() {
+        
+    }
+    
+    /*
+     Creates a request for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile.
+     Notes:
+     - Adds the request's ID (once generated) to the user's profile.
+     */
+    func createPosting() {
+        
+    }
+    
+    func editPosting() {
+        
+    }
+    
+    func getRequests() {
+        
+    }
+    
+    func updateRequests() {
+        
     }
 }
