@@ -22,7 +22,7 @@
 		A3FA2CA529089FFF00D80262 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA429089FFF00D80262 /* FirebaseFirestoreSwift */; };
 		A3FA2CA729089FFF00D80262 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA629089FFF00D80262 /* FirebaseMessaging */; };
 		A3FA2CA929089FFF00D80262 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA829089FFF00D80262 /* FirebaseStorage */; };
-		B23C37CC290B4334000B2B8A /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23C37CB290B4334000B2B8A /* Tag.swift */; };
+		B23C37CC290B4334000B2B8A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23C37CB290B4334000B2B8A /* Tags.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,7 +37,7 @@
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		A3E48C3429172B2A00B28EE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = GTLink/ContentView.swift; sourceTree = SOURCE_ROOT; };
-		B23C37CB290B4334000B2B8A /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
+		B23C37CB290B4334000B2B8A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +59,7 @@
 		205BBADE28F8BD97001C00F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B23C37CB290B4334000B2B8A /* Tag.swift */,
+				B23C37CB290B4334000B2B8A /* Tags.swift */,
 				0DCEDD0029149243008E5521 /* Post.swift */,
 			);
 			name = Model;
@@ -199,7 +199,7 @@
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */,
 				A31A0C432917311E006BC16C /* ContentView.swift in Sources */,
-				B23C37CC290B4334000B2B8A /* Tag.swift in Sources */,
+				B23C37CC290B4334000B2B8A /* Tags.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,
 				A3C815242908C78600E4215F /* Card.swift in Sources */,
