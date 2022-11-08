@@ -8,7 +8,7 @@
 import Foundation
 
 class FeedViewModel: ObservableObject {
-    @Published var selectedTags: [Tag] = []
+    @Published var selectedTags: [Tags] = []
     @Published var selectedType: Post_Type = .project
     
     @Published var showFilterSheet: Bool = false

@@ -17,11 +17,11 @@ struct FeedFilterView: View {
     
     @ObservedObject var viewModel: FeedViewModel
     
-    @State private var tagsSelected: [Tag]
+    @State private var tagsSelected: [Tags]
     @State private var projectType: Post_Type = Post_Type.project
     
     
-    init(viewModel: FeedViewModel, tags: [Tag], projectType: Post_Type) {
+    init(viewModel: FeedViewModel, tags: [Tags], projectType: Post_Type) {
         self.tagsSelected = tags
         self.projectType  = projectType
         self.viewModel = viewModel
@@ -115,7 +115,7 @@ struct FeedFilterView: View {
         viewModel.selectedType = self.projectType
         viewModel.showFilterSheet = false
     }
-    func buttonClicked(tag: Tag) {
+    func buttonClicked(tag: Tags) {
         if(tagsSelected.contains(tag)) {
             tagsSelected.removeAll { thisTag in
                 thisTag == tag
@@ -125,7 +125,7 @@ struct FeedFilterView: View {
         }
     }
     @ViewBuilder
-    func RowView(tag: Tag) -> some View {
+    func RowView(tag: Tags) -> some View {
         // applying same font size
         // else size will vary
         VStack {
@@ -140,8 +140,8 @@ struct FeedFilterView: View {
         }
     }
     
-    func getIndex(tag: Tag) -> Int {
-        let index = Tag.allCases.firstIndex { currentTag in
+    func getIndex(tag: Tags) -> Int {
+        let index = Tags.allCases.firstIndex { currentTag in
             return tag.hashValue == currentTag.hashValue
         } ?? 0
         return index
@@ -149,9 +149,9 @@ struct FeedFilterView: View {
     
     // basic logic
     // splitting array when it exceeds screen size
-    func getRows() -> [[Tag]] {
-        var rows: [[Tag]] = []
-        var currentRow: [Tag] = [] // tags row with empty spots
+    func getRows() -> [[Tags]] {
+        var rows: [[Tags]] = []
+        var currentRow: [Tags] = [] // tags row with empty spots
         
         // calculating text width
         var totalWidth: CGFloat = 0
@@ -159,7 +159,7 @@ struct FeedFilterView: View {
         let screenWidth: CGFloat = UIScreen.main.bounds.size.width - 30
         
         
-        Tag.allCases.forEach { tag in
+        Tags.allCases.forEach { tag in
             // updating total width
             // adding capsule size to total width with spacing
             totalWidth += (getSize(tag: tag)) // accounting for horizontal spaces
@@ -184,7 +184,7 @@ struct FeedFilterView: View {
         return rows
     }
     
-    func getSize(tag: Tag) -> CGFloat {
+    func getSize(tag: Tags) -> CGFloat {
         let tagName = tag.rawValue
         let size: CGSize = tagName.size(withAttributes: [.font: UIFont.systemFont(ofSize: 16)])
         
@@ -204,6 +204,6 @@ struct FeedFilterView: View {
 
 struct FeedFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedFilterView(viewModel: FeedViewModel(), tags: [Tag.homework, Tag.cs1301, Tag.ios, Tag.designer], projectType: Post_Type.project)
+        FeedFilterView(viewModel: FeedViewModel(), tags: [Tags.homework, Tags.cs1301, Tags.ios, Tags.designer], projectType: Post_Type.project)
     }
 }

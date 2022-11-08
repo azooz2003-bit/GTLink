@@ -14,7 +14,7 @@ struct Post: Hashable, Identifiable {
     var title: String
     var username: String
     var post_date: Date
-    var tags: [Tag]
+    var tags: [Tags]
     var description: String
 }
 
@@ -97,11 +97,11 @@ struct FeedScreen: View {
 struct FeedScreen_Previews: PreviewProvider {
     static var previews: some View {
         FeedScreen(postsFound: [
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell2", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus, Tag.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 2 Study", username: "gburdell", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus, Tag.cs1999, Tag.homework], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tag.class_project, Tag.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell2", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 2 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1999, Tags.homework], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
             
         ]
         )
