@@ -40,6 +40,18 @@ class UserViewModel: ObservableObject {
         ];
     }
     
+    func signOut(completion: @escaping (Bool) -> Void) {
+        do {
+            try auth.signOut()
+            self.user = nil
+            print("Signed Out")
+            completion(true)
+        } catch {
+            completion(false)
+            print("Error signing out user")
+        }
+    }
+    
     func loginWithProvider() {
         self.initialize()
         print("Login with provider")

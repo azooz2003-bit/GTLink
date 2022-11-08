@@ -16,8 +16,16 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Button("Login with Microsoft") {
-                userViewModel.loginWithProvider()
+            if userViewModel.userIsAuthenticated == true {
+                Button("Signout") {
+                    userViewModel.signOut() { success in
+                        
+                    }
+                }
+            } else {
+                Button("Login with Microsoft") {
+                    userViewModel.loginWithProvider()
+                }
             }
         }
         .padding()
