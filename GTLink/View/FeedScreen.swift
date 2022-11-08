@@ -8,7 +8,7 @@
 import SwiftUI
 import Firebase
 
-struct Post: Hashable, Identifiable {
+struct PostV1: Hashable, Identifiable {
     var id: UUID = UUID()
     var post_picture: UIImage?
     var title: String
@@ -23,7 +23,7 @@ struct FeedScreen: View {
     @ObservedObject var viewModel = FeedViewModel()
     let phone_size = UIScreen.main.bounds.size
     
-    var postsFound: [Post]
+    var postsFound: [PostV1]
     
     var body: some View {
         ZStack {
@@ -88,7 +88,7 @@ struct FeedScreen: View {
         }
     }
     
-    func generate_card(post: Post) -> Card {
+    func generate_card(post: PostV1) -> Card {
         let card = Card(post_picture: Image(uiImage: (post.post_picture ?? UIImage(systemName: "person.fill"))!), title: post.title, username: post.username, post_date: post.post_date, tags: post.tags, description: post.description)
         return card
     }
@@ -97,11 +97,11 @@ struct FeedScreen: View {
 struct FeedScreen_Previews: PreviewProvider {
     static var previews: some View {
         FeedScreen(postsFound: [
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell2", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 2 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1999, Tags.homework], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
-            Post(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell2", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 2 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1999, Tags.homework], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
             
         ]
         )
