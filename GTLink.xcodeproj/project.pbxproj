@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
+		50A0D593291B23EB00FDDECA /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A0D592291B23EA00FDDECA /* Tag.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257928F22E4400919640 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257828F22E4400919640 /* ContentView.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
 		A31A0C452919D152006BC16C /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A0C442919D152006BC16C /* LandingPage.swift */; };
-		A340B91F2908C0E100FF96A4 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = A340B91E2908C0E100FF96A4 /* Tag.swift */; };
 		A36E154028F8EE3400239E22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */; };
 		A3C815242908C78600E4215F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C815232908C78600E4215F /* Card.swift */; };
 		A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */; };
@@ -26,13 +26,13 @@
 
 /* Begin PBXFileReference section */
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
+		50A0D592291B23EA00FDDECA /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257828F22E4400919640 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A31A0C442919D152006BC16C /* LandingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
-		A340B91E2908C0E100FF96A4 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tag.swift; path = ../../../../../../Tag.swift; sourceTree = "<group>"; };
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPagev1.swift; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		205BBADE28F8BD97001C00F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A340B91E2908C0E100FF96A4 /* Tag.swift */,
+				50A0D592291B23EA00FDDECA /* Tag.swift */,
 			);
 			name = Model;
 			path = "New Group/Model";
@@ -193,12 +193,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50A0D593291B23EB00FDDECA /* Tag.swift in Sources */,
 				A31A0C452919D152006BC16C /* LandingPage.swift in Sources */,
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */,
 				A3C815242908C78600E4215F /* Card.swift in Sources */,
-				A340B91F2908C0E100FF96A4 /* Tag.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
