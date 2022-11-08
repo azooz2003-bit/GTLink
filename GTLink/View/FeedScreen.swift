@@ -79,7 +79,7 @@ struct FeedScreen: View {
                             .background(LinearGradient(colors: [Color(red: 62/255, green: 127/255, blue: 204/255), Color(red: 38/255, green: 87/255, blue: 145/255)], startPoint: .leading, endPoint: .trailing))
                             .clipShape(Circle())
                             
-                            .padding(10)
+                            .padding(10).shadow(radius: 10)
                     }
                     
                 }
