@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct SettingsView: View {
     @State private var test = true;
     @State private var dummy = false;
     var body: some View {
@@ -34,6 +34,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SettingsView()
     }
 }
