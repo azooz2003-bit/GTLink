@@ -11,7 +11,9 @@ import FirebaseFirestoreSwift
 
 class FeedViewModel: ObservableObject {
     
-    let db = Firestore.firestore()
+    private let db = Firestore.firestore()
+    
+    @StateObject var userViewModel = UserViewModel() // Once UserViewModel class shows up
     
     @Published var viewMode: String = "Default Mode" // will be a UserViewMode object later
     @Published var allPosts: [String] = [] // will be an array of Post objects later
