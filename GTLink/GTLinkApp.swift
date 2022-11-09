@@ -9,6 +9,7 @@
 import SwiftUI
 import FirebaseCore // Install Firebase SDK with Xcode for this to import correctly
 
+
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -24,7 +25,7 @@ struct GTLinkApp: App {
     
     var body: some Scene {
         WindowGroup {
-            SignOutTest()
+            PostViewScreen()
         }
     }
 }
