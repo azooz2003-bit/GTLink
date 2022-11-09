@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0DA242F429148928007BC37A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA242F329148928007BC37A /* ContentView.swift */; };
+		0DA242F429148928007BC37A /* SignOutTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DA242F329148928007BC37A /* SignOutTest.swift */; };
 		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
 		209A52AE2917120F0037F7F5 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 209A52AD2917120F0037F7F5 /* FirebaseAuth */; };
 		209A52B02917120F0037F7F5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 209A52AF2917120F0037F7F5 /* FirebaseFirestore */; };
@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0DA242F329148928007BC37A /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0DA242F329148928007BC37A /* SignOutTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignOutTest.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		209A52B5291714C60037F7F5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		209A52B7291714DE0037F7F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				0DA242F329148928007BC37A /* ContentView.swift */,
+				0DA242F329148928007BC37A /* SignOutTest.swift */,
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
 			);
 			path = View;
@@ -182,7 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0DA242F429148928007BC37A /* ContentView.swift in Sources */,
+				0DA242F429148928007BC37A /* SignOutTest.swift in Sources */,
 				A374BF812908CB4100AAA661 /* UserViewModel.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,

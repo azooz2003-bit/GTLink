@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 import FirebaseAuth
 import SwiftUI
 
-struct ContentView: View {
+struct SignOutTest: View {
     @StateObject var userViewModel = UserViewModel()
     @State var userIsAuthenticatedAndSynced = false;
     @State var errorOccurred = false
@@ -44,8 +44,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct SignOutTest_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        SignOutTest()
     }
 }
