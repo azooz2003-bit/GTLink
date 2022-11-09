@@ -16,6 +16,8 @@
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
+		A36BC9C2291B53CE00A8D3A8 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BC9C1291B53CE00A8D3A8 /* ContentView.swift */; };
+		A36BC9C6291B54AA00A8D3A8 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BC9C5291B54AA00A8D3A8 /* FeedScreen.swift */; };
 		A374BF812908CB4100AAA661 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374BF802908CB4100AAA661 /* UserViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +29,8 @@
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A36BC9C1291B53CE00A8D3A8 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A36BC9C5291B54AA00A8D3A8 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		A374BF802908CB4100AAA661 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -49,6 +53,7 @@
 			isa = PBXGroup;
 			children = (
 				0DA242F329148928007BC37A /* SignOutTest.swift */,
+				A36BC9C5291B54AA00A8D3A8 /* FeedScreen.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -79,6 +84,7 @@
 				205BBAE028F8BDBD001C00F7 /* View */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
 				A306257C28F22E4500919640 /* Preview Content */,
+				A36BC9C1291B53CE00A8D3A8 /* ContentView.swift */,
 			);
 			path = GTLink;
 			sourceTree = "<group>";
@@ -181,7 +187,9 @@
 			files = (
 				0DA242F429148928007BC37A /* SignOutTest.swift in Sources */,
 				A374BF812908CB4100AAA661 /* UserViewModel.swift in Sources */,
+				A36BC9C2291B53CE00A8D3A8 /* ContentView.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
+				A36BC9C6291B54AA00A8D3A8 /* FeedScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
