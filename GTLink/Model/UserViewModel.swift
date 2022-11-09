@@ -89,7 +89,29 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func syncUserData(completion: @escaping (Bool) -> Void) {
-        
+        if !userIsAuthenticated {
+            print("pre-sync abort")
+            completion(false)
+            return
+        }
+        db.collection("users").document(self.uuid!).getDocument { (document, error) in
+            print(document!)
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+                    
+            do {
+                try self.user = document!.data(as: User.self)
+                print(try document!.data(as: User.self))
+                print(self.user)
+                completion(true)
+            } catch {
+                print("SYNC ERROR: \(error)")
+                completion(false)
+            }
+        }
     }
     
     /*
@@ -100,7 +122,15 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func addProfileData() {
-        
+        if !userIsAuthenticated {
+            print("pre-add abort")
+            return
+        }
+        do {
+            let _ = try db.collection("users").document(self.uuid!).setData(from: user!)
+        } catch {
+                print("Error adding")
+        }
     }
     
     /*
