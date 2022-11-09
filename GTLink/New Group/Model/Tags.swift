@@ -7,7 +7,7 @@
 import SwiftUI
 import Foundation
 
-enum Tags: String {
+enum Tags: String, Hashable, CaseIterable {
     
     case ios = "iOS"
     case developer = "Developer"
