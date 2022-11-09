@@ -13,18 +13,30 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var userViewModel = UserViewModel()
+    @State var userIsAuthenticatedAndSynced = false;
+    @State var errorOccurred = false
     
     var body: some View {
         VStack {
-            if userViewModel.userIsAuthenticated == true {
+            if userIsAuthenticatedAndSynced == true {
                 Button("Signout") {
                     userViewModel.signOut() { success in
-                        
+                        if success {
+                            userIsAuthenticatedAndSynced = false
+                        } else {
+                            errorOccurred = true
+                        }
                     }
                 }
             } else {
                 Button("Login with Microsoft") {
-                    userViewModel.loginWithProvider()
+                    userViewModel.loginWithProvider() { success in
+                        if success {
+                            userIsAuthenticatedAndSynced = true
+                        } else {
+                            errorOccurred = true
+                        }
+                    }
                 }
             }
         }
