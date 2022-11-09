@@ -87,7 +87,7 @@ struct requestButton: View {
                 .font(.title2)
                 .padding([.top, .bottom], 15)
                 .padding([.leading, .trailing], 55)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
                 .background(
                     LinearGradient(gradient: Gradient(colors: [Color(red: 62/255, green: 127/255, blue: 204/255), Color(red: 38/255, green: 87/255, blue: 145/255)]), startPoint: .leading, endPoint: .trailing)
                 )
