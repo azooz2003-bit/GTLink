@@ -17,8 +17,6 @@
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
 		A374BF812908CB4100AAA661 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374BF802908CB4100AAA661 /* UserViewModel.swift */; };
-		A3BAD254291B4A8200A4BA99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAD253291B4A8200A4BA99 /* ContentView.swift */; };
-		A3BAD256291B4A9300A4BA99 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BAD255291B4A9300A4BA99 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +28,6 @@
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A374BF802908CB4100AAA661 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
-		A3BAD253291B4A8200A4BA99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		A3BAD255291B4A9300A4BA99 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +49,6 @@
 			isa = PBXGroup;
 			children = (
 				0DA242F329148928007BC37A /* SignOutTest.swift */,
-				A3BAD255291B4A9300A4BA99 /* SettingsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -81,7 +76,6 @@
 				209A52B5291714C60037F7F5 /* GoogleService-Info.plist */,
 				A374BF7F2908CB3000AAA661 /* Model */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
-				A3BAD253291B4A8200A4BA99 /* ContentView.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
 				A306257C28F22E4500919640 /* Preview Content */,
@@ -185,10 +179,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A3BAD256291B4A9300A4BA99 /* SettingsView.swift in Sources */,
 				0DA242F429148928007BC37A /* SignOutTest.swift in Sources */,
 				A374BF812908CB4100AAA661 /* UserViewModel.swift in Sources */,
-				A3BAD254291B4A8200A4BA99 /* ContentView.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
