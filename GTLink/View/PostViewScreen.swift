@@ -21,12 +21,6 @@ struct PostViewScreen: View  {
         addTag(text: "Swift", fontSize: 16),
         addTag(text: "iOS Club", fontSize: 16),
         addTag(text: "UI/UX", fontSize: 16)
-//        Tag(text: "iOS"),
-//        Tag(text: "Developer"),
-//        Tag(text: "Beginner"),
-//        Tag(text: "Swift"),
-//        Tag(text: "iOS Club"),
-//        Tag(text: "UI/UX")
     ]
     
     var body: some View {
@@ -94,10 +88,10 @@ struct requestButton: View {
                 .padding([.top, .bottom], 15)
                 .padding([.leading, .trailing], 55)
                 .foregroundColor(.black)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 2)
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [Color(red: 62/255, green: 127/255, blue: 204/255), Color(red: 38/255, green: 87/255, blue: 145/255)]), startPoint: .leading, endPoint: .trailing)
                 )
+                .cornerRadius(12)
         }
         .padding(10)
     }

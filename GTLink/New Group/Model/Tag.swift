@@ -7,7 +7,7 @@
 import SwiftUI
 import Foundation
 
-enum Tag: String {
+enum Tags: String {
     
     case ios = "iOS"
     case developer = "Developer"
