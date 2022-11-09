@@ -9,13 +9,20 @@ import SwiftUI
 
 struct LandingPage: View {
     var body: some View {
+        let layer0 = LinearGradient(colors: [.cyan, .blue, .blue], startPoint: .leading, endPoint: .trailing)
         VStack {
-        
-            Text("GT Link")
-                .font(.system(size: 60))
-                .padding(30)
+            HStack {
+                Image("Logo")
+                Text("GTLink")
+                    .font(.system(size: 60))
+                    
+                    .offset(x: -20)
+                    .bold()
+            }.padding(30)
+            
+            .offset(y: 50)
             Spacer()
-                .frame(height:180)
+                .frame(height: 160)
             HStack {
                 Image("iconOne")
                     .resizable()
@@ -51,30 +58,32 @@ struct LandingPage: View {
             }
             
             Spacer()
+                .frame(height: 250)
             NavigationLink(destination: FeedScreen()) {
                 HStack {
-                    Text("          ")
-                        .foregroundColor(.white)
+                    Text("  ")
+                        .foregroundColor(.blue)
                         .cornerRadius(20)
                     Image("GT")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         
-                    Text("Georgia Tech SSO")
+                    Text("Georgia Tech SSO   ")
                         .foregroundColor(.white)
-                        .font(.system(size: 25))
-                    Image("Right")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                    Text("          ")
+                        .font(.system(size: 20))
+                        .bold()
+                    Label("", systemImage: "arrow.right")
+                        .frame(width: 25, height: 25)
+                    Text("  ")
                 }
-                .background(Color.black)
+                .background(layer0)
                 .cornerRadius(20)
-                .frame(height: 60)
+                .frame(height: 80)
                 .padding(-100)
             }
         }
     }
+
 }
 
 struct LandingPage_Previews: PreviewProvider {
