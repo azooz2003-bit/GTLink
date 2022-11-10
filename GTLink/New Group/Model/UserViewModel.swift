@@ -102,8 +102,8 @@ class UserViewModel: ObservableObject {
             }
                     
             do {
-                try self.user = document!.data(as: User.self)
-                print(try document!.data(as: User.self))
+                //try self.user = document!.data(as: User.self)
+                //print(try document!.data(as: User.self))
                 print(self.user)
                 completion(true)
             } catch {
@@ -126,7 +126,7 @@ class UserViewModel: ObservableObject {
             return
         }
         do {
-            let _ = try db.collection("users").document(self.uuid!).setData(from: user!)
+            //let _ = try db.collection("users").document(self.uuid!).setData(from: user!)
         } catch {
                 print("Error adding")
         }
