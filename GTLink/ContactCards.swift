@@ -53,7 +53,9 @@ struct ContactCards: View {
                     Text("Email")
                     Spacer()
                     Button(action: {
-                        didTapEmail.toggle()
+                        if ((didTapPhone == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
+                            didTapEmail.toggle()
+                        }
                     }) {
                         if (didTapEmail == true) {
                             Image(systemName: "circle.fill")
@@ -92,7 +94,9 @@ struct ContactCards: View {
                     Text("Phone")
                     Spacer()
                     Button(action: {
-                        didTapPhone.toggle()
+                        if ((didTapEmail == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
+                            didTapPhone.toggle()
+                        }
                     }) {
                         if (didTapPhone == true) {
                             Image(systemName: "circle.fill")
@@ -135,7 +139,9 @@ struct ContactCards: View {
                     Text("Discord")
                     Spacer()
                     Button(action: {
-                        didTapDiscord.toggle()
+                        if ((didTapPhone == false) && (didTapEmail == false) && (didTapGroupMe == false)) {
+                            didTapDiscord.toggle()
+                        }
                     }) {
                         if (didTapDiscord == true) {
                             Image(systemName: "circle.fill")
@@ -174,7 +180,9 @@ struct ContactCards: View {
                     Text("GroupMe")
                     Spacer()
                     Button(action: {
-                        didTapGroupMe.toggle()
+                        if ((didTapEmail == false) && (didTapDiscord == false) && (didTapPhone == false)) {
+                            didTapGroupMe.toggle()
+                        }
                     }) {
                         if (didTapGroupMe == true) {
                             Image(systemName: "circle.fill")
