@@ -70,7 +70,7 @@ struct LandingPage: View {
             
             Button(action: {
                 
-                
+                ssoPressed = true
             }) {
                 HStack {
                     

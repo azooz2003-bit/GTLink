@@ -38,7 +38,7 @@ struct LandingPagev1: View {
                 .offset(x: -12)
             
             Spacer()
-            NavigationLink(destination: FeedScreen()) {
+            NavigationLink(destination: EmptyView()) {
                 HStack {
                     Image("GT")
                         .resizable()

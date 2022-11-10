@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
-		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
@@ -18,7 +17,6 @@
 		A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */; };
 		A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36D8284291ABC9F0013897F /* SettingsView.swift */; };
 		A36E154028F8EE3400239E22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */; };
-		A3C815242908C78600E4215F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C815232908C78600E4215F /* Card.swift */; };
 		A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */; };
 		A3FA2CA129089FFF00D80262 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA029089FFF00D80262 /* FirebaseAuth */; };
 		A3FA2CA329089FFF00D80262 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA229089FFF00D80262 /* FirebaseFirestore */; };
@@ -81,6 +79,7 @@
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A31A0C442919D152006BC16C /* LandingPage.swift */,
 				A36D8284291ABC9F0013897F /* SettingsView.swift */,
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
 				A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */,
@@ -114,8 +113,6 @@
 				A36BC9CB291B58FE00A8D3A8 /* BackendTesting */,
 				A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
-				A306257828F22E4400919640 /* ContentView.swift */,
-				A31A0C442919D152006BC16C /* LandingPage.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
 				205BBADE28F8BD97001C00F7 /* Model */,
 				A306257A28F22E4500919640 /* Assets.xcassets */,
@@ -220,9 +217,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50A0D593291B23EB00FDDECA /* Tag.swift in Sources */,
 				A31A0C452919D152006BC16C /* LandingPage.swift in Sources */,
-				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */,
 				5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */,
