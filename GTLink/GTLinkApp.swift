@@ -24,7 +24,7 @@ struct GTLinkApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Profilev1()
         }
     }
 }

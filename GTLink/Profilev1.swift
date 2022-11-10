@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct Profilev1: View {
     var body: some View {
         
         // Welcome message
@@ -64,8 +64,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct Profilev1_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        Profilev1()
     }
 }
