@@ -9,18 +9,23 @@ import SwiftUI
 
 struct FeedScreen: View {
     var body: some View {
-        ScrollView {
+            //Contains the feed
             VStack {
+                
+                    //Adds the pending requests to designate the section for pending requests
                     Text("Pending Requests")
                         .font(.system(size: 25))
                         .bold()
                         .underline()
                     Spacer()
                     
-                    PendingRequestCard(post_picture: Image("penguin"), status: "Wants to work with you on", pname: "AppDev: GTLink")
+                
+                    //Placeholder to show a pending request
+                    PendingRequestCard(pfp: Image("penguin"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")
                     
                     Spacer()
                     
+                    //Adds text representing the section containing the accepted requests
                     Text("Accepted Requests")
                         .font(.system(size: 25))
                         .bold()
@@ -28,17 +33,17 @@ struct FeedScreen: View {
             
                     Spacer()
                 
-                    AcceptedRequestCard(post_picture: Image("penguin"), status: "George Burdell accepted your request to work on", pname: "WebDev: GT Dashboard")
+                    //Placeholders showing the accepted requests
+                    AcceptedRequestCard(pfp: Image("penguin"), student: "George Burdell", pname: "WebDev: GT Dashboard")
                     
                     Spacer()
                 
-                    AcceptedRequestCard(post_picture: Image("penguin"), status: "You accepted George Burdell's request to work on", pname: "CS 1999: Exam 1 Study")
+                    AcceptedRequestCard(pfp: Image("penguin"), student: "George Burdell", pname: "CS 1999: Exam 1 Study")
                 
                     Spacer()
                 
             }
         }
-    }
 }
 
 struct FeedScreen_Previews: PreviewProvider {

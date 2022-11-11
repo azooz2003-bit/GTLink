@@ -7,71 +7,115 @@
 
 import SwiftUI
 
+
+//Following structs are a work in progress: for now,
+//both generate solid button functions: in the future,
+//it will generate a gradient button similar to the one
+//in the Figma File
+
+
+struct CreateDeclineStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.frame(minWidth: 0, maxWidth: .infinity)
+        .padding()
+        .foregroundColor(.white)
+        .background(LinearGradient(gradient: Gradient(colors: [Color.gray]), startPoint: .leading, endPoint: .trailing))
+        .cornerRadius(15)
+        .padding(.horizontal, 15)
+    }
+}
+
+struct CreateAcceptStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label.frame(minWidth: 0, maxWidth: .infinity)
+        .padding()
+        .foregroundColor(.white)
+        .background(LinearGradient(gradient: Gradient(colors: [Color.yellow]), startPoint: .leading, endPoint: .trailing))
+        .cornerRadius(15)
+        .padding(.horizontal, 15)
+    }
+}
+
+
+
+//Pending Request Card
 struct PendingRequestCard: View {
     
+    //Constant represented to accomodate for different phone sizes
     let phone_size = UIScreen.main.bounds.size
     
     
-    //Attributes the accepted request card will have:
-    //a picture, the status of the request, and the project name
-    let post_picture: Image?
-    let status: String
+    //Attributes the pending request card will have:
+    //the profile picture, the student information, the project name
+    let pfp: Image?
+    let student_name: String
+    let major: String
+    let year: String
     let pname: String
     
-    init(post_picture: Image, status: String, pname: String) {
-        self.post_picture = post_picture
-        self.status = status
+    init(pfp: Image, student_name: String, major: String, year: String, pname: String) {
+        self.pfp = pfp
+        self.student_name = student_name
+        self.major = major
+        self.year = year
         self.pname = pname
     }
     
     var body: some View {
         //View of the accepted request card
         VStack {
+            //Horizontal stack created for the time passed and
+            //profile picture
+            HStack(alignment: .top) {
+                Image(systemName: "clock").frame(width: 25)
+                Text("X hours ago")
+                    .font(.system(size: 15))
+                
+                //Vertical stack created for the profile picture
+                VStack {
+                    pfp!
+                        .resizable()
+                        .frame(width: 100, height: 100)
+                        .clipShape(Circle())
+                        .shadow(radius: 10)
+                }
+                
+                Spacer()
+            }
+                
             
             //Horizontal stack that holds the card information
             HStack(alignment: .top) {
                 
                 //Vertical stack created for the other contents
-                VStack(alignment: .leading, spacing: 14) {
+                VStack(alignment: .center ,spacing: 14) {
                     
-                    HStack(alignment: .top) {
-                        Image(systemName: "clock")
-                        Text("X hours ago")
-                        
-                        //Placeholder for the profile picture
-                        post_picture ?? Image(systemName: "book.fill")
-                        .resizable()
-                        .frame(width: 10, height: 10, alignment: .center)
-                        .padding(20)
-                        .clipShape(Circle())
-                        .shadow(radius: 20) as! Image
+                    //Vertical stack created for the information about the student
+                    VStack(alignment: .center) {
+                        Text(student_name).font(.system(size: 20)).bold()
+                        Text(major).font(.system(size: 16))
+                        Text("\(year) Year").font(.system(size: 14))
                     }
                     
-                    VStack {
-                        Text("George Burdell").font(.system(size: 20)).bold()
-                        Text("Computer Scientist").font(.system(size: 16))
-                        Text("Nth Year").font(.system(size: 14))
-                    }
-                    //Status - contains name of the user and the status of the request
-                    Text(status)
+                    Text("Wants to work with you on")
                         .font(.system(size: 16)).bold().frame(alignment: .center)
                     
                     //Project name - contains name of the user's project
                     Text(pname).font(.system(size: 30)).bold()
                     
-                    //Contact - represents the action to contact the user
+                    //Contains the buttons to accept or decline
                     HStack {
                         Button {
                         } label: {
                             Text("Decline").foregroundColor(.white)
-                        }.background(Color.gray)
+                        }.buttonStyle(CreateDeclineStyle())
                         
                         Spacer()
                         
                         Button {
                         } label: {
                             Text("Accept").foregroundColor(.white)
-                        }.background(Color.yellow)
+                        }                        .buttonStyle(CreateAcceptStyle())
                     }.padding(.trailing, 10)
                     
                 }.padding(5)
@@ -86,6 +130,6 @@ struct PendingRequestCard: View {
 
 struct PendingRequestCard_Previews: PreviewProvider {
     static var previews: some View {
-        PendingRequestCard(post_picture: Image("penguin"), status: "Wants to work with you on", pname: "WebDev: GT Dashboard ")
+        PendingRequestCard(pfp: Image("penguin"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "WebDev: GT Dashboard")
     }
 }
