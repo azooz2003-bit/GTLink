@@ -27,7 +27,7 @@ struct PostViewScreen: View  {
         VStack {
             titleCard()
             descriptionView()
-            TagView(maxLimit: 150, tags: $tags)
+            TagView(tags: $tags)
                 .padding(.top, 5)
             requestButton()
             Spacer()

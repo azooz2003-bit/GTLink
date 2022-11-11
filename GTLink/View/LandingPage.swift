@@ -69,7 +69,6 @@ struct LandingPage: View {
                 .frame(height: 190)
             
             Button(action: {
-                
                 ssoPressed = true
             }) {
                 HStack {
