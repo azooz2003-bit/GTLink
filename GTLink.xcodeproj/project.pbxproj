@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D338070291DC92200D7DE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33806F291DC92200D7DE20 /* User.swift */; };
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0DCEDD0029149243008E5521 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
@@ -71,6 +73,7 @@
 				B2649E9F2918677300DD08EE /* FeedViewModel.swift */,
 				0DCEDD0029149243008E5521 /* Post.swift */,
 				A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */,
+				0D33806F291DC92200D7DE20 /* User.swift */,
 			);
 			name = Model;
 			path = "New Group/Model";
@@ -225,6 +228,7 @@
 				B23C37CC290B4334000B2B8A /* Tags.swift in Sources */,
 				A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */,
 				A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */,
+				0D338070291DC92200D7DE20 /* User.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
