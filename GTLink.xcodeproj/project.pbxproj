@@ -17,7 +17,6 @@
 		E80552102908A3AB00DED690 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E805520F2908A3AB00DED690 /* FirebaseFirestore */; };
 		E80552122908A3AB00DED690 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E80552112908A3AB00DED690 /* FirebaseFirestoreSwift */; };
 		E80552142908A3AB00DED690 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E80552132908A3AB00DED690 /* FirebaseStorage */; };
-		E80552162908A60B00DED690 /* ProfileSetup4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80552152908A60B00DED690 /* ProfileSetup4.swift */; };
 		E80552182908A7E900DED690 /* OwnedPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E80552172908A7E900DED690 /* OwnedPostScreen.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,7 +28,6 @@
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E80552152908A60B00DED690 /* ProfileSetup4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSetup4.swift; sourceTree = "<group>"; };
 		E80552172908A7E900DED690 /* OwnedPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedPostScreen.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +84,6 @@
 				A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
 				A306257828F22E4400919640 /* Profilev1.swift */,
-				E80552152908A60B00DED690 /* ProfileSetup4.swift */,
 				E80552172908A7E900DED690 /* OwnedPostScreen.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
 				205BBADE28F8BD97001C00F7 /* Model */,
@@ -184,7 +181,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E80552162908A60B00DED690 /* ProfileSetup4.swift in Sources */,
 				A306257928F22E4400919640 /* Profilev1.swift in Sources */,
 				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
