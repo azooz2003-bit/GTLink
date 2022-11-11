@@ -32,198 +32,208 @@ struct ContactCards: View {
             Text("Step 4/4")
                 .font(.system(size: 20))
                 .padding(.leading, -160)
+                .position(x: 198, y:0)
             
             // Title
-            Text("Select a primary way to connect with others.")
-                .font(.system(size: 26))
+            Text("Add some ways for people to connect with you and star your favorite.")
+                .font(.system(size: 24))
                 .bold()
                 .fixedSize(horizontal: false, vertical: true)
-                .position(x: 130, y: 20)
+                .position(x: 135)
                 .frame(width: 300)
             
             // Contact Cards
             
-            Group {
+            // VStack for all content on page
+            VStack {
                 
-                // Email
-                VStack {
-                    HStack {
-                        Image(systemName: "envelope")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                        Spacer()
-                            .frame(width: 15)
-                        Text("Email")
-                        Spacer()
-                        Button(action: {
-                            if ((didTapPhone == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
-                                didTapEmail.toggle()
-                            }
-                        }) {
-                            if (didTapEmail == true) {
-                                Image(systemName: "circle.fill")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.yellow)
-                            } else {
-                                Image(systemName: "circle")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.black)
-                            }
-                        }
-                        .frame(width: 30)
-                    }
-                    TextField("Email Address", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                        .overlay(Divider().offset(x: 0, y: 15))
-                        .padding(.top, -10)
-                        .frame(height: didTapEmail == true ? 30 : 0)
-                        .clipped()
-                }
-                .padding(.all, 15)
-                .padding(.bottom, -10)
-                .overlay(RoundedRectangle(cornerRadius: 15)
-                    .stroke(didTapEmail == true ? .yellow : .black, lineWidth: didTapEmail == true ? 3 : 2))
-                .padding(.horizontal, 35)
-                
-                Spacer()
-                    .frame(height: 25)
-                
-                
-                // Phone
-                VStack {
-                    HStack {
-                        Image(systemName: "phone")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 28)
-                        Spacer()
-                            .frame(width: 20)
-                        Text("Phone")
-                        Spacer()
-                        Button(action: {
-                            if ((didTapEmail == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
-                                didTapPhone.toggle()
-                            }
-                        }) {
-                            if (didTapPhone == true) {
-                                Image(systemName: "circle.fill")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.yellow)
-                            } else {
-                                Image(systemName: "circle")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.black)
-                            }
-                        }
-                        .frame(width: 30)
-                        
-                    }
+                // VStack of Contact Options
+                VStack(spacing: 20) {
                     
-                    TextField("Phone Number", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                        .overlay(Divider().offset(x: 0, y: 15))
-                        .padding(.top, -10)
-                        .frame(height: didTapPhone == true ? 30 : 0)
-                        .clipped()
-                }
-                .padding(.all, 15)
-                .padding(.bottom, -10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 15)
-                        .stroke(didTapPhone == true ? .yellow : .black, lineWidth: didTapPhone == true ? 3 : 2)
-                )
-                .padding(.horizontal, 35)
-                
-                Spacer()
-                    .frame(height: 25)
-                
-                // Discord
-                VStack {
-                    HStack {
-                        Image("discord")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 35)
-                            .padding(.leading, -5)
-                            .padding(.bottom, -5)
-                        Spacer()
-                            .frame(width: 15)
-                        Text("Discord")
-                        Spacer()
-                        Button(action: {
-                            if ((didTapPhone == false) && (didTapEmail == false) && (didTapGroupMe == false)) {
-                                didTapDiscord.toggle()
+                    // VStack for Email Card
+                    VStack {
+                        // HStack for logo, title, and toggle button
+                        HStack {
+                            Image(systemName: "envelope")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 24)
+                            Spacer()
+                                .frame(width: 21)
+                            Text("Email")
+                            Spacer()
+                            Button(action: {
+                                if ((didTapPhone == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
+                                    didTapEmail.toggle()
+                                }
+                            }) {
+                                if (didTapEmail == true) {
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.yellow)
+                                } else {
+                                    Image(systemName: "star")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.black)
+                                }
                             }
-                        }) {
-                            if (didTapDiscord == true) {
-                                Image(systemName: "circle.fill")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.yellow)
-                            } else {
-                                Image(systemName: "circle")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.black)
-                            }
-                        }
-                        .frame(width: 30)
-                        
-                    }
-                    
-                    TextField("Discord Username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                        .overlay(Divider().offset(x: 0, y: 15))
-                        .padding(.top, -10)
-                        .frame(height: didTapDiscord == true ? 30 : 0)
-                        .clipped()
-                }
-                .padding(.all, 15)
-                .padding(.bottom, -10)
-                .overlay(RoundedRectangle(cornerRadius: 15)
-                    .stroke(didTapDiscord == true ? .yellow : .black, lineWidth: didTapDiscord == true ? 3 : 2))
-                .padding(.horizontal, 35)
-                
-                Spacer()
-                    .frame(height: 25)
-                
-                // GroupMe
-                VStack {
-                    HStack {
-                        Image("groupme")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30)
-                        Spacer()
-                            .frame(width: 15)
-                        Text("GroupMe")
-                        Spacer()
-                        Button(action: {
-                            if ((didTapEmail == false) && (didTapDiscord == false) && (didTapPhone == false)) {
-                                didTapGroupMe.toggle()
-                            }
-                        }) {
-                            if (didTapGroupMe == true) {
-                                Image(systemName: "circle.fill")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.yellow)
-                            } else {
-                                Image(systemName: "circle")
-                                    .font(.system(size: 25))
-                                    .foregroundColor(Color.black)
-                            }
+                            
                         }
                         
+                        TextField("Email Address", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                            .overlay(
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.gray)
+                                    .opacity(0.6)
+                                    .offset(x: 0, y: 15)
+                            )
+                        
                     }
+                    .padding(.all, 20)
+                    .overlay(RoundedRectangle(cornerRadius: 15)
+                        .stroke(didTapEmail == true ? .yellow : .black, lineWidth: didTapEmail == true ? 3 : 2))
+                    .padding(.horizontal, 30)
                     
-                    TextField("GroupMe Username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                        .overlay(Divider().offset(x: 0, y: 15))
-                        .padding(.top, -10)
-                        .frame(height: didTapGroupMe == true ? 30 : 0)
-                        .clipped()
+                    // VStack for Phone Card
+                    VStack {
+                        // HStack for logo, title, and toggle button
+                        HStack {
+                            Image(systemName: "phone")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 24)
+                            Spacer()
+                                .frame(width: 21)
+                            Text("Phone")
+                            Spacer()
+                            Button(action: {
+                                if ((didTapEmail == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
+                                    didTapPhone.toggle()
+                                }
+                            }) {
+                                if (didTapPhone == true) {
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.yellow)
+                                } else {
+                                    Image(systemName: "star")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                            
+                        }
+                        
+                        TextField("Phone Number", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                            .overlay(
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.gray)
+                                    .opacity(0.6)
+                                    .offset(x: 0, y: 15)
+                            )
+                        
+                    }
+                    .padding(.all, 20)
+                    .overlay(RoundedRectangle(cornerRadius: 15)
+                        .stroke(didTapPhone == true ? .yellow : .black, lineWidth: didTapPhone == true ? 3 : 2))
+                    .padding(.horizontal, 30)
+       
+                    // VStack for Discord Card
+                    VStack {
+                        // HStack for logo, title, and toggle button
+                        HStack {
+                            Image("discord")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 30)
+                            Spacer()
+                                .frame(width: 15)
+                            Text("Discord")
+                            Spacer()
+                            
+                            Button(action: {
+                                if ((didTapPhone == false) && (didTapEmail == false) && (didTapGroupMe == false)) {
+                                    didTapDiscord.toggle()
+                                }
+                            }) {
+                                if (didTapDiscord == true) {
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.yellow)
+                                } else {
+                                    Image(systemName: "star")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                            
+                        }
+                        
+                        TextField("Phone Number", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                            .overlay(
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.gray)
+                                    .opacity(0.6)
+                                    .offset(x: 0, y: 15)
+                            )
+                        
+                    }
+                    .padding(.all, 20)
+                    .overlay(RoundedRectangle(cornerRadius: 15)
+                        .stroke(didTapDiscord == true ? .yellow : .black, lineWidth: didTapDiscord == true ? 3 : 2))
+                    .padding(.horizontal, 30)
+                    
+                    // VStack for GroupMe Card
+                    VStack {
+                        // HStack for logo, title, and toggle button
+                        HStack {
+                            Image("groupme")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: 30)
+                            Spacer()
+                                .frame(width: 15)
+                            Text("GroupMe")
+                            Spacer()
+                            Button(action: {
+                                if ((didTapPhone == false) && (didTapDiscord == false) && (didTapEmail == false)) {
+                                    didTapGroupMe.toggle()
+                                }
+                            }) {
+                                if (didTapGroupMe == true) {
+                                    Image(systemName: "star.fill")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.yellow)
+                                } else {
+                                    Image(systemName: "star")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(Color.black)
+                                }
+                            }
+                            
+                        }
+                        
+                        TextField("GroupMe Username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                            .overlay(
+                                Divider()
+                                    .frame(height: 1.5)
+                                    .overlay(.gray)
+                                    .opacity(0.6)
+                                    .offset(x: 0, y: 15)
+                            )
+
+                        
+                    }
+                    .padding(.all, 20)
+                    .overlay(RoundedRectangle(cornerRadius: 15)
+                        .stroke(didTapGroupMe == true ? .yellow : .black, lineWidth: didTapGroupMe == true ? 3 : 2))
+                    .padding(.horizontal, 30)
+                    
                 }
-                .padding(.all, 15)
-                .padding(.bottom, -10)
-                .overlay(RoundedRectangle(cornerRadius: 15)
-                    .stroke(didTapGroupMe == true ? .yellow : .black, lineWidth: didTapGroupMe == true ? 3 : 2))
-                .padding(.horizontal, 35)
-                
+           
             }
             
             // Finish button
@@ -238,7 +248,7 @@ struct ContactCards: View {
                 LinearGradient(gradient: Gradient(colors: [Color.init(red: 71 / 255, green: 103 / 255, blue: 204 / 255), Color.init(red: 90 / 255, green: 186 / 255, blue: 255 / 255)]), startPoint: .leading, endPoint: .trailing)
             )
             .cornerRadius(10)
-            .padding(.top, 100)
+            .padding(.top, 40)
         }
     }
         
