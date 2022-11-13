@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 import SwiftUI
+import FirebaseFirestoreSwift
 
 /*
  NOTE:
@@ -102,9 +103,8 @@ class UserViewModel: ObservableObject {
             }
                     
             do {
-                //try self.user = document!.data(as: User.self)
-                //print(try document!.data(as: User.self))
-                print(self.user)
+                try self.user = document!.data(as: User.self)
+                //print(self.user!)
                 completion(true)
             } catch {
                 print("SYNC ERROR: \(error)")
@@ -120,15 +120,19 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func addProfileData() {
+    func addProfileData(completion: @escaping (Bool) -> Void) {
         if !userIsAuthenticated {
             print("pre-add abort")
+            completion(false)
             return
         }
         do {
-            //let _ = try db.collection("users").document(self.uuid!).setData(from: user!)
+            // (bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, received: [String], sentRequests: [String : [String : Bool]], userID: String, year: String)
+            let _ = try db.collection("users").document(self.uuid!).setData(User(bio: (self.user?.bio)!, contact: (self.user?.contact) ?? [:], interests: (self.user?.interests) ?? [], link: (self.user?.link)!, major: (self.user?.major)!, minor: (self.user?.minor)!, name: (self.user?.name)!, received: (self.user?.received) ?? [], sentRequests: (self.user?.sentRequests) ?? [:], userID: (self.user?.userID)!, year: (self.user?.year)!))
+            completion(true)
         } catch {
-                print("Error adding")
+            print("Error adding")
+            completion(false)
         }
     }
     
