@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProfile4_4: View {
     @State var items: [String] = ["Python", "Java", "C++", "CAD", "Hardware", "App Dev", "UI/UX","Web Dev", "Game Dev"]
-    @State var colors: [Color] = [
+//    @State var colors: [Color] = [
         [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
         [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
         [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
@@ -52,7 +52,7 @@ struct CreateProfile4_4: View {
             
             LazyHGrid(rows: rows, alignment: .center) {
                 ForEach(self.items, id: \.self) { item in
-                    MultipleSelectionRow(title: item, color: colors[count], isSelected: self.selections.contains(item)) {
+                    MultipleSelectionRow(title: item, color: [.green,.yellow], isSelected: self.selections.contains(item)) {
                         if self.selections.contains(item) {
                             self.selections.removeAll(where: { $0 == item })
                         }
