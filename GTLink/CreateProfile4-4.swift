@@ -10,15 +10,15 @@ import SwiftUI
 struct CreateProfile4_4: View {
     @State var items: [String] = ["Python", "Java", "C++", "CAD", "Hardware", "App Dev", "UI/UX","Web Dev", "Game Dev"]
 //    @State var colors: [Color] = [
-        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
-        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
-        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
-        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
-        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
-        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
-        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
-        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
-        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black]]
+//        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
+//        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
+//        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
+//        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
+//        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
+//        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
+//        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
+//        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
+//        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black]]
     @State var selections: [String] = []
 
 //    LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
@@ -48,7 +48,7 @@ struct CreateProfile4_4: View {
             
             let rows: [GridItem] =
             Array(repeating: .init(.adaptive(minimum: 70), spacing: 35), count:3)
-            var count = 0
+//            var count = 0
             
             LazyHGrid(rows: rows, alignment: .center) {
                 ForEach(self.items, id: \.self) { item in
@@ -60,7 +60,7 @@ struct CreateProfile4_4: View {
                             self.selections.append(item)
                         }
                     }
-                    count += 1
+//                    count += 1
                 }
             }
             .padding(.horizontal, 10)

@@ -57,6 +57,6 @@ struct MultipleSelectionRow: View {
 
 struct MultipleSelectionRow_Previews: PreviewProvider {
     static var previews: some View {
-        MultipleSelectionRow(title: "Hi", color: [Color.purple, Color.blue], isSelected: true, action: {})
+        MultipleSelectionRow(title: "Hi", color: [Color.green, Color.yellow], isSelected: true, action: {})
     }
 }
