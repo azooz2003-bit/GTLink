@@ -17,6 +17,7 @@
 		DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA38B6D32914349000E1B4F2 /* ContactCards.swift */; };
 		E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E820564F291B2681008104B1 /* CreateProfile2-4.swift */; };
 		E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */; };
+		E8205654291DC5FA008104B1 /* MultipleSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */; };
 		E86BD2382911DCEB00A9F078 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E86BD2372911DCEB00A9F078 /* FirebaseAuth */; };
 		E86BD23A2911DCEB00A9F078 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = E86BD2392911DCEB00A9F078 /* FirebaseFirestore */; };
 		E86BD23C2911DCEB00A9F078 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E86BD23B2911DCEB00A9F078 /* FirebaseFirestoreSwift */; };
@@ -37,6 +38,7 @@
 		DA38B6D32914349000E1B4F2 /* ContactCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCards.swift; sourceTree = "<group>"; };
 		E820564F291B2681008104B1 /* CreateProfile2-4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateProfile2-4.swift"; sourceTree = "<group>"; };
 		E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateProfile4-4.swift"; sourceTree = "<group>"; };
+		E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionRow.swift; sourceTree = "<group>"; };
 		E86BD2412911E07800A9F078 /* CreateProfile1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile1.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +99,7 @@
 				DA38B6D12914190100E1B4F2 /* CreateProfile2.swift */,
 				E820564F291B2681008104B1 /* CreateProfile2-4.swift */,
 				E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */,
+				E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */,
 				DA38B6D32914349000E1B4F2 /* ContactCards.swift */,
 				A306257828F22E4400919640 /* ContentView.swift */,
 				205BBAE028F8BDBD001C00F7 /* View */,
@@ -197,6 +200,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */,
+				E8205654291DC5FA008104B1 /* MultipleSelectionRow.swift in Sources */,
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
 				DA38B6D22914190100E1B4F2 /* CreateProfile2.swift in Sources */,
 				E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */,
