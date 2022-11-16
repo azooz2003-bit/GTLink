@@ -25,7 +25,6 @@ struct MultipleSelectionRow: View {
                         RoundedRectangle(cornerRadius: 15, style: .continuous)
                             .fill(.clear)
                     )
-
             }
             
 //             LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
@@ -33,6 +32,9 @@ struct MultipleSelectionRow: View {
                 LinearGradient(gradient: Gradient(colors: [self.color[0], self.color[1]]), startPoint: .leading, endPoint: .trailing)
             )
             .cornerRadius(15)
+            
+            
+            
             
         } else {
             Button(action: self.action) {

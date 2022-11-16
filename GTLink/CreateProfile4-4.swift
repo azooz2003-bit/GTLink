@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CreateProfile4_4: View {
+    @State var progressValue: Float = 0.2
+    @State var count: Int = 0
     @State var items: [String] = ["Python", "Java", "C++", "CAD", "Hardware", "App Dev", "UI/UX","Web Dev", "Game Dev"]
 //    @State var colors: [Color] = [
 //        [.init(red: 255 / 255, green: 217 / 255, blue: 107 / 255), .init(red: 241 / 255, green: 184 / 255, blue: 20 / 255)],
@@ -24,6 +26,7 @@ struct CreateProfile4_4: View {
 //    LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
     
     var body: some View {
+        
         VStack(alignment: .center) {
             HStack {
                 Text("Step 3/4")
@@ -55,9 +58,13 @@ struct CreateProfile4_4: View {
                     MultipleSelectionRow(title: item, color: [.green,.yellow], isSelected: self.selections.contains(item)) {
                         if self.selections.contains(item) {
                             self.selections.removeAll(where: { $0 == item })
+                            count = self.selections.count
+                            progressValue = Float(count) * 0.2
                         }
                         else {
                             self.selections.append(item)
+                            count = self.selections.count
+                            progressValue = Float(count) * 0.2
                         }
                     }
 //                    count += 1
@@ -65,8 +72,14 @@ struct CreateProfile4_4: View {
             }
             .padding(.horizontal, 10)
             
+            ProgressBar(value: $progressValue).frame(height:7)
+                .padding(.vertical, 25)
+                .padding(.horizontal, 60)
             
-            
+            Text("selected \(count) out of 5")
+                .font(.system(size: 16))
+                .multilineTextAlignment(.trailing)
+                .padding(.trailing,30)
             
             Spacer()
             Button(action: {}){
