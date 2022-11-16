@@ -73,9 +73,48 @@ class UserViewModel: ObservableObject {
                         completion(false)
                         return
                     }
-                    completion(true)
-                    print("Successfully logged in")
-                    print(credential)
+                    
+                    guard let uid = self.user?.userID else { return }
+
+                    let docRef = self.db.collection("users").document(uid)
+                    print(docRef)
+                    
+                    docRef.getDocument { (document, error) in
+                        if let document = document {
+                            if document.exists { // UserID is in the database
+                                if error != nil {
+                                    print("A Failure Occurred")
+                                    self.isAuthenticating = false
+                                    completion(false)
+                                }
+                                self.syncUserData() { authResult in
+                                    print("Successfully logged in")
+                                    print(credential)
+                                    completion(authResult)
+                                    self.isAuthenticating = false
+                                }
+                            } else {
+                                // "Document does not exist", or this userID is not added to the database, so we have to add it
+                                self.addProfileData() { success in
+                                    
+                                }
+                                self.syncUserData() { authResult in
+                                    print("Successfully logged in")
+                                    print(credential)
+                                    completion(authResult)
+                                    self.isAuthenticating = false
+                                }
+                            }
+                            self.isAuthenticating = false
+                        }
+                    }
+                    
+                     /*self.syncUserData() { authResult in
+                         print("Successfully logged in")
+                         print(credential)
+                         completion(authResult)
+                         self.isAuthenticating = false
+                     }*/
                 }
             }
         }
@@ -127,8 +166,8 @@ class UserViewModel: ObservableObject {
             return
         }
         do {
-            // (bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, received: [String], sentRequests: [String : [String : Bool]], userID: String, year: String)
-            let _ = try db.collection("users").document(self.uuid!).setData(User(bio: (self.user?.bio)!, contact: (self.user?.contact) ?? [:], interests: (self.user?.interests) ?? [], link: (self.user?.link)!, major: (self.user?.major)!, minor: (self.user?.minor)!, name: (self.user?.name)!, received: (self.user?.received) ?? [], sentRequests: (self.user?.sentRequests) ?? [:], userID: (self.user?.userID)!, year: (self.user?.year)!))
+            // When adding profile data, you need to add every instance variable from User, which is why the below line is so long.
+            let _ = try db.collection("users").document(self.uuid!).setData(from: User(bio: (self.user?.bio)!, contact: (self.user?.contact) ?? [:], interests: (self.user?.interests) ?? [], link: (self.user?.link)!, major: (self.user?.major)!, minor: (self.user?.minor)!, name: (self.user?.name)!, received: (self.user?.received) ?? [], sentRequests: (self.user?.sentRequests) ?? [:], userID: (self.user?.userID)!, year: (self.user?.year)!))
             completion(true)
         } catch {
             print("Error adding")

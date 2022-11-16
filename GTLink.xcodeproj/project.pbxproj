@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D338070291DC92200D7DE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33806F291DC92200D7DE20 /* User.swift */; };
+		0D96F0DB2924687C009022CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D96F0DA2924687C009022CD /* ContentView.swift */; };
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0D96F0DA2924687C009022CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0DCEDD0029149243008E5521 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				5B6DAA742911DD7E000CC08E /* TagView.swift */,
 				A3C815232908C78600E4215F /* Card.swift */,
 				A374CAC0291DD7D600C5A909 /* OwnedPostScreen.swift */,
+				0D96F0DA2924687C009022CD /* ContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			files = (
 				A374CAC1291DD7D600C5A909 /* OwnedPostScreen.swift in Sources */,
 				A31A0C452919D152006BC16C /* LandingPage.swift in Sources */,
+				0D96F0DB2924687C009022CD /* ContentView.swift in Sources */,
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */,
 				A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */,
