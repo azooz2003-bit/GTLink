@@ -6,15 +6,104 @@
 //
 
 import SwiftUI
+import Firebase
+
+struct PostV1: Hashable, Identifiable {
+    var id: UUID = UUID()
+    var post_picture: UIImage?
+    var title: String
+    var username: String
+    var post_date: Date
+    var tags: [Tags]
+    var description: String
+}
 
 struct FeedScreen: View {
+    
+    @ObservedObject var viewModel = FeedViewModel()
+    let phone_size = UIScreen.main.bounds.size
+    
+    var postsFound: [PostV1]
+    
     var body: some View {
-        Text("Feed")
+        ZStack {
+            VStack {
+                HStack {
+                    Text("\(postsFound.count) project\(postsFound.count > 1 ? "s" : "") found based on your tags")
+                        .font(.system(size: 17))
+                    Spacer()
+                    Button {
+                        viewModel.showFilterSheet.toggle()
+                    } label: {
+                        Image(systemName: "slider.horizontal.3")
+                            .font(.system(size: 32))
+                            .foregroundColor(.black)
+                    }.padding(.trailing, 14)
+
+                }
+                .padding([.leading], 39)
+                ScrollView {
+                    ForEach(postsFound, id: \.self) { post in
+                        Button(action: {
+                            // opens detailed view of post
+                        }, label: {
+                            generate_card(post: post)
+                                .foregroundColor(.black)
+                                .padding()
+                        })
+                    }
+                }.frame(width: phone_size.width)
+                
+            }.frame(width: phone_size.width)
+                .sheet(isPresented: $viewModel.showFilterSheet) {
+                    VStack {
+                        FeedFilterView(viewModel: self.viewModel, tags: viewModel.selectedTags, projectType: viewModel.selectedType)
+                    }.padding(.leading)
+                        .presentationDetents([.medium])
+                }
+            
+            //create button
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button {
+                        //open create post screen
+                        
+                    } label: {
+                        Image(systemName: "square.and.pencil")
+                            .font(.system(size: 40))
+                            .foregroundColor(Color(red: 215/255, green: 215/255, blue: 215/255))
+                            .padding(20)
+                            .frame(width: 75, height: 75)
+                            .background(LinearGradient(colors: [Color(red: 62/255, green: 127/255, blue: 204/255), Color(red: 38/255, green: 87/255, blue: 145/255)], startPoint: .leading, endPoint: .trailing))
+                            .clipShape(Circle())
+                            
+                            .padding(10).shadow(radius: 10)
+                    }
+                    
+                }
+            }
+            
+        }
+    }
+    
+    func generate_card(post: PostV1) -> Card {
+        let card = Card(post_picture: Image(uiImage: (post.post_picture ?? UIImage(systemName: "person.fill"))!), title: post.title, username: post.username, post_date: post.post_date, tags: post.tags, description: post.description)
+        return card
     }
 }
 
 struct FeedScreen_Previews: PreviewProvider {
     static var previews: some View {
-        FeedScreen()
+        FeedScreen(postsFound: [
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell2", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 2 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1999, Tags.homework], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
+            PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
+            
+        ]
+        )
     }
 }
