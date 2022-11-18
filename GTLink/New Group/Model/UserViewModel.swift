@@ -73,8 +73,12 @@ class UserViewModel: ObservableObject {
                         completion(false)
                         return
                     }
-                    
-                    guard let uid = self.user?.userID else { return }
+
+                    guard let uid = self.uuid else {
+                        completion(false)
+                        return
+                    }
+                    print("User ID: " + uid)
 
                     let docRef = self.db.collection("users").document(uid)
                     print(docRef)
@@ -86,6 +90,9 @@ class UserViewModel: ObservableObject {
                                     print("A Failure Occurred")
                                     self.isAuthenticating = false
                                     completion(false)
+                                    self.user = User(bio: "", contact: ["": ""], interests: [""], link: "", major: "", minor: "", name: "", received: [""], sentRequests: ["" : ["":false]], userID: "", year: " ")
+                                    
+                                    return
                                 }
                                 self.syncUserData() { authResult in
                                     print("Successfully logged in")
@@ -108,6 +115,7 @@ class UserViewModel: ObservableObject {
                             self.isAuthenticating = false
                         }
                     }
+                    completion(true)
                     
                      /*self.syncUserData() { authResult in
                          print("Successfully logged in")
@@ -134,7 +142,6 @@ class UserViewModel: ObservableObject {
             return
         }
         db.collection("users").document(self.uuid!).getDocument { (document, error) in
-            print(document!)
             if (document == nil || error != nil) {
                 print("Error pre-sync")
                 completion(false)
@@ -142,8 +149,16 @@ class UserViewModel: ObservableObject {
             }
                     
             do {
-                try self.user = document!.data(as: User.self)
-                //print(self.user!)
+                let data = document!.data()
+                if let data = data {
+                    self.assignUserDataLocally(data: data) { success in
+                        if (success) {
+                            print(self.user?.bio)
+                            completion(true)
+                        }
+                    }
+                }
+                
                 completion(true)
             } catch {
                 print("SYNC ERROR: \(error)")
@@ -167,7 +182,7 @@ class UserViewModel: ObservableObject {
         }
         do {
             // When adding profile data, you need to add every instance variable from User, which is why the below line is so long.
-            let _ = try db.collection("users").document(self.uuid!).setData(from: User(bio: (self.user?.bio)!, contact: (self.user?.contact) ?? [:], interests: (self.user?.interests) ?? [], link: (self.user?.link)!, major: (self.user?.major)!, minor: (self.user?.minor)!, name: (self.user?.name)!, received: (self.user?.received) ?? [], sentRequests: (self.user?.sentRequests) ?? [:], userID: (self.user?.userID)!, year: (self.user?.year)!))
+            let _ = try db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact) ?? [:], "interests": (self.user?.interests) ?? [], "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received) ?? [], "sentRequests": (self.user?.sentRequests) ?? [:], "userID": (self.user?.userID)!, "year": (self.user?.year)!])
             completion(true)
         } catch {
             print("Error adding")
@@ -175,6 +190,11 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    
+    func assignUserDataLocally(data: [String : Any], completion: @escaping (Bool) -> Void) {
+        self.user = User(bio: "BIOOOOO", contact: data["contact"]! as! [String : String], interests: data["interests"]! as! [String], link: data["link"]! as! String, major: data["major"]! as! String, minor: data["minor"]! as! String, name: data["name"]! as! String , received: data["received"]! as! [String] , sentRequests: data["sentRequests"]! as! [String : [String : Bool]], userID: data["userID"]! as! String, year: data["year"]! as! String)
+        completion(true)
+    }
     /*
      Simply signs the user out, when that's done, make sure to reset variables such as user to nil.
      Notes:
