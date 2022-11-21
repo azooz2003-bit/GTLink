@@ -94,6 +94,7 @@ class UserViewModel: ObservableObject {
                                     
                                     return
                                 }
+                                print("He Exists")
                                 self.syncUserData() { authResult in
                                     print("Successfully logged in")
                                     print(credential)
@@ -105,6 +106,7 @@ class UserViewModel: ObservableObject {
                                 self.addProfileData() { success in
                                     
                                 }
+                                print("He Does Not Exist")
                                 self.syncUserData() { authResult in
                                     print("Successfully logged in")
                                     print(credential)
@@ -147,23 +149,23 @@ class UserViewModel: ObservableObject {
                 completion(false)
                 return
             }
-                    
-            do {
-                let data = document!.data()
-                if let data = data {
-                    self.assignUserDataLocally(data: data) { success in
-                        if (success) {
-                            print(self.user?.bio)
-                            completion(true)
-                        }
+            
+            // Accordingly, the do/catch is not needed
+            //do {
+            let data = document!.data()
+            if let data = data {
+                self.assignUserDataLocally(data: data) { success in
+                    if (success) {
+                        completion(true)
                     }
                 }
-                
-                completion(true)
-            } catch {
-                print("SYNC ERROR: \(error)")
-                completion(false)
             }
+            
+            completion(true)
+            //} catch {
+            //    print("SYNC ERROR: \(error)")
+            //    completion(false)
+            //}
         }
     }
     
@@ -180,19 +182,16 @@ class UserViewModel: ObservableObject {
             completion(false)
             return
         }
-        do {
-            // When adding profile data, you need to add every instance variable from User, which is why the below line is so long.
-            let _ = try db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact) ?? [:], "interests": (self.user?.interests) ?? [], "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received) ?? [], "sentRequests": (self.user?.sentRequests) ?? [:], "userID": (self.user?.userID)!, "year": (self.user?.year)!])
-            completion(true)
-        } catch {
-            print("Error adding")
-            completion(false)
-        }
+        // When adding profile data, you need to add every instance variable from User, which is why the below line is so long.
+        
+        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!])
+        completion(true)
     }
     
     
     func assignUserDataLocally(data: [String : Any], completion: @escaping (Bool) -> Void) {
-        self.user = User(bio: "BIOOOOO", contact: data["contact"]! as! [String : String], interests: data["interests"]! as! [String], link: data["link"]! as! String, major: data["major"]! as! String, minor: data["minor"]! as! String, name: data["name"]! as! String , received: data["received"]! as! [String] , sentRequests: data["sentRequests"]! as! [String : [String : Bool]], userID: data["userID"]! as! String, year: data["year"]! as! String)
+        //self.user = User(bio: "BIOOOOO", contact: data["contact"]! as! [String : String], interests: data["interests"]! as! [String], link: data["link"]! as! String, major: data["major"]! as! String, minor: data["minor"]! as! String, name: data["name"]! as! String , received: data["received"]! as! [String] , sentRequests: data["sentRequests"]! as! [String : [String : Bool]], userID: data["userID"]! as! String, year: data["year"]! as! String)
+        self.user = User(bio: data["bio"] as? String ?? "", contact: data["contact"] as? [String : String] ?? ["":""], interests: data["interests"] as? [String] ?? [""], link: data["link"] as? String ?? "", major: data["major"] as? String ?? "", minor: data["minor"] as? String ?? "", name: data["name"] as? String ?? "", received: data["received"] as? [String] ?? [""], sentRequests: data["sentRequests"] as? [String : [String : Bool]] ?? ["":["":false]], userID: data["userID"]! as? String ?? "", year: data["year"] as? String ?? "")
         completion(true)
     }
     /*
