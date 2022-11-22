@@ -159,8 +159,16 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func createPosting() {
-        
+    func createPosting(completion: @escaping (Bool) -> Void) {
+        do {
+            user?.sentRequests = UUID();
+            addProfileData();
+            print("Request Created");
+            completion(true);
+        } catch {
+            completion(false);
+            print("Error Creating Request");
+        }
     }
     
     /*
