@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
+		205BBAE228F8BDE3001C00F7 /* RequestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* RequestsScreen.swift */; };
 		93633426291B2B980051D820 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 93633425291B2B980051D820 /* FirebaseAuth */; };
 		93633428291B2B980051D820 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 93633427291B2B980051D820 /* FirebaseFirestore */; };
 		9363342A291B2B980051D820 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 93633429291B2B980051D820 /* FirebaseFirestoreSwift */; };
@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
+		205BBAE128F8BDE3001C00F7 /* RequestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsScreen.swift; sourceTree = "<group>"; };
 		937F3306291C5C50006EA7C4 /* AcceptedRequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCard.swift; sourceTree = "<group>"; };
 		937F3308291C5C68006EA7C4 /* PendingRequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestCard.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -59,7 +59,7 @@
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
+				205BBAE128F8BDE3001C00F7 /* RequestsScreen.swift */,
 				937F3306291C5C50006EA7C4 /* AcceptedRequestCard.swift */,
 				937F3308291C5C68006EA7C4 /* PendingRequestCard.swift */,
 			);
@@ -186,7 +186,7 @@
 			files = (
 				937F3307291C5C50006EA7C4 /* AcceptedRequestCard.swift in Sources */,
 				A306257928F22E4400919640 /* ContentView.swift in Sources */,
-				205BBAE228F8BDE3001C00F7 /* FeedScreen.swift in Sources */,
+				205BBAE228F8BDE3001C00F7 /* RequestsScreen.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 				937F3309291C5C68006EA7C4 /* PendingRequestCard.swift in Sources */,
 			);
