@@ -82,7 +82,7 @@ struct Card: View {
         }.frame(width: phone_size.width * 35/39, height: phone_size.height * 140/844)
             .background(Color.white)
             .cornerRadius(15)
-            .shadow(radius: 10)
+            .shadow(radius: 2, y: 2)
     }
     
     func date_to_string(date: Date) -> String {
