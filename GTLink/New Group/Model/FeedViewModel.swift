@@ -13,12 +13,13 @@ import Firebase
 import SwiftUI
 
 
-// NOTE: Feel free to create helper functions etc.
+// NOTE: Feel free to create helper functions etc. ASK if you're unsure of anything instruction-wise or implementation-wise!
 
 class FeedViewModel: ObservableObject {
     @Published var userVM: UserViewModel?
     @Published var selectedTags: [Tags] = []
     @Published var selectedType: Post_Type = .project
+    @Published var postings: [Post]?
     
     @Published var showFilterSheet: Bool = false
     
@@ -39,11 +40,17 @@ class FeedViewModel: ObservableObject {
         
     }
     
-    func requestToJoinProject() {
+    /**
+            Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
+     */
+    func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
         
     }
     
-    func syncFeedData() {
+    /**
+                Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
+     */
+    func syncFeedData(completion: @escaping (Bool) -> Void) {
         
     }
     
