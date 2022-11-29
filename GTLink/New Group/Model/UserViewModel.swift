@@ -152,15 +152,23 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Creates a request for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
+     Creates a post for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
      Notes:
-     - Adds the request's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
+     - Adds the post's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func createPosting() {
-        
+    func createPosting(requestID: String, completion: @escaping (Bool) -> Void) {
+        if user?.projects.contains(requestID) ?? false { // false if the user object doesnt exist
+            user?.projects.append(requestID); // requestID should be renamed "postID", represents the project document's id in the postings collection
+            addProfileData();
+            print("Request Created");
+            completion(true);
+        } else {
+            print("Error Creating Request");
+            completion(false);
+        }
     }
     
     /*
@@ -186,7 +194,7 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Responds to a particular request with an accept or decline.
+     Responds to a particular request with an accept or decline. Updates things from the sender side of things as well.
      Notes:
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
@@ -195,4 +203,12 @@ class UserViewModel: ObservableObject {
     func updateRequests() {
         
     }
+    
+    /**
+     Creates a request to join a project, only handle the user side of things. You will be given the postID which represents the post's document in the Firestore Postings collection. HINT: change things in the sentRequests array of the user.
+     */
+    func sendRequest(postID: String) {
+        
+    }
+    
 }
