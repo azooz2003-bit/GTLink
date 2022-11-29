@@ -17,11 +17,11 @@ import SwiftUI
 struct CreateDeclineStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label.frame(minWidth: 0, maxWidth: .infinity)
-        .padding()
-        .foregroundColor(.white)
-        .background(LinearGradient(gradient: Gradient(colors: [Color.gray]), startPoint: .leading, endPoint: .trailing))
-        .cornerRadius(10)
-        .padding(.horizontal, 10)
+            .padding()
+            .foregroundColor(.white)
+            .background(LinearGradient(gradient: Gradient(colors: [Color.gray]), startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(10)
+            .padding(.horizontal, 10)
     }
 }
 
@@ -42,8 +42,7 @@ struct CreateAcceptStyle: ButtonStyle {
 struct PendingRequestCard: View {
     
     //Constant represented to accomodate for different phone sizes
-    let phone_size = UIScreen.main.bounds.size
-    
+    //NOTE: deleted the phone size, swiftUI already scales things for different phones so dont worry. You just have to make sure to apply proper padding, etc.
     //Attributes the pending request card will have:
     //the profile picture, the student information, & the project name;
     //UUID used for iteration purposes
@@ -65,28 +64,23 @@ struct PendingRequestCard: View {
     
     var body: some View {
         //View of the accepted request card
-        VStack(alignment: .leading, spacing: 0) {
+        VStack {
             //Horizontal stack created for the time passed and
             //profile picture
             HStack(alignment: .top) {
-                Group {
-                    Image(systemName: "clock").padding(.leading, 17)
+                
+                Image(systemName: "clock").padding(.leading, 17)
                     Text("X hours ago")
-                        .font(.system(size: 12))
-                }.padding(.top, 16)
-            }
+                        .font(.system(size: 12)).padding(.top, 2)
+                
+            }.frame(maxWidth: .infinity, alignment: .leading)
             
             //Vertical stack created for the profile picture
-            VStack(alignment: .center) {
-                pfp!
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                    .clipShape(Circle())
-                    .shadow(radius: 10)
-            }.padding(.leading, 149).padding(.trailing, 151)
+            pfp!.resizable().frame(width: 70, height: 70, alignment: .center).clipShape(Circle()).shadow(radius: 4).padding(.horizontal, 140)
+            
             
             //Vertical stack created for the other contents
-            VStack(alignment: .center) {
+            VStack {
                 
                 //Vertical stack created for the information about the student along with the request made & name of the project
                 VStack(alignment: .center) {
@@ -102,28 +96,33 @@ struct PendingRequestCard: View {
                 HStack {
                     Button {
                     } label: {
-                        Text("Decline").foregroundColor(.white)
-                    }.buttonStyle(CreateDeclineStyle())
+                        Text("Decline").frame(width: 145, height: 45)
+                            .foregroundColor(Color("TextGray"))
+                            .background(LinearGradient(gradient: Gradient(colors: [Color("LightGray"), Color("DarkGray")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(10)
+                            .padding(.leading, 40).font(.system(size: 20, weight: .medium, design: .rounded)).shadow(radius: 2, y: 1)
+                    }
                     
-                    Spacer()
+                    Spacer(minLength: 25)
                     
                     Button {
                     } label: {
-                        Text("Accept").foregroundColor(.white)
-                    }                        .buttonStyle(CreateAcceptStyle())
-                }.padding(.trailing, 29).padding(.leading, 33).padding(.bottom, 18)
+                        Text("Accept").frame(width: 145, height: 45)
+                            .foregroundColor(.white)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color("LightYel"), Color("DarkYel")]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(10)
+                            .padding(.trailing, 40).font(.system(size: 20, weight: .medium, design: .rounded)).shadow(radius: 2, y: 1)
+                    }
+                }
                 
-            }.padding(5)
-        }.frame(width: phone_size.width * 35/39, height: phone_size.height * 289/844)
-            .background(Color.white)
-            .cornerRadius(15)
-            .shadow(radius: 10)
+            }
+        }.frame(minWidth: 340, maxWidth: .infinity, minHeight: 330).background(Color.white).cornerRadius(15).shadow(radius: 4, y: 3).padding()
         //Set the measurements of the card
     }
 }
 
 struct PendingRequestCard_Previews: PreviewProvider {
     static var previews: some View {
-        PendingRequestCard(pfp: Image("penguin"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")
+        PendingRequestCard(pfp: Image("os1"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")
     }
 }

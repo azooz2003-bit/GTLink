@@ -10,8 +10,6 @@ import SwiftUI
 struct AcceptedRequestCard: View {
     
     //Constant used for accomodation of any phone size
-    let phone_size = UIScreen.main.bounds.size
-    
     
     //Attributes the accepted request card will have:
     //the profile picture, the student who accepted the request, and the project name; UUID used for iteration purposes
@@ -64,11 +62,11 @@ struct AcceptedRequestCard: View {
                         .tint(.yellow)
                 }
             }.padding(.leading, 18).padding(.trailing, 37).padding(.top, 18).padding(.bottom, 18)
-        }.frame(width: phone_size.width * 35/39, height: phone_size.height * 125/844)
+        }.frame(maxWidth: .infinity, minHeight: 120)
             .background(Color.white)
             .cornerRadius(15)
-            .shadow(radius: 10)
-            .padding(.bottom, 10)
+            .shadow(radius: 4, y: 3)
+            .padding()
         //Set the measurements of the card relative to the phone size
     }
 }
@@ -77,6 +75,6 @@ struct AcceptedRequestCard: View {
 //Generates a preview of one accepted request card
 struct AcceptedRequestCard_Previews: PreviewProvider {
     static var previews: some View {
-        AcceptedRequestCard(pfp: Image("penguin"), student: "George Burdell", pname: "WebDev: GT Dashboard ")
+        AcceptedRequestCard(pfp: Image("os1"), student: "George Burdell", pname: "WebDev: GT Dashboard ")
     }
 }
