@@ -152,15 +152,15 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Creates a request for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
+     Creates a post for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
      Notes:
-     - Adds the request's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
+     - Adds the post's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func createPosting(requestID: String, completion: @escaping (Bool) -> Void) {
-        if user?.projects.contains(requestID) != nil {
+        if user?.projects.contains(requestID) ?? false { // false if the user object doesnt exist
             user?.projects.append(requestID);
             addProfileData();
             print("Request Created");
