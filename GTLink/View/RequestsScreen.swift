@@ -14,7 +14,6 @@ struct RequestsScreen: View {
     
     var body: some View {
         //Gets phone size to create appropriate sizes for elements
-        let phone_size = UIScreen.main.bounds.size
         
         
         //Vertical stack which represents the request screen
@@ -25,7 +24,7 @@ struct RequestsScreen: View {
                 .font(.system(size: 20))
                 .bold().padding(.top, 60)
                 
-            Divider().frame(width: 188/390 * phone_size.width).frame(height: 4).overlay(.black).padding(.bottom, 34)
+            Divider().frame(width: 200, height: 4).overlay(.black).padding(.bottom, 34)
             
             //ScrollView representing the available pending requests
             VStack {
@@ -42,7 +41,7 @@ struct RequestsScreen: View {
                 .font(.system(size: 20))
                 .bold().padding(.top, 38)
             
-            Divider().frame(width: 188/390 * phone_size.width).frame(height: 4).overlay(.black).padding(.bottom, 12)
+            Divider().frame(width: 200, height: 4).frame(height: 4).overlay(.black).padding(.bottom, 12)
             
             //ScrollView representing the available accepted requests
             VStack {
