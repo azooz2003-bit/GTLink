@@ -22,8 +22,41 @@ struct ProfilePage: View {
     var body: some View {
         
         ZStack {
-    
-            LinearGradient(colors: [.blue, .purple, .cyan, .blue], startPoint: .leading, endPoint: .trailing).ignoresSafeArea()
+                        
+            
+            VStack{
+                ZStack{
+                    Rectangle()
+                        .fill(Color.white)
+                      
+                    Rectangle()
+                        .fill(RadialGradient(gradient: Gradient(colors: [.orange,  .white]), center: UnitPoint(x: 0, y: 0) , startRadius: 5, endRadius: 280)).frame( height: 400)
+                       
+                
+                     
+                    Rectangle()
+                        .fill(RadialGradient(gradient: Gradient(colors: [.purple,  .white]), center: UnitPoint(x: 0.0, y: 0.8), startRadius: 5, endRadius: 300)).frame( height: 400)
+                    Rectangle()
+                        .fill(RadialGradient(gradient: Gradient(colors: [.blue,  .white]), center: UnitPoint(x: 0.5, y: 0), startRadius: 20, endRadius: 300)).frame( height: 400)
+                       
+                    Rectangle()
+                        .fill(RadialGradient(gradient: Gradient(colors: [.green,  .white]), center: UnitPoint(x: 0.8, y: 0.8), startRadius: 5, endRadius: 300)).frame( height: 400)
+                    Rectangle()
+                        .fill(RadialGradient(gradient: Gradient(colors: [.green, .white]), center: UnitPoint(x: 1, y: 0), startRadius: 5, endRadius: 280)).frame( height: 400)
+                       
+                }
+                .blur(radius: 5)
+                .blendMode(.multiply)
+                .clipped()
+                .cornerRadius(10)
+               .offset(y: -280).padding(.top) .ignoresSafeArea()
+
+               
+            }
+        
+        
+            
+            //LinearGradient(colors: [.blue, .purple, .cyan, .blue], startPoint: .leading, endPoint: .trailing).ignoresSafeArea()
             
                 
             VStack {
@@ -70,21 +103,21 @@ struct ProfilePage: View {
                                         
                                     }
                                 }.padding(.horizontal, 30)
-                            }.padding(.vertical)
+                            }.padding(.bottom)
                                 
                                 
-                                VStack {
-                                    Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                    
-                                    Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                    
-                                    Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                    
-                                    Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                }.padding(.bottom, 100)
+                            VStack {
+                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
                                 
-                            }
+                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
+                                
+                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
+                                
+                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
+                            }.padding(.bottom, 100)
                             
+                        }
+                        
                             
                         }.offset(y:  whiteBlockOffset < 600 ? -whiteBlockOffset + 600 : 0)
                 }.padding(.horizontal, 15).background(content: {
