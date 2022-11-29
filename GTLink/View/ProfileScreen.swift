@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@MainActor
 class ScrollItemManager: ObservableObject {
     @Published var bioHeadOffset: CGFloat = 0
     @Published var bioTextOffset: CGFloat = 0
@@ -57,9 +58,9 @@ struct ProfileScreen: View {
                             let minY = coords.frame(in: .global).minY
                             
                             DispatchQueue.main.async {
+                                
                                 self.infoOffset = minY
                             }
-                            
                             return Color.clear
                         }.frame(width: 0, height: 0) // to replicate empty view
                         
@@ -96,11 +97,10 @@ struct ProfileScreen: View {
                                 
                                 GeometryReader { coords -> Color in
                                     let minY = coords.frame(in: .global).minY
-                                    
                                     DispatchQueue.main.async {
+                                        
                                         self.scrollIM.bioTextOffset = minY
                                     }
-                                    
                                     return Color.clear
                                 }.frame(width: 0, height: 0) // to replicate empty view
                                 
@@ -112,9 +112,9 @@ struct ProfileScreen: View {
                                     let minY = coords.frame(in: .global).minY
                                     
                                     DispatchQueue.main.async {
+                                        
                                         self.scrollIM.tagsHeadOffset = minY
                                     }
-                                    
                                     return Color.clear
                                 }.frame(width: 0, height: 0) // to replicate empty view
                                 
@@ -148,9 +148,9 @@ struct ProfileScreen: View {
                                     let minY = coords.frame(in: .global).minY
                                     
                                     DispatchQueue.main.async {
+                                        
                                         self.scrollIM.cardsToggleOffset = minY
                                     }
-                                    
                                     return Color.clear
                                 }.frame(width: 0, height: 0) // to replicate empty view
                                 
@@ -163,7 +163,11 @@ struct ProfileScreen: View {
                                         let minY = coords.frame(in: .global).minY
 
                                         DispatchQueue.main.async {
-                                            scrollIM.cardsOffset.append(minY)
+                                            if (scrollIM.cardsOffset.count > 0) {
+                                                scrollIM.cardsOffset[0] = minY
+                                            } else {
+                                                scrollIM.cardsOffset.append(minY)
+                                            }
                                         }
                                         
                                         return Color.clear
@@ -175,7 +179,11 @@ struct ProfileScreen: View {
                                         let minY = coords.frame(in: .global).minY
 
                                         DispatchQueue.main.async {
-                                            scrollIM.cardsOffset.append(minY)
+                                            if (scrollIM.cardsOffset.count > 1) {
+                                                scrollIM.cardsOffset[1] = minY
+                                            } else {
+                                                scrollIM.cardsOffset.append(minY)
+                                            }
                                         }
                                         
                                         return Color.clear
@@ -187,7 +195,11 @@ struct ProfileScreen: View {
                                         let minY = coords.frame(in: .global).minY
 
                                         DispatchQueue.main.async {
-                                            scrollIM.cardsOffset.append(minY)
+                                            if (scrollIM.cardsOffset.count > 2) {
+                                                scrollIM.cardsOffset[2] = minY
+                                            } else {
+                                                scrollIM.cardsOffset.append(minY)
+                                            }
                                         }
                                         
                                         return Color.clear
@@ -197,11 +209,17 @@ struct ProfileScreen: View {
                                 Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom).overlay {
                                     GeometryReader { coords -> Color in
                                         let minY = coords.frame(in: .global).minY
-
-                                        DispatchQueue.main.async {
-                                            scrollIM.cardsOffset.append(minY)
-                                        }
                                         
+                                        DispatchQueue.main.async {
+                                            
+                                            if (scrollIM.cardsOffset.count > 3) {
+                                                scrollIM.cardsOffset[3] = minY
+                                            } else {
+                                                scrollIM.cardsOffset.append(minY)
+                                                
+                                            }
+                                        }
+                                    
                                         return Color.clear
                                     }.frame(width: 0, height: 0)
                                 }.scrollHide(currOffset: scrollIM.cardsOffset.count > 3 ? scrollIM.cardsOffset[3] : 0)
@@ -233,7 +251,7 @@ struct ProfileScreen: View {
                     
                 }
                 
-            }.zIndex(0)
+            }
             
             
         }
@@ -245,7 +263,7 @@ extension View {
     
     @ViewBuilder
     func scrollHide(currOffset: CGFloat) -> some View {
-        let minOffset: CGFloat = 380
+        let minOffset: CGFloat = 350
         if (currOffset < minOffset) {
             self.transition(.asymmetric(insertion: .scale, removal: .opacity)).hidden().disabled(true)
         } else {
