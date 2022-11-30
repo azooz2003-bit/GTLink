@@ -187,39 +187,15 @@ class UserViewModel: ObservableObject {
             completion(false)
             return
         }
-        // When adding profile data, you need to add every instance variable from User, which is why the below line is so long.
-        let bio = (self.user?.bio)!
-        let contact = (self.user?.contact)!
-        let interests = (self.user?.interests)!
-        let link = (self.user?.link)!
-        let major = (self.user?.major)!
-        let minor = (self.user?.minor)!
-        let name = (self.user?.name)!
-        let received = (self.user?.received)!
-        let sentRequests = (self.user?.sentRequests)!
-        let userID = (self.user?.userID)!
-        let gradYear = (self.user?.gradYear)!
-        print(bio)
-        print(contact)
-        print(interests)
-        print(link)
-        print(major)
-        print(minor)
-        print(name)
-        print(received)
-        print(sentRequests)
-        print(userID)
-        print(gradYear)
-        //let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "gradYear": (self.user?.gradYear)!])
-        let _ = db.collection("users").document(self.uuid!).setData(["bio": bio, "contact": contact, "interests": interests, "link": link, "major": major, "minor": minor, "name": name, "received": received, "sentRequests": sentRequests, "userID": userID, "gradYear": gradYear])
+        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "gradYear": (self.user?.gradYear)!])
         print("Add Profile Data Works")
         completion(true)
     }
     
     
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
-        //self.user = User(bio: "BIOOOOO", contact: data["contact"]! as! [String : String], interests: data["interests"]! as! [String], link: data["link"]! as! String, major: data["major"]! as! String, minor: data["minor"]! as! String, name: data["name"]! as! String , received: data["received"]! as! [String] , sentRequests: data["sentRequests"]! as! [String : [String : Bool]], userID: data["userID"]! as! String, year: data["year"]! as! String)
-        self.user = User(bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["":""], interests: data!["interests"] as? [String] ?? [""], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? [""], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["":["":false]], userID: data!["userID"] as? String ?? "", gradYear: data!["gradYear"] as? String ?? "")
+        // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
+        self.user = User(bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? ["None"], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: data!["userID"] as? String ?? "", gradYear: data!["gradYear"] as? String ?? "")
         completion(true)
     }
     /*

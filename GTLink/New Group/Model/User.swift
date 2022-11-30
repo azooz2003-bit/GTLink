@@ -26,7 +26,7 @@ class User {
     var userID: String
     var gradYear: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(bio: String = "", contact: [String : String] = ["": ""], interests: [String] = [""], link: String = "", major: String = "", minor: String = "", name: String = "", received: [String] = [""], sentRequests: [String : [String : Bool]] = ["": ["": false]], userID: String = "", gradYear: String = "") {
+    init(bio: String = "", contact: [String : String] = ["None": "None"], interests: [String] = ["None"], link: String = "", major: String = "", minor: String = "", name: String = "", received: [String] = ["None"], sentRequests: [String : [String : Bool]] = ["None": ["None": false]], userID: String = "", gradYear: String = "") {
         self.bio = bio
         self.contact = contact
         self.interests = interests
