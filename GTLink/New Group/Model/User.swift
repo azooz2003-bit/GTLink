@@ -22,11 +22,11 @@ class User {
     var minor: String
     var name: String
     var received: [String]
-    var sentRequests: [String: [String: Bool]] // UserID: ["accepted": true/false, "rejected": true/false]. Both are included because if one of them changes, we know the user responded. If they are both false, we know the user hasn't responded to the request.
+    var sentRequests: [String: [String: Bool]] // [UserID: [ProjectID: , "accepted": true/false, "rejected": true/false]]. Both accepted and rejected are included because if one of them changes, we know the user responded. If they are both false, we know the user hasn't responded to the request.
     var userID: String
-    var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
+    var gradYear: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(bio: String = "", contact: [String : String] = ["": ""], interests: [String] = [""], link: String = "", major: String = "", minor: String = "", name: String = "", received: [String] = [""], sentRequests: [String : [String : Bool]] = [" ": ["": false]], userID: String = "", year: String = "") {
+    init(bio: String = "", contact: [String : String] = ["": ""], interests: [String] = [""], link: String = "", major: String = "", minor: String = "", name: String = "", received: [String] = [""], sentRequests: [String : [String : Bool]] = ["": ["": false]], userID: String = "", gradYear: String = "") {
         self.bio = bio
         self.contact = contact
         self.interests = interests
@@ -37,6 +37,6 @@ class User {
         self.received = received
         self.sentRequests = sentRequests
         self.userID = userID
-        self.year = year
+        self.gradYear = gradYear
     }
 }
