@@ -71,15 +71,22 @@ class FeedViewModel: ObservableObject {
         ]
         
         
+        let newDoc = Firestore.firestore().collection("postings").document()
         
-        Firestore.firestore().collection("postings").addDocument(data: newPost) { err in
+        newDoc.setData(newPost) { err in
             if let err = err {
                 print("Error: \(err)")
                 return
             }
             
+            self.userVM?.createPosting(requestID: newDoc.documentID, completion: { doc in
+                return
+            })
+            
+            
         }
-    }
+        
+        
     
     /**
             This function will edit an existing post, use the posting ID given to access the posting's document in Firestore and change the data associated with it with the one's in the parameter. Within this function you will also call the editPosting function in the UserViewModel to handle the user side of things.
