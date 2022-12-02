@@ -20,11 +20,12 @@ struct RequestsScreen: View {
         VStack(spacing: 5) {
             
             //Pending request title with divider to designate section
+            
             Text("Pending Requests")
                 .font(.system(size: 20))
-                .bold().padding(.top, 60)
+                .bold()
                 
-            Divider().frame(width: 200, height: 4).overlay(.black).padding(.bottom, 34)
+            Divider().frame(width: 200, height: 4).overlay(.black)
             
             //ScrollView representing the available pending requests
             VStack {
@@ -33,13 +34,13 @@ struct RequestsScreen: View {
                         PendingRequestCard(pfp: pr.pfp!, student_name: pr.student_name, major: pr.major, year: pr.year, pname: pr.pname)
                     }
                 }
-            }.frame(maxWidth: .infinity, minHeight: 370)
+            }.frame(maxWidth: .infinity, maxHeight: 370).padding(.bottom, 15)
            
                     
             //Accepted requests title with divider to designate section
             Text("Accepted Requests")
                 .font(.system(size: 20))
-                .bold().padding(.top, 38)
+                .bold()
             
             Divider().frame(width: 200, height: 4).frame(height: 4).overlay(.black).padding(.bottom, 12)
             
@@ -50,7 +51,7 @@ struct RequestsScreen: View {
                         AcceptedRequestCard(pfp: ar.pfp!, student: ar.student, pname: ar.pname)
                     }
                 }
-            }.frame(maxWidth: .infinity, minHeight: 370)
+            }.frame(maxWidth: .infinity, maxHeight: 220).padding(.bottom, 80)
             
         }
         

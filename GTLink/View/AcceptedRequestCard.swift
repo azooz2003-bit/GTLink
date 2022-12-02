@@ -29,39 +29,42 @@ struct AcceptedRequestCard: View {
         VStack() {
             
             //Horizontal stack that holds the card information
-            HStack(alignment: .top) {
+            HStack {
                 
                 //Sets the profile picture
                 pfp!
                     .resizable()
-                    .frame(width: 50, height: 50)
+                    .frame(width: 65, height: 65)
                     .clipShape(Circle())
-                    .shadow(radius: 10)
-                    .padding(.trailing, 18)
+                    .shadow(radius: 2, y: 2)
+                    .padding(.horizontal, 10)
                 
                 //Vertical stack created for the other elements
                 VStack() {
                     VStack(alignment: .leading) {
                         //Status - contains name of the user and the status of the request
                         Text("\(student) accepted your request to work on")
-                            .font(.system(size: 16)).fixedSize(horizontal: false, vertical: true)
+                            .font(.system(size: 18)).fixedSize(horizontal: false, vertical: true).padding(.bottom, 0.01)
                         
                         //Project name - contains name of the user's project
                         Text(pname)
-                            .bold().font(.system(size: 16))
+                            .bold().font(.system(size: 18))
                     }
                     
-                    //Contact - represents the action to contact the user
-                    Button {
-                    } label: {
-                        Text("Contact").foregroundColor(.white)
-                    }
-                        .buttonStyle(.borderedProminent)
-                        .buttonBorderShape(.roundedRectangle(radius: 10))
-                        .foregroundColor(.white)
-                        .tint(.yellow)
+                    
                 }
-            }.padding(.leading, 18).padding(.trailing, 37).padding(.top, 18).padding(.bottom, 18)
+                
+                //Contact - represents the action to contact the user
+
+                Button {
+                } label: {
+                    Label("", systemImage: "person.crop.circle.badge.plus").foregroundColor(.white).padding(.leading, 10).frame(maxWidth: 35, maxHeight: 35, alignment: .center).background(content: {
+                        LinearGradient(gradient: Gradient(colors: [Color("LightYel"), Color("DarkYel")]), startPoint: .leading, endPoint: .trailing)
+                    }).font(.system(size: 20)).cornerRadius(8)
+                        
+                }.padding(.top, 70).padding(.bottom, 5)
+                    
+            }
         }.frame(maxWidth: .infinity, minHeight: 120)
             .background(Color.white)
             .cornerRadius(15)
