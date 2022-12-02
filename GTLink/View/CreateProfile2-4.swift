@@ -60,10 +60,10 @@ struct CreateProfile2_4: View {
                         .stroke(Color.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), lineWidth: 1)
 
                 )
-                .padding(.horizontal, 30)
-                .padding(.top, 30)
                 
-            }
+                
+            }.padding(.horizontal, 30)
+                .padding(.top, 30)
             Menu {
                 ForEach(dropdownMajor, id: \.self) { major in
                     Button(major) {
@@ -86,10 +86,10 @@ struct CreateProfile2_4: View {
                         .stroke(Color.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), lineWidth: 1)
 
                 )
-                .padding(.horizontal, 30)
-                .padding(.top, 25)
                 
-            }
+                
+            }.padding(.horizontal, 30)
+                .padding(.top, 25)
             
             Menu {
                 ForEach(dropdownMinor, id: \.self) { minor in
@@ -113,10 +113,9 @@ struct CreateProfile2_4: View {
                         .stroke(Color.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), lineWidth: 1)
 
                 )
-                .padding(.horizontal, 30)
-                .padding(.top, 25)
                 
-            }
+                
+            }.padding(.horizontal, 30).padding(.top, 25)
             
             Spacer()
             Button(action: {}){
