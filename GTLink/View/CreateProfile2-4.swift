@@ -122,15 +122,15 @@ struct CreateProfile2_4: View {
             Button(action: {}){
                 Text("Next")
                     .font(.system(size: 24))
-                    .foregroundColor(.white)
+                    .foregroundColor(.white).padding(.horizontal, 133)
+                    .padding(.vertical, 10)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .cornerRadius(10)
                     
             }
-            .padding(.horizontal, 133)
-            .padding(.vertical, 10)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
-            )
-            .cornerRadius(10)
+            
             
         }
     }

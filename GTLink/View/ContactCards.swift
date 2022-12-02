@@ -14,6 +14,12 @@ struct ContactCards: View {
     @State private var didTapDiscord:Bool = false
     @State private var didTapGroupMe:Bool = false
     
+    @State var email: String = ""
+    @State var phone: String = ""
+    @State var discord: String = ""
+    @State var groupMe: String = ""
+
+    
     var body: some View {
         
         VStack {
@@ -25,22 +31,19 @@ struct ContactCards: View {
                     .scaledToFit()
                     .frame(width: 25)
             }
-            .foregroundColor(Color.black)
-            .position(x: 50, y: 20)
+            .foregroundColor(Color.black).padding(.bottom).frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 30)
+         
             
             // Step 1/4
             Text("Step 4/4")
-                .font(.system(size: 20))
-                .padding(.leading, -160)
-                .position(x: 198, y:0)
+                .font(.system(size: 20)).frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 30).padding(.bottom, 1).padding(.top, 50)
             
             // Title
-            Text("Add some ways for people to connect with you and star your favorite.")
+            Text("Select a primary way to connect with others.")
                 .font(.system(size: 24))
                 .bold()
-                .fixedSize(horizontal: false, vertical: true)
-                .position(x: 135)
-                .frame(width: 300)
+                .fixedSize(horizontal: false, vertical: true).padding(.trailing, 80)
+                .frame(minWidth: 300, maxWidth: .infinity, alignment: .leading).padding(.leading, 30).padding(.bottom, 100)
             
             // Contact Cards
             
@@ -56,15 +59,17 @@ struct ContactCards: View {
                         HStack {
                             Image(systemName: "envelope")
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: 24)
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
                             Spacer()
                                 .frame(width: 21)
                             Text("Email")
                             Spacer()
                             Button(action: {
                                 if ((didTapPhone == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
-                                    didTapEmail.toggle()
+                                    withAnimation {
+                                        didTapEmail.toggle()
+                                    }
                                 }
                             }) {
                                 if (didTapEmail == true) {
@@ -80,14 +85,19 @@ struct ContactCards: View {
                             
                         }
                         
-                        TextField("Email Address", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                            .overlay(
-                                Divider()
-                                    .frame(height: 1.5)
-                                    .overlay(.gray)
-                                    .opacity(0.6)
-                                    .offset(x: 0, y: 15)
+                        if (didTapEmail) {
+                            TextField("Email Address", text: $email)
+                                .overlay(
+                                    Divider()
+                                        .frame(height: 1.5)
+                                        .overlay(.gray)
+                                        .opacity(0.6)
+                                        .offset(x: 0, y: 15)
                             )
+                            
+                            
+                        }
+                        
                         
                     }
                     .padding(.all, 20)
@@ -101,15 +111,17 @@ struct ContactCards: View {
                         HStack {
                             Image(systemName: "phone")
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: 24)
+                                .scaledToFit()
+                                .frame(width: 24, height: 24)
                             Spacer()
                                 .frame(width: 21)
                             Text("Phone")
                             Spacer()
                             Button(action: {
                                 if ((didTapEmail == false) && (didTapDiscord == false) && (didTapGroupMe == false)) {
-                                    didTapPhone.toggle()
+                                    withAnimation {
+                                        didTapPhone.toggle()
+                                    }
                                 }
                             }) {
                                 if (didTapPhone == true) {
@@ -125,14 +137,17 @@ struct ContactCards: View {
                             
                         }
                         
-                        TextField("Phone Number", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                            .overlay(
-                                Divider()
-                                    .frame(height: 1.5)
-                                    .overlay(.gray)
-                                    .opacity(0.6)
-                                    .offset(x: 0, y: 15)
-                            )
+                        if (didTapPhone) {
+                            TextField("Phone Number", text: $phone)
+                                .overlay(
+                                    Divider()
+                                        .frame(height: 1.5)
+                                        .overlay(.gray)
+                                        .opacity(0.6)
+                                        .offset(x: 0, y: 15)
+                                )
+                        }
+                        
                         
                     }
                     .padding(.all, 20)
@@ -146,8 +161,8 @@ struct ContactCards: View {
                         HStack {
                             Image("discord")
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: 30)
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
                             Spacer()
                                 .frame(width: 15)
                             Text("Discord")
@@ -155,7 +170,9 @@ struct ContactCards: View {
                             
                             Button(action: {
                                 if ((didTapPhone == false) && (didTapEmail == false) && (didTapGroupMe == false)) {
-                                    didTapDiscord.toggle()
+                                    withAnimation {
+                                        didTapDiscord.toggle()
+                                    }
                                 }
                             }) {
                                 if (didTapDiscord == true) {
@@ -171,14 +188,17 @@ struct ContactCards: View {
                             
                         }
                         
-                        TextField("Phone Number", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                            .overlay(
-                                Divider()
-                                    .frame(height: 1.5)
-                                    .overlay(.gray)
-                                    .opacity(0.6)
-                                    .offset(x: 0, y: 15)
-                            )
+                        if (didTapDiscord) {
+                            TextField("Discord Username", text: $discord)
+                                .overlay(
+                                    Divider()
+                                        .frame(height: 1.5)
+                                        .overlay(.gray)
+                                        .opacity(0.6)
+                                        .offset(x: 0, y: 15)
+                                )
+                        }
+                        
                         
                     }
                     .padding(.all, 20)
@@ -192,15 +212,17 @@ struct ContactCards: View {
                         HStack {
                             Image("groupme")
                                 .resizable()
-                                .scaledToFill()
-                                .frame(width: 30)
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
                             Spacer()
                                 .frame(width: 15)
                             Text("GroupMe")
                             Spacer()
                             Button(action: {
                                 if ((didTapPhone == false) && (didTapDiscord == false) && (didTapEmail == false)) {
-                                    didTapGroupMe.toggle()
+                                    withAnimation {
+                                        didTapGroupMe.toggle()
+                                    }
                                 }
                             }) {
                                 if (didTapGroupMe == true) {
@@ -216,15 +238,17 @@ struct ContactCards: View {
                             
                         }
                         
-                        TextField("GroupMe Username", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
-                            .overlay(
-                                Divider()
-                                    .frame(height: 1.5)
-                                    .overlay(.gray)
-                                    .opacity(0.6)
-                                    .offset(x: 0, y: 15)
-                            )
-
+                        if (didTapGroupMe) {
+                            TextField("GroupMe Username", text: $groupMe)
+                                .overlay(
+                                    Divider()
+                                        .frame(height: 1.5)
+                                        .overlay(.gray)
+                                        .opacity(0.6)
+                                        .offset(x: 0, y: 15)
+                                )
+                        }
+                        
                         
                     }
                     .padding(.all, 20)
@@ -240,14 +264,13 @@ struct ContactCards: View {
             Button(action: {}){
                 Text("Finish")
                     .font(.system(size: 24))
-                    .foregroundColor(.white)
+                    .foregroundColor(.white).padding(.horizontal, 133)
+                    .padding(.vertical, 10)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.init(red: 71 / 255, green: 103 / 255, blue: 204 / 255), Color.init(red: 90 / 255, green: 186 / 255, blue: 255 / 255)]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .cornerRadius(10)
             }
-            .padding(.horizontal, 133)
-            .padding(.vertical, 10)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color.init(red: 71 / 255, green: 103 / 255, blue: 204 / 255), Color.init(red: 90 / 255, green: 186 / 255, blue: 255 / 255)]), startPoint: .leading, endPoint: .trailing)
-            )
-            .cornerRadius(10)
             .padding(.top, 40)
         }
     }

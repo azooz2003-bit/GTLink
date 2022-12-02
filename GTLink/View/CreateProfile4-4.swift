@@ -53,6 +53,7 @@ struct CreateProfile4_4: View {
             Array(repeating: .init(.adaptive(minimum: 70), spacing: 35), count:3)
 //            var count = 0
             
+            // NOTE: GREAT WORK! Reminder to make this more efficient by using a map, where the values to each key indicates if the tag is selected.
             LazyHGrid(rows: rows, alignment: .center) {
                 ForEach(self.items, id: \.self) { item in
                     MultipleSelectionRow(title: item, color: [.green,.yellow], isSelected: self.selections.contains(item)) {
@@ -85,15 +86,15 @@ struct CreateProfile4_4: View {
             Button(action: {}){
                 Text("Next")
                     .font(.system(size: 24))
-                    .foregroundColor(.white)
+                    .foregroundColor(.white).padding(.horizontal, 133)
+                    .padding(.vertical, 10)
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .cornerRadius(10)
                     
             }
-            .padding(.horizontal, 133)
-            .padding(.vertical, 10)
-            .background(
-                LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
-            )
-            .cornerRadius(10)
+            
         }
     }
 }

@@ -24,7 +24,6 @@ struct ProgressBar: View {
                     .animation(.linear, value: 1.0)
             }
             .cornerRadius(10)
-            
         }
     }
 }
