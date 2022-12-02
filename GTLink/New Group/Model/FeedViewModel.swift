@@ -53,6 +53,33 @@ class FeedViewModel: ObservableObject {
                 Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
      */
     func syncFeedData(completion: @escaping (Bool) -> Void) {
+        Firestore.firestore().collection("postings")
+            .whereField(selectedType == .project ? "isProject" : "isStudy", isEqualTo: true).getDocuments { querySnapshot, err in
+                if let err = err {
+                    print("Error: \(err)")
+                    return
+                } else {
+                    for document in querySnapshot!.documents {
+                        let data = document.data()
+                        self.postings?.append(
+                            Post(
+                                title: data["title"] as? String ?? "Title Here",
+                                image: data["image"] as? String ?? "Image Here",
+                                owner: data["owner"] as? String ?? "Owner Here",
+                                date:  data["date"] as? Date ?? Date(),
+                                description: data["description"] as? String ?? "Description here",
+                                tags: data["tags"] as? [String : Bool] ?? [String : Bool](),
+                                isProject: data["isProject"] as? Bool ?? false,
+                                isStudy: data["isStudy"] as? Bool ?? false,
+                                members: data["members"] as? [String] ?? [String]()
+                            )
+                            
+                        )
+                }
+                }
+            }
+        
+        
         
     }
     
