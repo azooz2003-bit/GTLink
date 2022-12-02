@@ -9,6 +9,9 @@ https://storm-pleasure-26c.notion.site/Completing-Tasks-on-Github-iOS-Club-ade32
 # Database + Backend Diagram: 
 https://www.notion.so/Database-Plan-1f744dde899d497eb28cbb7074ba6f56
 
+# Database + Backend Diagram: 
+(soon)
+
 # Figma file: 
 
 https://www.figma.com/file/Sws4VX2MEnptrNOnGLawIp/GTLink

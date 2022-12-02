@@ -33,6 +33,13 @@
 		B23C37CC290B4334000B2B8A /* Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23C37CB290B4334000B2B8A /* Tags.swift */; };
 		B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2649E992918105200DD08EE /* FeedFilterView.swift */; };
 		B2649EA02918677300DD08EE /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2649E9F2918677300DD08EE /* FeedViewModel.swift */; };
+		DA38B6D22914190100E1B4F2 /* CreateProfile2.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA38B6D12914190100E1B4F2 /* CreateProfile2.swift */; };
+		DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA38B6D32914349000E1B4F2 /* ContactCards.swift */; };
+		E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E820564F291B2681008104B1 /* CreateProfile2-4.swift */; };
+		E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */; };
+		E8205654291DC5FA008104B1 /* MultipleSelectionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */; };
+		E86BD2422911E07800A9F078 /* CreateProfile1.swift in Sources */ = {isa = PBXBuildFile; fileRef = E86BD2412911E07800A9F078 /* CreateProfile1.swift */; };
+		E8EAEC74292462C100ED7C02 /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EAEC73292462C100ED7C02 /* ProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,13 @@
 		B23C37CB290B4334000B2B8A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
 		B2649E992918105200DD08EE /* FeedFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedFilterView.swift; sourceTree = "<group>"; };
 		B2649E9F2918677300DD08EE /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		DA38B6D12914190100E1B4F2 /* CreateProfile2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile2.swift; sourceTree = "<group>"; };
+		DA38B6D32914349000E1B4F2 /* ContactCards.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCards.swift; sourceTree = "<group>"; };
+		E820564F291B2681008104B1 /* CreateProfile2-4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateProfile2-4.swift"; sourceTree = "<group>"; };
+		E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CreateProfile4-4.swift"; sourceTree = "<group>"; };
+		E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionRow.swift; sourceTree = "<group>"; };
+		E86BD2412911E07800A9F078 /* CreateProfile1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfile1.swift; sourceTree = "<group>"; };
+		E8EAEC73292462C100ED7C02 /* ProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +106,13 @@
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E86BD2412911E07800A9F078 /* CreateProfile1.swift */,
+				DA38B6D12914190100E1B4F2 /* CreateProfile2.swift */,
+				E820564F291B2681008104B1 /* CreateProfile2-4.swift */,
+				E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */,
+				E8EAEC73292462C100ED7C02 /* ProgressBar.swift */,
+				E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */,
+				DA38B6D32914349000E1B4F2 /* ContactCards.swift */,
 				A31A0C442919D152006BC16C /* LandingPage.swift */,
 				A36D8284291ABC9F0013897F /* SettingsView.swift */,
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
@@ -248,9 +269,16 @@
 				A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */,
 				A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */,
 				0D338070291DC92200D7DE20 /* User.swift in Sources */,
+				E8EAEC74292462C100ED7C02 /* ProgressBar.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,
 				A3795F542935B190007F3FEC /* GradientTest.swift in Sources */,
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
+				DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */,
+				E8205654291DC5FA008104B1 /* MultipleSelectionRow.swift in Sources */,
+				DA38B6D22914190100E1B4F2 /* CreateProfile2.swift in Sources */,
+				E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */,
+				E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */,
+				E86BD2422911E07800A9F078 /* CreateProfile1.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
