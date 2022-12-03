@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D338070291DC92200D7DE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33806F291DC92200D7DE20 /* User.swift */; };
+		0D96F0DB2924687C009022CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D96F0DA2924687C009022CD /* ContentView.swift */; };
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
@@ -49,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0D96F0DA2924687C009022CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0D97DF152927012D0066CA3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0DCEDD0029149243008E5521 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
@@ -163,6 +166,7 @@
 		A306257528F22E4400919640 /* GTLink */ = {
 			isa = PBXGroup;
 			children = (
+				0D97DF152927012D0066CA3E /* Info.plist */,
 				A36BC9CB291B58FE00A8D3A8 /* BackendTesting */,
 				A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
@@ -272,6 +276,7 @@
 			files = (
 				A374CAC1291DD7D600C5A909 /* OwnedPostScreen.swift in Sources */,
 				A31A0C452919D152006BC16C /* LandingPage.swift in Sources */,
+				0D96F0DB2924687C009022CD /* ContentView.swift in Sources */,
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A36FDFDD293BDBA100727469 /* ImagePicker.swift in Sources */,
 				A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */,
@@ -431,6 +436,7 @@
 				DEVELOPMENT_TEAM = KJ7YS82G45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTLink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -460,6 +466,7 @@
 				DEVELOPMENT_TEAM = KJ7YS82G45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTLink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
