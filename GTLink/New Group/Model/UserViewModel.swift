@@ -159,9 +159,9 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func createPosting(requestID: String, completion: @escaping (Bool) -> Void) {
-        if user?.projects.contains(requestID) ?? false { // false if the user object doesnt exist
-            user?.projects.append(requestID); // requestID should be renamed "postID", represents the project document's id in the postings collection
+    func sendRequest(postingID: String, completion: @escaping (Bool) -> Void) {
+        if user?.sentRequests.contains(where: {$0.key == postingID}) ?? false { // false if the user object doesnt exist
+            user?.sentRequests[postingID] = ["accepted" : false, "rejected" : false]; // requestID should be renamed "postID", represents the project document's id in the postings collection
             addProfileData();
             print("Request Created");
             completion(true);
@@ -203,12 +203,4 @@ class UserViewModel: ObservableObject {
     func updateRequests() {
         
     }
-    
-    /**
-     Creates a request to join a project, only handle the user side of things. You will be given the postID which represents the post's document in the Firestore Postings collection. HINT: change things in the sentRequests array of the user.
-     */
-    func sendRequest(postID: String) {
-        
-    }
-    
 }

@@ -46,7 +46,7 @@ class FeedViewModel: ObservableObject {
             Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
      */
     func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
-        
+        Firestore.firestore().collection("try").document(postingID)
     }
     
     /**
