@@ -21,10 +21,14 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 @main
 struct GTLinkApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject var userVM = UserViewModel()
+
     
     var body: some Scene {
         WindowGroup {
-            ProfilePage()
+            LandingPagev1().environmentObject(userVM)
         }
     }
 }
+
+

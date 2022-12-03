@@ -79,6 +79,9 @@ class UserViewModel: ObservableObject {
             }
         }
     }
+    func checkUserExists(completion: @escaping (Book) -> Void) {
+        
+    }
     
     /*
      IF the user HAS previously logged in, it fetches all the user's data from the Firestore Database, and initializes the user variable above with a User object containing the data. You have to get the document that has the title of (uuid) and deal with the data's document by storing all the data in the user object.

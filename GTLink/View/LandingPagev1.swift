@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LandingPagev1: View {
+    @EnvironmentObject var userVM : UserViewModel
+    @State var navigate  = false
+    
     var body: some View {
         VStack {
             Text("GT Link")
@@ -38,8 +41,11 @@ struct LandingPagev1: View {
                 .offset(x: -12)
             
             Spacer()
-            NavigationLink(destination: EmptyView()) {
-                HStack {
+            Button(action: {
+                loginWithProvider() { success in
+                    navigate = success
+                }
+            }) {
                     Image("GT")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -60,6 +66,7 @@ struct LandingPagev1: View {
                 .padding(-100)
             }
         }
+        .navigationDestination(isPresented: $navigate, destination: {
     }
 }
 
