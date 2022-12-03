@@ -22,7 +22,7 @@ struct Post {
     let isStudy: Bool
     var members: [String] // All the uid/User ID's of the people associated with the Post
     
-    init(title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: String) {
+    init(title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String]) {
         self.title = title
         self.image = image
         self.owner = owner
