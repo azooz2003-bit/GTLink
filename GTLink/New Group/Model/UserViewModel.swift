@@ -179,14 +179,36 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func addMember(postingID: String, newMemberID: String, completion: @escaping (Bool) -> Void)  {
-        if user?.sentRequests[postingID]!["accepted"]! == true ?? false {
-            user?.projects.append(postingID)
-            addProfileData()
-            print("Project Added to New Member")
-            completion(true)
-        } else {
-            print("Error Adding Project to Member's Profile")
-            completion(false)
+        db.collection("users").document(newMemberID).getDocument { (document, error) in
+            print(document!)
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+            
+            let data = document.data()
+            if let updateProjects = data["invovledProjects"] as? [String] {
+                updateProjects.append(postingID)
+                document.updateData([
+                    "involvedProjects": updateProjects
+                ]) { error in
+                    if let error = error {
+                        print("Error updating document: \(error)")
+                        completion(false)
+                    } else {
+                        print("Successful Update")
+                        addProfileData()
+                        completion(true)
+                    }
+                }
+                
+            } else {
+                print("Error in compiling projects array as String")
+                completion(false)
+            }
+            
+            
         }
         
     }
