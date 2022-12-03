@@ -43,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		028B2667293BE58D0020E411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0DCEDD0029149243008E5521 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
@@ -148,6 +149,7 @@
 		A306257528F22E4400919640 /* GTLink */ = {
 			isa = PBXGroup;
 			children = (
+				028B2667293BE58D0020E411 /* Info.plist */,
 				A36BC9CB291B58FE00A8D3A8 /* BackendTesting */,
 				A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
@@ -411,6 +413,7 @@
 				DEVELOPMENT_TEAM = KJ7YS82G45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTLink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -440,6 +443,7 @@
 				DEVELOPMENT_TEAM = KJ7YS82G45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GTLink/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
