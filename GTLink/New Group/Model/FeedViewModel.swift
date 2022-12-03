@@ -118,9 +118,6 @@ class FeedViewModel: ObservableObject {
     //upload image to storage
     
     func uploadToRef(docID: String, image: UIImage, completion: @escaping (Bool) -> Void) {
-        
-        let localFile = URL(string: "storedPostImage/image")!
-        
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let refID = "postImages/\(docID)"
         let ref = storage.reference(withPath: refID)
