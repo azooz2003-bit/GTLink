@@ -38,9 +38,10 @@ class FeedViewModel: ObservableObject {
      */
     func createPosting(title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
         
+        let docID = UUID()
         
         //Convert tags to Dictionary of Strings and Bools
-        uploadToStorage(uiImage: image) { success in
+        uploadToRef(docID: docID.uuidString, image: image) { success in
             if success {
                 var tagDict: [String : Bool] = [:]
                 
@@ -71,7 +72,7 @@ class FeedViewModel: ObservableObject {
                 ]
                 
                 
-                let newDoc = Firestore.firestore().collection("postings").document()
+                let newDoc = Firestore.firestore().collection("postings").document(docID.uuidString)
                 
                 newDoc.setData(newPost) { err in
                     if let err = err {
@@ -88,40 +89,40 @@ class FeedViewModel: ObservableObject {
             }
         }
     }
+    
+    
+    
+    /**
+     This function will edit an existing post, use the posting ID given to access the posting's document in Firestore and change the data associated with it with the one's in the parameter. Within this function you will also call the editPosting function in the UserViewModel to handle the user side of things.
+     REMINDER to also use completion handlers.
+     */
+    func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
         
+    }
+    
+    /**
+     Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
+     */
+    func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
         
+    }
+    
+    /**
+     Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
+     */
+    func syncFeedData(completion: @escaping (Bool) -> Void) {
         
-        /**
-         This function will edit an existing post, use the posting ID given to access the posting's document in Firestore and change the data associated with it with the one's in the parameter. Within this function you will also call the editPosting function in the UserViewModel to handle the user side of things.
-         REMINDER to also use completion handlers.
-         */
-        func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
-            
-        }
+    }
+    
+    
+    //upload image to storage
+    
+    func uploadToRef(docID: String, image: UIImage, completion: @escaping (Bool) -> Void) {
         
-        /**
-         Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
-         */
-        func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
-            
-        }
+        let localFile = URL(string: "storedPostImage/image")!
         
-        /**
-         Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
-         */
-        func syncFeedData(completion: @escaping (Bool) -> Void) {
-            
-        }
-        
-        
-        //upload image to storage
-        
-    func uploadToRef(image: UIImage, completion: @escaping (Bool) -> Void) {
-            
-            let localFile = URL(string: "storedProfileImage/image")!
-            
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
-        let refID = "postImages/\(UUID())"
+        let refID = "postImages/\(docID)"
         let ref = storage.reference(withPath: refID)
         ref.putData(imageData) { metadata, error in
             if let error = error {
@@ -133,15 +134,32 @@ class FeedViewModel: ObservableObject {
                     if let error = error {
                         completion(false)
                         print("Image not uploaded: " + error.localizedDescription)
+                        return
+                    } else {
+                        self.uploadToDB(docID: refID, url: url!.absoluteString) { success in
+                            completion(success)
+                        }
                     }
                 }
             }
-            }
-        }
-        
-        //download image from storage
-        
-        func downloadFromStorage() -> UIImage {
-            return UIImage()
         }
     }
+    
+    func uploadToDB(docID: String, url: String, completion: @escaping (Bool) -> Void) {
+        Firestore.firestore().collection("postings").document(docID).setData(["image" : url], merge: true) { error in
+            if let error = error {
+                completion(false)
+                print("Image not uploaded: " + error.localizedDescription)
+                return
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
+    //download image from storage
+    
+    func downloadFromStorage() -> UIImage {
+        return UIImage()
+    }
+}
