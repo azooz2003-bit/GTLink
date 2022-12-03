@@ -95,8 +95,14 @@ struct LandingPage: View {
                 .frame(height: 80)
                 .padding(.bottom)
             }.navigationDestination(isPresented: $ssoPressed, destination: {
-            CreateProfile1()
-        })
+                if (userVM.user == nil) {
+                    CreateProfile1().environmentObject(userVM).navigationBarBackButtonHidden()
+                } else {
+                    EmptyView().onTapGesture {
+                    }
+                }
+                
+            })
         
     }
 
