@@ -11,7 +11,8 @@
 import Foundation
 import SwiftUI
 
-struct Post {
+struct Post: Identifiable {
+    var id = UUID()
     var title: String
     var image: String
     let owner: String // UserID/uid of whoever created the post
@@ -22,7 +23,10 @@ struct Post {
     let isStudy: Bool
     var members: [String] // All the uid/User ID's of the people associated with the Post
     
-    init(title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String]) {
+    init(id: UUID?, title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String]) {
+        if id != nil {
+            self.id = id!
+        }
         self.title = title
         self.image = image
         self.owner = owner

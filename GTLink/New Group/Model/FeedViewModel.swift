@@ -36,9 +36,9 @@ class FeedViewModel: ObservableObject {
      REMINDER to also use completion handlers.
      
      */
-    func createPosting(title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
+    func createPosting(id: UUID, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
         
-        let docID = UUID()
+        let docID = id
         
         //Convert tags to Dictionary of Strings and Bools
         uploadToRef(docID: docID.uuidString, image: image) { success in
@@ -156,7 +156,47 @@ class FeedViewModel: ObservableObject {
     
     //download image from storage
     
-    func downloadFromStorage() -> UIImage {
-        return UIImage()
+    func downloadImageURL(docID: String, completion: @escaping (Bool) -> Void) {
+        Firestore.firestore().document(docID).getDocument { document, error in
+            if let error = error {
+                completion(false)
+                print("Image not received: " + error.localizedDescription)
+                return
+            } else {
+                let data = document?.data()
+                let url = data!["image"] as! String
+                if !url.contains("postImages") {
+                    completion(false)
+                    return
+                } else {
+                    self.getImageFromStorage(docID: docID, url: url) { success in
+                        completion(success)
+                    }
+                }
+                
+            }
+        }
+    }
+    func getImageFromStorage(docID: String, url: String, completion: @escaping (Bool) -> Void) {
+        storage.reference(forURL: url).getData(maxSize: 1*1500*1500) { data, error in
+            if let error = error {
+                completion(false)
+                print("Image not found in storage: " + error.localizedDescription)
+                return
+            } else {
+                var index = self.postings?.firstIndex(where: { post in
+                    post.id.uuidString == docID
+                })
+                
+                if index == -1 {
+                    completion(false)
+                    return
+                }
+                
+                self.postings?[index!].image = url
+                completion(true)
+            }
+        }
+        
     }
 }
