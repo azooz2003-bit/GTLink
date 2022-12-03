@@ -12,7 +12,8 @@ import FirebaseAuth
 import Firebase
 import SwiftUI
 
-struct User: Codable {
+class User: Codable  {
+    var pfpDecoded: Data // This data object can be passed into the UIImage componenet to display the image.
     var bio: String // Description
     var contact: [String: String] // Map for i.e. "discord": Someone's Discord IGN
     var interests: [String]
@@ -26,7 +27,8 @@ struct User: Codable {
     var userID: String
     var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, received: [String], sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+    init(pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, received: [String], sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+        self.pfpDecoded = pfpDecoded
         self.bio = bio
         self.contact = contact
         self.interests = interests
