@@ -45,8 +45,26 @@ class FeedViewModel: ObservableObject {
     /**
             Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
      */
-    func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
-        Firestore.firestore().collection("try").document(postingID)
+    func requestToJoinProject(post: inout Post, completion: @escaping (Bool) -> Void) {
+        // add users request to post in postings
+        let data = [userVM?.user?.userID : ["accepted" : false, "rejected" : false]]
+        var userID = userVM?.user?.userID
+        
+        if (!post.receivedRequests.contains(where: {$0.key == userID})) {
+            post.receivedRequests[userID!] = ["accepted" : false, "rejected" : false]
+        }
+        userVM?.sendRequest(postingID: post.postingID) { success in
+            if (success) {
+                Firestore.firestore().collection("postings").document(post.postingID).setData(["receivedRequest" : data], merge: true) { error in
+                    if let error = error {
+                        print("Error adding user request to posting firebase database")
+                        completion(false)
+                        return
+                    }
+                    completion(true)
+                }
+            }
+        }
     }
     
     /**

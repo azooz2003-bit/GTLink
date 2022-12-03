@@ -160,14 +160,14 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func sendRequest(postingID: String, completion: @escaping (Bool) -> Void) {
-        if user?.sentRequests.contains(where: {$0.key == postingID}) ?? false { // false if the user object doesnt exist
-            user?.sentRequests[postingID] = ["accepted" : false, "rejected" : false]; // requestID should be renamed "postID", represents the project document's id in the postings collection
-            addProfileData();
-            print("Request Created");
-            completion(true);
+        if (!(user?.sentRequests.contains(where: {$0.key == postingID}))!) { // false if the user object doesnt exist
+            user?.sentRequests[postingID] = ["accepted" : false, "rejected" : false] // requestID should be renamed "postID", represents the project document's id in the postings collection
+            addProfileData()
+            print("Request Created")
+            completion(true)
         } else {
-            print("Error Creating Request");
-            completion(false);
+            print("Error Creating Request")
+            completion(false)
         }
     }
     
