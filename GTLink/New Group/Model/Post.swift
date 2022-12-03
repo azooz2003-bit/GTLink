@@ -20,7 +20,7 @@ struct Post {
     var tags: [String: Bool] // All Tags and whether or not they are used
     let isProject: Bool
     let isStudy: Bool
-    var members: String // All the uid/User ID's of the people associated with the Post
+    var members: [String] // All the uid/User ID's of the people associated with the Post
     
     init(title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: String) {
         self.title = title

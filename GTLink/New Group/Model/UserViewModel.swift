@@ -49,7 +49,7 @@ class UserViewModel: ObservableObject {
      Logs the user in using their outlook credentials.
      Notes:
      - Checks for whether the user exists in the database (i.e logged into the app before), this can be done by checking if the logged in user had a "document" in the "users" collection in Firestore with the uid that belongs to the user.
-     - Handles the errors using completion handlers and the Error enum (Google may help with how to do that).
+     - Handles the errors using completion handlers and the Error enum (Google may help with how to do that). Don't worry about the Error enum for now though, pretend it doesnt exist.
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false), and a final parameter specifying whether the user existed in the database previously.
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS FUNCTION AS YOU LIKE
      */
@@ -81,9 +81,9 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     IF the user HAS previously logged in, it fetches all the user's data from the Firestore Database, and initializes the user variable above with a User object containing the data.
+     IF the user HAS previously logged in, it fetches all the user's data from the Firestore Database, and initializes the user variable above with a User object containing the data. You have to get the document that has the title of (uuid) and deal with the data's document by storing all the data in the user object.
      Notes:
-     - Handles the errors using completion handlers and the Error enum (Google may help with that).
+     - Handles the errors using completion handlers and the Error enum (Google may help with how to do that). Don't worry about the Error enum for now though, pretend it doesnt exist.
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
@@ -114,7 +114,7 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Adds or edits the user's profile data based on changes made to the profile using the frontend.
+     Adds or edits the user's profile data in the Firebase Firestore database based on changes made to the profile using the frontend. Once this is called all data fields should be updated locally (in the user object), make the changes on Firestore.
      Notes:
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
@@ -152,15 +152,23 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Creates a request for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
+     Creates a post for a project or study group. Will be called by a similar function in the FeedViewModel, so that the request is added to the general Feed as well as the user's profile. Only handle the User side of things.
      Notes:
-     - Adds the request's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
+     - Adds the post's ID (once generated) to the user object (in the appropriate field) and the user's document in Firestore. Hint: addProfileData may be useful with that last part.
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func createPosting() {
-        
+    func createPosting(requestID: String, completion: @escaping (Bool) -> Void) {
+        if user?.projects.contains(requestID) ?? false { // false if the user object doesnt exist
+            user?.projects.append(requestID); // requestID should be renamed "postID", represents the project document's id in the postings collection
+            addProfileData();
+            print("Request Created");
+            completion(true);
+        } else {
+            print("Error Creating Request");
+            completion(false);
+        }
     }
     
     /*
@@ -186,7 +194,7 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Responds to a particular request with an accept or decline.
+     Responds to a particular request with an accept or decline. Updates things from the sender side of things as well.
      Notes:
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
@@ -195,4 +203,12 @@ class UserViewModel: ObservableObject {
     func updateRequests() {
         
     }
+    
+    /**
+     Creates a request to join a project, only handle the user side of things. You will be given the postID which represents the post's document in the Firestore Postings collection. HINT: change things in the sentRequests array of the user.
+     */
+    func sendRequest(postID: String) {
+        
+    }
+    
 }
