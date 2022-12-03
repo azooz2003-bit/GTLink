@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 import SwiftUI
+import FirebaseFirestoreSwift
 
 /*
  NOTE:
@@ -72,9 +73,61 @@ class UserViewModel: ObservableObject {
                         completion(false)
                         return
                     }
+
+                    guard let uid = self.uuid else {
+                        completion(false)
+                        return
+                    }
+                    print("User ID: " + uid)
+
+                    let docRef = self.db.collection("users").document(uid)
+                    print(docRef)
+                    
+                    docRef.getDocument { (document, error) in
+                        if let document = document {
+                            if document.exists { // UserID is in the database
+                                if error != nil {
+                                    print("A Failure Occurred")
+                                    self.isAuthenticating = false
+                                    completion(false)
+                                    return
+                                } else {
+                                    print("He Exists")
+                                    self.syncUserData() { authResult in
+                                        print("Successfully logged in")
+                                        print(credential)
+                                        completion(authResult)
+                                        self.isAuthenticating = false
+                                    }
+                                }
+                            } else {
+                                // "Document does not exist", or this userID is not added to the database, so we have to add it
+                                self.assignUserDataLocally(data: [:]) { success in
+                                    self.addProfileData() { success in
+                                        if success {
+                                            /*self.syncUserData() { authResult in
+                                             print("Successfully logged in")
+                                             print(credential)
+                                             completion(authResult)
+                                             self.isAuthenticating = false
+                                             }*/
+                                        } else {
+                                            print("Failed to login")
+                                        }
+                                    }
+                                }
+                            }
+                            self.isAuthenticating = false
+                        }
+                    }
                     completion(true)
-                    print("Successfully logged in")
-                    print(credential)
+                    
+                     /*self.syncUserData() { authResult in
+                         print("Successfully logged in")
+                         print(credential)
+                         completion(authResult)
+                         self.isAuthenticating = false
+                     }*/
                 }
             }
         }
@@ -88,28 +141,36 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func syncUserData(completion: @escaping (Bool) -> Void) {
+        print("In Sync")
         if !userIsAuthenticated {
             print("pre-sync abort")
             completion(false)
             return
         }
         db.collection("users").document(self.uuid!).getDocument { (document, error) in
-            print(document!)
             if (document == nil || error != nil) {
                 print("Error pre-sync")
                 completion(false)
                 return
             }
-                    
-            do {
-                //try self.user = document!.data(as: User.self)
-                //print(try document!.data(as: User.self))
-                print(self.user)
-                completion(true)
-            } catch {
-                print("SYNC ERROR: \(error)")
-                completion(false)
+            
+            // Accordingly, the do/catch is not needed
+            //do {
+            let data = document!.data()
+            if let data = data {
+                self.assignUserDataLocally(data: data) { success in
+                    if (success) {
+                        print("Sync Works")
+                        completion(true)
+                    }
+                }
             }
+            
+            completion(true)
+            //} catch {
+            //    print("SYNC ERROR: \(error)")
+            //    completion(false)
+            //}
         }
     }
     
@@ -120,18 +181,23 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func addProfileData() {
+    func addProfileData(completion: @escaping (Bool) -> Void) {
         if !userIsAuthenticated {
             print("pre-add abort")
+            completion(false)
             return
         }
-        do {
-            //let _ = try db.collection("users").document(self.uuid!).setData(from: user!)
-        } catch {
-                print("Error adding")
-        }
+        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "gradYear": (self.user?.gradYear)!])
+        print("Add Profile Data Works")
+        completion(true)
     }
     
+    
+    func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
+        // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
+        self.user = User(bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? ["None"], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: data!["userID"] as? String ?? "", gradYear: data!["gradYear"] as? String ?? "")
+        completion(true)
+    }
     /*
      Simply signs the user out, when that's done, make sure to reset variables such as user to nil.
      Notes:
