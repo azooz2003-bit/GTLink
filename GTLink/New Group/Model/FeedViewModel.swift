@@ -39,7 +39,15 @@ class FeedViewModel: ObservableObject {
      REMINDER to also use completion handlers.
      */
     func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
+        let selected = Firestore.firestore().collection("postings").document(postingID)
         
+        uploadToStorage(uiImage: image)
+        
+        let updatePost : [String: Any] = [
+            "title": title,
+            "image": self.storedImageRef,
+            
+        ]
     }
     
     /**
