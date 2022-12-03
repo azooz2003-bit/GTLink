@@ -21,11 +21,13 @@ struct TagView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
+            /*
             Text("Tags")
                 .font(.title3)
                 .underline()
                 .padding(.leading)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: .infinity, alignment: .leading)*/
+            // commenting this out so that it can be used across the app
             
             ScrollView(.vertical, showsIndicators: false) {
                 
