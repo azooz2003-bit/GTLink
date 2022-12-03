@@ -125,8 +125,6 @@ class FeedViewModel: ObservableObject {
         var newImageRef = storageRef.child(newImageRefString)
 
         // Create a reference to the file you want to upload
-
-        // Upload the file to the path "images/rivers.jpg"
         let uploadTask = newImageRef.putFile(from: localFile, metadata: nil) { metadata, error in
           guard let metadata = metadata else {
             // Uh-oh, an error occurred!
