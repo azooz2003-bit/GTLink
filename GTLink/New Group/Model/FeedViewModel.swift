@@ -57,21 +57,21 @@ class FeedViewModel: ObservableObject {
             .whereField(selectedType == .project ? "isProject" : "isStudy", isEqualTo: true).getDocuments { querySnapshot, err in
                 if let err = err {
                     print("Error: \(err)")
-                    return
+                    completion(false)
                 } else {
                     for document in querySnapshot!.documents {
                         let data = document.data()
                         self.postings?.append(
                             Post(
-                                title: data["title"] as? String ?? "Title Here",
-                                image: data["image"] as? String ?? "Image Here",
-                                owner: data["owner"] as? String ?? "Owner Here",
-                                date:  data["date"] as? Date ?? Date(),
-                                description: data["description"] as? String ?? "Description here",
-                                tags: data["tags"] as? [String : Bool] ?? [String : Bool](),
-                                isProject: data["isProject"] as? Bool ?? false,
-                                isStudy: data["isStudy"] as? Bool ?? false,
-                                members: data["members"] as? [String] ?? [String]()
+                                title: data["title"] as! String,
+                                image: data["image"] as! String,
+                                owner: data["owner"] as! String,
+                                date:  data["date"] as! Date,
+                                description: data["description"] as! String,
+                                tags: data["tags"] as! [String : Bool],
+                                isProject: data["isProject"] as! Bool,
+                                isStudy: data["isStudy"] as! Bool,
+                                members: data["members"] as! [String]
                             )
                             
                         )
