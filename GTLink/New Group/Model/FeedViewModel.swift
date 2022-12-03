@@ -184,7 +184,7 @@ class FeedViewModel: ObservableObject {
                 print("Image not found in storage: " + error.localizedDescription)
                 return
             } else {
-                var index = self.postings?.firstIndex(where: { post in
+                let index = self.postings?.firstIndex(where: { post in
                     post.id.uuidString == docID
                 })
                 
