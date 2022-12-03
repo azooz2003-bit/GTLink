@@ -12,6 +12,7 @@ import Foundation
 import SwiftUI
 
 struct Post {
+    var postingID: String
     var title: String
     var image: String
     let owner: String // UserID/uid of whoever created the post
@@ -21,8 +22,10 @@ struct Post {
     let isProject: Bool
     let isStudy: Bool
     var members: [String] // All the uid/User ID's of the people associated with the Post
+    var receivedRequests: [String : [String : Bool]]
     
-    init(title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: String) {
+    init(postingID: String, title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String], receivedRequests: [String : [String : Bool]]) {
+        self.postingID = postingID
         self.title = title
         self.image = image
         self.owner = owner
@@ -32,5 +35,6 @@ struct Post {
         self.isProject = isProject
         self.isStudy = isStudy
         self.members = members
+        self.receivedRequests = receivedRequests
     }
 }
