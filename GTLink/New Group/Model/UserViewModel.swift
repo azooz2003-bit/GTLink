@@ -183,25 +183,32 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Fetches all the user's received requests.
-     Notes:
-     - Handles the errors using completion handlers and the Error enum (Google may help with that).
-     - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
-     INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
-     */
-    func getRequests() {
-        
-    }
-    
-    /*
      Responds to a particular request with an accept or decline. Updates things from the sender side of things as well.
      Notes:
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func updateRequests() {
-        
+    func updateRequests(postingID: String, accepted: Bool, rejected: Bool, completion: @escaping (Bool) -> Void) {
+        db.collection("users").document(self.uuid!).getDocument { (document, error) in
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+
+            let posting = self.db.collection("users").document(self.uuid!)
+            // db.collection("users").document(self.uuid!).update({ ["sentRequests.${postingID}.accepted"]: accepted, ["sentRequests.${postingID}.rejected"]: rejected
+            posting.updateData(["sentRequests.${postingID}.accepted": accepted, "sentRequests.${postingID}.rejected": rejected]) { (error) in
+                if (error == nil) {
+                    print("Updated Posting")
+                    completion(true)
+                } else {
+                    print("Failed to Update Posting")
+                    completion(false)
+                }
+            }
+        }
     }
     
     /**
