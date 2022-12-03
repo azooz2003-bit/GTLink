@@ -22,7 +22,7 @@ class User: Codable  {
     var minor: String
     var name: String
     var received: [String]
-    var sentRequests: [String: [String: Bool]] // UserID: ["accepted": true/false, "rejected": true/false]. Both are included because if one of them changes, we know the user responded. If they are both false, we know the user hasn't responded to the request.
+    var sentRequests: [String: [String: Bool]] // PostingID: ["accepted": true/false, "rejected": true/false]. Both are included because if one of them changes, we know the user responded. If they are both false, we know the user hasn't responded to the request.
     var projects: [String]
     var userID: String
     var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.

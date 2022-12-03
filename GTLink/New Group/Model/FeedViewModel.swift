@@ -25,6 +25,9 @@ class FeedViewModel: ObservableObject {
     @Published var selectedTags: [Tags] = []
     @Published var selectedType: Post_Type = .project
     
+    //Firebase storage reference
+    let storage = Storage.storage()
+    var storedImageRef: String = ""
     /**
             This function will create a new post, store the received data in a Post object. FYI, the members array in the Post object should only include the owner. Be sure to add this Posting to the Postings collection in Firestore with the given data, go to the Notion document to see how the data is modeled in that collection Firestore. Within this function you will also call the createPosting function to handle the user side of things in the UserViewModel. Take the document ID that's created once you make a document in the Postings collection, and pass it into the function in the userViewModel.
      REMINDER to also use completion handlers.
@@ -39,15 +42,8 @@ class FeedViewModel: ObservableObject {
      REMINDER to also use completion handlers.
      */
     func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
-        let selected = Firestore.firestore().collection("postings").document(postingID)
         
-        uploadToStorage(uiImage: image)
-        
-        let updatePost : [String: Any] = [
-            "title": title,
-            "image": self.storedImageRef,
-            
-        ]
+    
     }
     
     /**

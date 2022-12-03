@@ -178,7 +178,16 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func editPosting() {
+    func addMember(postingID: String, newMemberID: String, completion: @escaping (Bool) -> Void)  {
+        if user?.sentRequests[postingID]!["accepted"]! == true ?? false {
+            user?.projects.append(postingID)
+            addProfileData()
+            print("Project Added to New Member")
+            completion(true)
+        } else {
+            print("Error Adding Project to Member's Profile")
+            completion(false)
+        }
         
     }
     
