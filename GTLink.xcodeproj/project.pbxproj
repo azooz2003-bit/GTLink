@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		028B266A293BE9C20020E411 /* TriggerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 028B2669293BE9C20020E411 /* TriggerPage.swift */; };
 		0D338070291DC92200D7DE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33806F291DC92200D7DE20 /* User.swift */; };
 		0D96F0DB2924687C009022CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D96F0DA2924687C009022CD /* ContentView.swift */; };
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
@@ -49,7 +50,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		028B2667293BE58D0020E411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		028B2669293BE9C20020E411 /* TriggerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerPage.swift; sourceTree = "<group>"; };
 		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0D96F0DA2924687C009022CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		0D97DF152927012D0066CA3E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		028B2668293BE94E0020E411 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				0D96F0DA2924687C009022CD /* ContentView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		205BBADE28F8BD97001C00F7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +153,7 @@
 				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
 				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
 				A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */,
+				028B2669293BE9C20020E411 /* TriggerPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -153,6 +163,7 @@
 			children = (
 				A306257528F22E4400919640 /* GTLink */,
 				A306257428F22E4400919640 /* Products */,
+				028B2668293BE94E0020E411 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -304,6 +315,7 @@
 				DA38B6D22914190100E1B4F2 /* CreateProfile2.swift in Sources */,
 				E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */,
 				E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */,
+				028B266A293BE9C20020E411 /* TriggerPage.swift in Sources */,
 				E86BD2422911E07800A9F078 /* CreateProfile1.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
 			);

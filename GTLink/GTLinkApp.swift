@@ -27,7 +27,7 @@ struct GTLinkApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                LandingPage().environmentObject(userVM)
+                TriggerPage().environmentObject(userVM)
             }
         }
     }
