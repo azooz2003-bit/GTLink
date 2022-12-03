@@ -22,6 +22,9 @@
 		A36E154028F8EE3400239E22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */; };
 		A36FDFDB293BDB4700727469 /* NewPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FDFDA293BDB4700727469 /* NewPostScreen.swift */; };
 		A36FDFDD293BDBA100727469 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FDFDC293BDBA100727469 /* ImagePicker.swift */; };
+		A36FDFDF293BDCCE00727469 /* RequestsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */; };
+		A36FDFE1293BDD0D00727469 /* PendingRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */; };
+		A36FDFE3293BDD3700727469 /* AcceptedRequestCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */; };
 		A374CAC1291DD7D600C5A909 /* OwnedPostScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A374CAC0291DD7D600C5A909 /* OwnedPostScreen.swift */; };
 		A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
 		A374CAC3291DD9F100C5A909 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C815232908C78600E4215F /* Card.swift */; };
@@ -62,6 +65,9 @@
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A36FDFDA293BDB4700727469 /* NewPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPostScreen.swift; sourceTree = "<group>"; };
 		A36FDFDC293BDBA100727469 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestsScreen.swift; sourceTree = "<group>"; };
+		A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingRequestCard.swift; sourceTree = "<group>"; };
+		A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCard.swift; sourceTree = "<group>"; };
 		A374CAC0291DD7D600C5A909 /* OwnedPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedPostScreen.swift; sourceTree = "<group>"; };
 		A3795F532935B190007F3FEC /* GradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTest.swift; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
@@ -131,6 +137,9 @@
 				A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */,
 				A36FDFDA293BDB4700727469 /* NewPostScreen.swift */,
 				A36FDFDC293BDBA100727469 /* ImagePicker.swift */,
+				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
+				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
+				A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -266,12 +275,14 @@
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A36FDFDD293BDBA100727469 /* ImagePicker.swift in Sources */,
 				A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */,
+				A36FDFE1293BDD0D00727469 /* PendingRequestCard.swift in Sources */,
 				A36FDFDB293BDB4700727469 /* NewPostScreen.swift in Sources */,
 				A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */,
 				5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */,
 				A3384C282932DFB800F6B7A7 /* ProfileScreen.swift in Sources */,
 				B2649EA02918677300DD08EE /* FeedViewModel.swift in Sources */,
 				A374CAC3291DD9F100C5A909 /* Card.swift in Sources */,
+				A36FDFDF293BDCCE00727469 /* RequestsScreen.swift in Sources */,
 				B23C37CC290B4334000B2B8A /* Tags.swift in Sources */,
 				A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */,
 				A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */,
@@ -279,6 +290,7 @@
 				0D338070291DC92200D7DE20 /* User.swift in Sources */,
 				E8EAEC74292462C100ED7C02 /* ProgressBar.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,
+				A36FDFE3293BDD3700727469 /* AcceptedRequestCard.swift in Sources */,
 				A3795F542935B190007F3FEC /* GradientTest.swift in Sources */,
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
 				DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */,
