@@ -20,7 +20,7 @@ class FeedViewModel: ObservableObject {
     @Published var userVM: UserViewModel? //
     
     @Published var postings: [Post]?
-    
+    private let db = Firestore.firestore()
     // Filtering stuff
     @Published var showFilterSheet: Bool = false
     @Published var selectedTags: [Tags] = []
@@ -97,7 +97,26 @@ class FeedViewModel: ObservableObject {
      REMINDER to also use completion handlers.
      */
     func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
-        
+        db.collection("postings").document(postingID).getDocument { (document, error) in
+            print(document!)
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+
+            let posting = self.db.collection("postings").document(postingID)
+            posting.updateData(["title": title, "date": date, "description": description, "type": type, "tags": tags, "image": image]) { (error) in
+                if (error == nil) {
+                    print("Updated Posting")
+                    self.userVM!.editPosting()
+                    completion(true)
+                } else {
+                    print("Failed to Update Posting")
+                    completion(false)
+                }
+            }
+        }
     }
     
     /**
