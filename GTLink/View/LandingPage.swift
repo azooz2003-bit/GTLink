@@ -9,12 +9,11 @@ import SwiftUI
 
 struct LandingPage: View {
     @State var ssoPressed = false
+    @EnvironmentObject var userVM : UserViewModel
     
     var body: some View {
         let gradient = LinearGradient(colors: [.cyan, Color("DarkBlue"), Color("DarkBlue")], startPoint: .leading, endPoint: .trailing)
-        
-        NavigationStack {
-            
+                    
             VStack {
                 HStack {
                     Image("Logo")
@@ -69,7 +68,14 @@ struct LandingPage: View {
                 .frame(height: 190)
             
             Button(action: {
-                ssoPressed = true
+                userVM.loginWithProvider() {
+                    success in
+                    if (success) {
+                        print(success)
+                        ssoPressed = success
+
+                    }
+                }
             }) {
                 HStack {
                     
@@ -88,12 +94,15 @@ struct LandingPage: View {
                 .cornerRadius(20)
                 .frame(height: 80)
                 .padding(.bottom)
-            }
-            
-          
-        }.navigationDestination(isPresented: $ssoPressed, destination: {
-            EmptyView()
-        })
+            }.navigationDestination(isPresented: $ssoPressed, destination: {
+                if (userVM.user == nil) {
+                    CreateProfile1().environmentObject(userVM).navigationBarBackButtonHidden()
+                } else {
+                    EmptyView().onTapGesture {
+                    }
+                }
+                
+            })
         
     }
 

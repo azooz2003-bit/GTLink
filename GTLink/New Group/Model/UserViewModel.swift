@@ -111,6 +111,8 @@ class UserViewModel: ObservableObject {
                                              completion(authResult)
                                              self.isAuthenticating = false
                                              }*/
+                                            completion(true)
+
                                         } else {
                                             print("Failed to login")
                                         }
@@ -120,7 +122,6 @@ class UserViewModel: ObservableObject {
                             self.isAuthenticating = false
                         }
                     }
-                    completion(true)
                     
                      /*self.syncUserData() { authResult in
                          print("Successfully logged in")
@@ -132,7 +133,7 @@ class UserViewModel: ObservableObject {
             }
         }
     }
-    
+
     /*
      IF the user HAS previously logged in, it fetches all the user's data from the Firestore Database, and initializes the user variable above with a User object containing the data. You have to get the document that has the title of (uuid) and deal with the data's document by storing all the data in the user object.
      Notes:
@@ -154,6 +155,7 @@ class UserViewModel: ObservableObject {
                 return
             }
             
+            print("Document not nil!")
             // Accordingly, the do/catch is not needed
             //do {
             let data = document!.data()
@@ -187,7 +189,7 @@ class UserViewModel: ObservableObject {
             completion(false)
             return
         }
-        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "gradYear": (self.user?.gradYear)!])
+        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!])
         print("Add Profile Data Works")
         completion(true)
     }
@@ -195,7 +197,7 @@ class UserViewModel: ObservableObject {
     
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
         // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
-        self.user = User(bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? ["None"], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: data!["userID"] as? String ?? "", gradYear: data!["gradYear"] as? String ?? "")
+        self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? ["None"], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: data!["userID"] as? String ?? "", year: data!["year"] as? String ?? "", projects: data?["userID"] as? [String] ?? [])
         completion(true)
     }
     /*
@@ -228,7 +230,9 @@ class UserViewModel: ObservableObject {
     func createPosting(requestID: String, completion: @escaping (Bool) -> Void) {
         if user?.projects.contains(requestID) ?? false { // false if the user object doesnt exist
             user?.projects.append(requestID); // requestID should be renamed "postID", represents the project document's id in the postings collection
-            addProfileData();
+            addProfileData { result in
+                
+            }
             print("Request Created");
             completion(true);
         } else {
@@ -253,7 +257,7 @@ class UserViewModel: ObservableObject {
                 return
             }
             
-            let data = document.data()
+            let data = document!.data()
             if let updateProjects = data["invovledProjects"] as? [String] {
                 updateProjects.append(postingID)
                 document.updateData([
