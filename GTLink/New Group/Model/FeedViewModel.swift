@@ -185,7 +185,7 @@ class FeedViewModel: ObservableObject {
                 return
             } else {
                 let index = self.postings?.firstIndex(where: { post in
-                    post.id.uuidString == docID
+                    post.postingID == docID
                 })
                 
                 if index == -1 {
