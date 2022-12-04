@@ -257,7 +257,7 @@ class UserViewModel: ObservableObject {
                 return
             }
             
-            let data = document.data()
+            let data = document!.data()
             if let updateProjects = data["invovledProjects"] as? [String] {
                 updateProjects.append(postingID)
                 document.updateData([

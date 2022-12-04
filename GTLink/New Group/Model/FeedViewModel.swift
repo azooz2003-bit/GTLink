@@ -109,7 +109,7 @@ class FeedViewModel: ObservableObject {
             posting.updateData(["title": title, "date": date, "description": description, "type": type, "tags": tags, "image": image]) { (error) in
                 if (error == nil) {
                     print("Updated Posting")
-                    self.userVM!.editPosting()
+                    //self.userVM!.editPosting()
                     completion(true)
                 } else {
                     print("Failed to Update Posting")
