@@ -197,7 +197,7 @@ class UserViewModel: ObservableObject {
     
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
         // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
-        self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", received: data!["received"] as? [String] ?? ["None"], sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: data!["userID"] as? String ?? "", year: data!["year"] as? String ?? "", projects: data?["userID"] as? [String] ?? [])
+        self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: uuid, year: data!["year"] as? String ?? "", projects: data?["projects"] as? [String] ?? [])
         completion(true)
     }
     /*
@@ -258,18 +258,26 @@ class UserViewModel: ObservableObject {
             }
             
             let data = document!.data()
-            if let updateProjects = data["invovledProjects"] as? [String] {
-                updateProjects.append(postingID)
+            var projects = data!["projects"] as? [String]
+            if true {
+                projects.append(postingID)
                 document.updateData([
-                    "involvedProjects": updateProjects
+                    "projects": projects
                 ]) { error in
                     if let error = error {
                         print("Error updating document: \(error)")
                         completion(false)
                     } else {
                         print("Successful Update")
-                        addProfileData()
-                        completion(true)
+                        addProfileData { success in
+                            if success {
+                                syncUserData { success2 in
+                                    if success2 {
+                                        completion(true)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
                 

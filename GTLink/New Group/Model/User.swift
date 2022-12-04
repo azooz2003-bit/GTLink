@@ -23,12 +23,11 @@ class User: Codable  {
     var major: String
     var minor: String
     var name: String
-    var received: [String]
     var sentRequests: [String: [String: Bool]] // postingID: ["accepted": true/false, "rejected": true/false]. Both are included because if one of them changes, we know the user responded. If they are both false, we know the user hasn't responded to the request.
     var projects: [String]
     var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, received: [String], sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+    init(pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
         self.pfpDecoded = pfpDecoded
         self.bio = bio
         self.contact = contact
