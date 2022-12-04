@@ -197,9 +197,9 @@ class UserViewModel: ObservableObject {
                 return
             }
 
-            let posting = self.db.collection("users").document(self.uuid!)
+            let userDoc = self.db.collection("users").document(self.uuid!)
             // db.collection("users").document(self.uuid!).update({ ["sentRequests.${postingID}.accepted"]: accepted, ["sentRequests.${postingID}.rejected"]: rejected
-            posting.updateData(["sentRequests.${postingID}.accepted": accepted, "sentRequests.${postingID}.rejected": rejected]) { (error) in
+            userDoc.updateData(["sentRequests" : ) { (error) in
                 if (error == nil) {
                     print("Updated Posting")
                     completion(true)
