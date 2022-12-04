@@ -244,7 +244,38 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func editPosting() {
+    func addMember(postingID: String, newMemberID: String, completion: @escaping (Bool) -> Void)  {
+        db.collection("users").document(newMemberID).getDocument { (document, error) in
+            print(document!)
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+            
+            let data = document.data()
+            if let updateProjects = data["invovledProjects"] as? [String] {
+                updateProjects.append(postingID)
+                document.updateData([
+                    "involvedProjects": updateProjects
+                ]) { error in
+                    if let error = error {
+                        print("Error updating document: \(error)")
+                        completion(false)
+                    } else {
+                        print("Successful Update")
+                        addProfileData()
+                        completion(true)
+                    }
+                }
+                
+            } else {
+                print("Error in compiling projects array as String")
+                completion(false)
+            }
+            
+            
+        }
         
     }
     
