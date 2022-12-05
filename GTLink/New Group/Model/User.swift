@@ -13,7 +13,7 @@ import FirebaseAuth
 import Firebase
 import SwiftUI
 
-class User: Codable  {
+class User: ObservableObject  {
     var userID: String
     var pfpDecoded: Data // This data object can be passed into the UIImage componenet to display the image.
     var bio: String // Description
@@ -36,7 +36,6 @@ class User: Codable  {
         self.major = major
         self.minor = minor
         self.name = name
-        self.received = received
         self.sentRequests = sentRequests
         self.userID = userID
         self.year = year

@@ -70,11 +70,9 @@ struct LandingPage: View {
             Button(action: {
                 userVM.loginWithProvider() {
                     success in
-                    if (success) {
-                        print(success)
-                        ssoPressed = success
-
-                    }
+                    print(success)
+                    print(userVM.user ?? "no user")
+                    ssoPressed = success
                 }
             }) {
                 HStack {
@@ -96,11 +94,17 @@ struct LandingPage: View {
                 .padding(.bottom)
             }.navigationDestination(isPresented: $ssoPressed, destination: {
                 if (userVM.user == nil) {
-                    CreateProfile1().environmentObject(userVM).navigationBarBackButtonHidden()
-                } else {
-                    EmptyView().onTapGesture {
+                    CreateProfile1().environmentObject(userVM).navigationBarBackButtonHidden().onAppear {
+                        if (userVM.user == nil) {
+                            print("Profile setup 1 reached.")
+                        } else {
+                            print("Setup not reached")
+                        }
                     }
+                } else {
+                    ProfileScreen()
                 }
+                
                 
             })
         

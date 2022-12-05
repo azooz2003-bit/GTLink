@@ -80,48 +80,13 @@ class UserViewModel: ObservableObject {
                     }
                     print("User ID: " + uid)
 
-                    let docRef = self.db.collection("users").document(uid)
-                    print(docRef)
+                    //let docRef = self.db.collection("users").document(uid)
+                    //print(docRef)
                     
-                    docRef.getDocument { (document, error) in
-                        if let document = document {
-                            if document.exists { // UserID is in the database
-                                if error != nil {
-                                    print("A Failure Occurred")
-                                    self.isAuthenticating = false
-                                    completion(false)
-                                    return
-                                } else {
-                                    print("He Exists")
-                                    self.syncUserData() { authResult in
-                                        print("Successfully logged in")
-                                        print(credential)
-                                        completion(authResult)
-                                        self.isAuthenticating = false
-                                    }
-                                }
-                            } else {
-                                // "Document does not exist", or this userID is not added to the database, so we have to add it
-                                self.assignUserDataLocally(data: [:]) { success in
-                                    self.addProfileData() { success in
-                                        if success {
-                                            /*self.syncUserData() { authResult in
-                                             print("Successfully logged in")
-                                             print(credential)
-                                             completion(authResult)
-                                             self.isAuthenticating = false
-                                             }*/
-                                            completion(true)
-
-                                        } else {
-                                            print("Failed to login")
-                                        }
-                                    }
-                                }
-                            }
-                            self.isAuthenticating = false
-                        }
+                    self.postLoginSync { success in
+                        completion(success)
                     }
+                    
                     
                      /*self.syncUserData() { authResult in
                          print("Successfully logged in")
@@ -131,6 +96,34 @@ class UserViewModel: ObservableObject {
                      }*/
                 }
             }
+        }
+    }
+    
+    func postLoginSync(completion: @escaping (Bool) -> Void) {
+        let docRef = self.db.collection("users").document(uuid!)
+
+        docRef.getDocument { (document, error) in
+            if document != nil && error == nil {
+                if document!.exists { // UserID is in the database
+                    print("He Exists")
+                    self.syncUserData() { authResult in
+                        print("Successfully logged in")
+                        //print(credential)
+                        completion(authResult)
+                        self.isAuthenticating = false
+                    }
+                } else {
+                    // "Document does not exist", or this userID is not added to the database, so we have to add it
+                    completion(true)
+                    print("Doc doesnt exist.")
+                    
+                }
+                self.isAuthenticating = false
+            } else {
+                print("A Failure Occurred when getting document")
+                self.isAuthenticating = false
+                completion(false)
+                return                        }
         }
     }
 
@@ -189,7 +182,7 @@ class UserViewModel: ObservableObject {
             completion(false)
             return
         }
-        let _ = db.collection("users").document(self.uuid!).setData(["bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "received": (self.user?.received)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!])
+        let _ = db.collection("users").document(self.uuid!).setData(["pfpDecoded" : (self.user?.pfpDecoded)! ,"bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!])
         print("Add Profile Data Works")
         completion(true)
     }
@@ -197,8 +190,15 @@ class UserViewModel: ObservableObject {
     
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
         // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
-        self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: uuid, year: data!["year"] as? String ?? "", projects: data?["projects"] as? [String] ?? [])
-        completion(true)
+        if (data != nil) {
+            self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? "", projects: data?["projects"] as? [String] ?? [])
+            print("Assigned data locally.")
+            completion(true)
+        } else {
+            print("Didn't assign data locally.")
+            completion(false)
+        }
+        
     }
     /*
      Simply signs the user out, when that's done, make sure to reset variables such as user to nil.
@@ -249,7 +249,8 @@ class UserViewModel: ObservableObject {
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
     func addMember(postingID: String, newMemberID: String, completion: @escaping (Bool) -> Void)  {
-        db.collection("users").document(newMemberID).getDocument { (document, error) in
+        let doc = db.collection("users").document(newMemberID)
+        doc.getDocument { (document, error) in
             print(document!)
             if (document == nil || error != nil) {
                 print("Error pre-sync")
@@ -258,37 +259,38 @@ class UserViewModel: ObservableObject {
             }
             
             let data = document!.data()
-            var projects = data!["projects"] as? [String]
-            if true {
-                projects.append(postingID)
-                document.updateData([
-                    "projects": projects
-                ]) { error in
-                    if let error = error {
-                        print("Error updating document: \(error)")
-                        completion(false)
-                    } else {
-                        print("Successful Update")
-                        addProfileData { success in
-                            if success {
-                                syncUserData { success2 in
-                                    if success2 {
-                                        completion(true)
-                                    }
-                                }
+            
+            self.updateProjects(newMemberID: newMemberID, postingID: postingID, data: data!) { success in
+                completion(success)
+            }
+            
+        }
+        
+    }
+    
+    func updateProjects(newMemberID: String, postingID: String,data: [String : Any], completion: @escaping (Bool) -> Void) {
+        let doc = db.collection("users").document(newMemberID)
+        var projects = data["projects"] as? [String]
+        projects!.append(postingID)
+        doc.updateData([
+            "projects": projects!
+        ]) { error in
+            if let error = error {
+                print("Error updating document: \(error)")
+                completion(false)
+            } else {
+                print("Successful Update")
+                self.addProfileData { success in
+                    if success {
+                        self.syncUserData { success2 in
+                            if success2 {
+                                completion(true)
                             }
                         }
                     }
                 }
-                
-            } else {
-                print("Error in compiling projects array as String")
-                completion(false)
             }
-            
-            
         }
-        
     }
     
     /*

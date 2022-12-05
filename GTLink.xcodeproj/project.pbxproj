@@ -127,14 +127,15 @@
 		205BBAE028F8BDBD001C00F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				028B2669293BE9C20020E411 /* TriggerPage.swift */,
+				A31A0C442919D152006BC16C /* LandingPage.swift */,
 				E86BD2412911E07800A9F078 /* CreateProfile1.swift */,
 				DA38B6D12914190100E1B4F2 /* CreateProfile2.swift */,
 				E820564F291B2681008104B1 /* CreateProfile2-4.swift */,
 				E8205651291DC1CC008104B1 /* CreateProfile4-4.swift */,
+				DA38B6D32914349000E1B4F2 /* ContactCards.swift */,
 				E8EAEC73292462C100ED7C02 /* ProgressBar.swift */,
 				E8205653291DC5FA008104B1 /* MultipleSelectionRow.swift */,
-				DA38B6D32914349000E1B4F2 /* ContactCards.swift */,
-				A31A0C442919D152006BC16C /* LandingPage.swift */,
 				A36D8284291ABC9F0013897F /* SettingsView.swift */,
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
 				A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */,
@@ -151,7 +152,6 @@
 				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
 				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
 				A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */,
-				028B2669293BE9C20020E411 /* TriggerPage.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
