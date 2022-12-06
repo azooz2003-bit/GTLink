@@ -126,11 +126,95 @@ class FeedViewModel: ObservableObject {
         
     }
     
+    /*
+     Responds to a particular request with an accept or decline. Updates things from the sender's side of things only.
+     Notes:
+     - Handles the errors using completion handlers and the Error enum (Google may help with that).
+     - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
+     INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
+     */
+    func updateRequests(postingID: String, senderID: String, accepted: Bool, rejected: Bool, completion: @escaping (Bool) -> Void) {
+        
+
+        getSenderRequests(postingID: postingID, senderID: senderID) { success, sentReq in
+            if (success) {
+                var sentRequests = sentReq
+                sentRequests[postingID] = ["accepted" : accepted, "rejected" : rejected]
+                self.db.collection("users").document(senderID).updateData(["sentRequests" : sentReq]) { (error) in
+                    if (error == nil) {
+                        print("Updated Posting")
+                        completion(true)
+                    } else {
+                        print("Failed to Update Posting")
+                        completion(false)
+                    }
+                    
+                }
+            } else {
+                completion(false)
+            }
+            
+        }
+            
+    }
+        
+    func getSenderRequests(postingID: String, senderID: String, completion: @escaping (Bool, [String : [String : Bool]] ) -> Void) {
+        db.collection("users").document(senderID).getDocument { (document, error) in
+            
+            if (error != nil || document == nil) {
+                print("error getting sender reqs")
+                completion(false, ["":[:]])
+                return
+            }
+            let data = document?.data()
+            completion(true, (data!["sentRequests"] as? [String : [String : Bool]])!)
+            
+        }
+    }
+    
+    
     /**
      Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
      */
     func syncFeedData(completion: @escaping (Bool) -> Void) {
+        print("In Sync")
         
+        
+        //IMPLLEMENT FILTER LOGIC LATER
+        db.collection("postings").getDocuments { (documents, error) in
+            if (documents == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            } else {
+                print("Document not nil!")
+                // Accordingly, the do/catch is not needed
+                //do {
+                self.postings = documents?.documents.map({ docSnap in // arranges posts as Post objects in the array
+                    let docData = docSnap.data()
+                    let postingId = docSnap.documentID
+                    let title = docData["title"] as? String
+                    let image = docData["image"] as? UIImage
+                    let owner = docData["owner"] as? String // UserID/uid of whoever created the post
+                    let date = docData["date"] as? Timestamp // The Date the Post was created
+                    let description = docData["description"] as? String
+                    var tags = docData["tags"] as? [String : Bool]
+                    let isProject = docData["isProject"] as? Bool
+                    let isStudy = docData["isStudy"] as? Bool
+                    var members = docData["members"] as? [String] // All the uid/User ID's of the people associated with the Post
+                    var receivedRequests = docData["receivedRequests"] as? [String : [String : Bool]]
+                    return Post(postingID: postingId, title: title!, image: image!, owner: owner!, date: date!, description: description!, tags: tags!, isProject: isProject!, isStudy: isStudy!, members: members!, receivedRequests: receivedRequests!)
+                })
+                
+                
+                completion(true)
+            }
+            
+            //} catch {
+            //    print("SYNC ERROR: \(error)")
+            //    completion(false)
+            //}
+        }
     }
     
     

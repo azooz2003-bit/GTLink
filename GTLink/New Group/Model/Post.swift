@@ -10,13 +10,16 @@
 
 import Foundation
 import SwiftUI
+import FirebaseCore
+import FirebaseFirestore
+import Firebase
 
 struct Post {
     var postingID: String
     var title: String
-    var image: String
+    var image: UIImage
     let owner: String // UserID/uid of whoever created the post
-    let date: Date // The Date the Post was created
+    let date: Timestamp // The Date the Post was created
     var description: String
     var tags: [String: Bool] // All Tags and whether or not they are used
     let isProject: Bool
@@ -24,7 +27,7 @@ struct Post {
     var members: [String] // All the uid/User ID's of the people associated with the Post
     var receivedRequests: [String : [String : Bool]]
     
-    init(postingID: String, title: String, image: String, owner: String, date: Date, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String], receivedRequests: [String : [String : Bool]]) {
+    init(postingID: String, title: String, image: UIImage, owner: String, date: Timestamp, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String], receivedRequests: [String : [String : Bool]]) {
         self.postingID = postingID
         self.title = title
         self.image = image

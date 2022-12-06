@@ -99,6 +99,9 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    /**
+            This function is used explictly for syncing after authentication.
+     */
     func postLoginSync(completion: @escaping (Bool) -> Void) {
         let docRef = self.db.collection("users").document(uuid!)
 
@@ -106,7 +109,7 @@ class UserViewModel: ObservableObject {
             if document != nil && error == nil {
                 if document!.exists { // UserID is in the database
                     print("He Exists")
-                    self.syncUserData() { authResult in
+                    self.syncUserData() { authResult in // The actual SYNC, which is done if the user is an existing one
                         print("Successfully logged in")
                         //print(credential)
                         completion(authResult)
@@ -294,26 +297,24 @@ class UserViewModel: ObservableObject {
     }
     
     /*
-     Fetches all the user's received requests.
+     Fetches all the user's sent requests.
      Notes:
      - Handles the errors using completion handlers and the Error enum (Google may help with that).
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func getRequests() {
-        
+    func getRequests(postingID: String, userID: String, accepted: Bool, rejected: Bool, completion: @escaping (Bool) -> Void) {
+        db.collection("users").document(self.uuid!).getDocument { (document, error) in
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                completion(false)
+                return
+            }
+            
+            return
+        }
     }
     
-    /*
-     Responds to a particular request with an accept or decline. Updates things from the sender side of things as well.
-     Notes:
-     - Handles the errors using completion handlers and the Error enum (Google may help with that).
-     - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
-     INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
-     */
-    func updateRequests() {
-        
-    }
     
     /**
      Creates a request to join a project, only handle the user side of things. You will be given the postID which represents the post's document in the Firestore Postings collection. HINT: change things in the sentRequests array of the user.
