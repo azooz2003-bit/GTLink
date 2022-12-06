@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0D338070291DC92200D7DE20 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D33806F291DC92200D7DE20 /* User.swift */; };
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
+		0DD9126B293BD27B003F4896 /* BackendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DD9126A293BD27B003F4896 /* BackendView.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
@@ -45,6 +46,7 @@
 /* Begin PBXFileReference section */
 		0D33806F291DC92200D7DE20 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0DCEDD0029149243008E5521 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		0DD9126A293BD27B003F4896 /* BackendView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackendView.swift; sourceTree = "<group>"; };
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
 		5B6DAA742911DD7E000CC08E /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				A3384C25292E936D00F6B7A7 /* ProfilePage.swift */,
 				A3795F532935B190007F3FEC /* GradientTest.swift */,
 				A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */,
+				0DD9126A293BD27B003F4896 /* BackendView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -280,6 +283,7 @@
 				E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */,
 				E86BD2422911E07800A9F078 /* CreateProfile1.swift in Sources */,
 				A306257728F22E4400919640 /* GTLinkApp.swift in Sources */,
+				0DD9126B293BD27B003F4896 /* BackendView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

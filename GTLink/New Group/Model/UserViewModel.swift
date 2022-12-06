@@ -189,7 +189,7 @@ class UserViewModel: ObservableObject {
      - In addition to the error, the completion handler should also take in the result of the operation (success -> true or failure/error -> false)
      INCOMPLETE CODE, EDIT THE PARAMETERS OF THIS METHOD AS YOU LIKE
      */
-    func updateRequests(postingID: String, accepted: Bool, rejected: Bool, completion: @escaping (Bool) -> Void) {
+    func updateRequests(postingID: String, userID: String, accepted: Bool, rejected: Bool, completion: @escaping (Bool) -> Void) {
         db.collection("users").document(self.uuid!).getDocument { (document, error) in
             if (document == nil || error != nil) {
                 print("Error pre-sync")
@@ -197,9 +197,8 @@ class UserViewModel: ObservableObject {
                 return
             }
 
-            let posting = self.db.collection("users").document(self.uuid!)
-            // db.collection("users").document(self.uuid!).update({ ["sentRequests.${postingID}.accepted"]: accepted, ["sentRequests.${postingID}.rejected"]: rejected
-            posting.updateData(["sentRequests.${postingID}.accepted": accepted, "sentRequests.${postingID}.rejected": rejected]) { (error) in
+            let senderDoc = self.db.collection("users").document(userID);
+            senderDoc.updateData(["sentRequests.${postingID}.accepted": accepted, "sentRequests.${postingID}.rejected": rejected]) { (error) in
                 if (error == nil) {
                     print("Updated Posting")
                     completion(true)
