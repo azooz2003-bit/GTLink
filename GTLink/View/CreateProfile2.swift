@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct CreateProfile2: View {
+    @EnvironmentObject var userVM : UserViewModel
+
     @State var fullName: String = ""
     @State var userName: String = ""
     @State var bio: String = ""
+    @State var navigateNext = false
 
     
     var body: some View {
@@ -65,7 +68,14 @@ struct CreateProfile2: View {
                 .padding(.vertical, 5).lineLimit(8)
             
             // Next button
-            Button(action: {}){
+            Button(action: {
+                userVM.assignUserDataLocally(data: ["name" : fullName, "bio" : bio]) { success1 in
+                        userVM.addProfileData { success2 in
+                            navigateNext = success2
+                        }
+                }
+                
+            }){
                 Text("Next")
                     .font(.system(size: 24))
                     .foregroundColor(.white).padding(.horizontal, 133)
@@ -76,13 +86,15 @@ struct CreateProfile2: View {
                     .cornerRadius(10)
             }
             .padding(.vertical, 30)
-        }
+        }.navigationDestination(isPresented: $navigateNext, destination: {
+            CreateProfile2_4().environmentObject(userVM).navigationBarBackButtonHidden()
+        })
         
     }
 }
 
 struct CreateProfile2_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile2()
+        CreateProfile2().environmentObject(UserViewModel())
     }
 }

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContactCards: View {
+    @EnvironmentObject var userVM: UserViewModel
+    @StateObject var feedVM = FeedViewModel(userVM: UserViewModel())
+    
+    @State var navigateNext = false
     
     @State private var didTapEmail:Bool = false
     @State private var didTapPhone:Bool = false
@@ -18,7 +22,6 @@ struct ContactCards: View {
     @State var phone: String = ""
     @State var discord: String = ""
     @State var groupMe: String = ""
-
     
     var body: some View {
         
@@ -261,7 +264,17 @@ struct ContactCards: View {
             }
             
             // Finish button
-            Button(action: {}){
+            Button(action: {
+                userVM.assignUserDataLocally(data: ["contact" : ["groupMe" : returnIfChosen(isTapped: didTapGroupMe, value: groupMe), "email" : returnIfChosen(isTapped: didTapEmail, value: email), "phone" : returnIfChosen(isTapped: didTapPhone, value: phone), "discord" : returnIfChosen(isTapped: didTapDiscord, value: discord)]]) { success1 in
+                    userVM.addProfileData { success2 in
+                        if success2 {
+                            feedVM.userVM = userVM
+                        }
+                        navigateNext = success2
+                    }
+                }
+                
+            }){
                 Text("Finish")
                     .font(.system(size: 24))
                     .foregroundColor(.white).padding(.horizontal, 133)
@@ -272,6 +285,16 @@ struct ContactCards: View {
                     .cornerRadius(10)
             }
             .padding(.top, 40)
+        }.navigationDestination(isPresented: $navigateNext, destination: {
+            TabViewNavigator().environmentObject(feedVM)
+        })
+    }
+    
+    func returnIfChosen(isTapped: Bool, value: String) -> String {
+        if isTapped {
+            return value
+        } else {
+            return ""
         }
     }
         

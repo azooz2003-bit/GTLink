@@ -8,16 +8,21 @@
 import SwiftUI
 
 struct CreateProfile2_4: View {
+    @EnvironmentObject var userVM: UserViewModel
     
     @State var val1 = ""
     @State var val2 = ""
     @State var val3 = ""
+    @State var navigateNext = false
+    
     var placeholder1 = "Year"
     var placeholder2 = "Major"
     var placeholder3 = "Minor"
+    
     var dropdownYear = ["2022","2023","2024","2025","2026","2027"]
     var dropdownMajor  = ["Computer Science", "Computer Engineering", "Industrial Design", "Computational Media", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering"]
     var dropdownMinor = ["Industrial Design", "Computing and Media", "Computing and Intelligence", "Computing and People", "Computing and Business","Architecture", "Aerospace Engineering", "Robotics"]
+    
     var body: some View {
         VStack(alignment: .center) {
             HStack {
@@ -118,7 +123,13 @@ struct CreateProfile2_4: View {
             }.padding(.horizontal, 30).padding(.top, 25)
             
             Spacer()
-            Button(action: {}){
+            Button(action: {
+                userVM.assignUserDataLocally(data: ["year" : val1, "major" : val2, "minor" : val3]) { success1 in
+                    userVM.addProfileData { success2 in
+                        navigateNext = success2
+                    }
+                }
+            }){
                 Text("Next")
                     .font(.system(size: 24))
                     .foregroundColor(.white).padding(.horizontal, 133)
@@ -131,12 +142,14 @@ struct CreateProfile2_4: View {
             }
             
             
-        }
+        }.navigationDestination(isPresented: $navigateNext, destination: {
+            CreateProfile4_4()
+        })
     }
 }
 
 struct CreateProfile2_4_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile2_4()
+        CreateProfile2_4().environmentObject(UserViewModel())
     }
 }

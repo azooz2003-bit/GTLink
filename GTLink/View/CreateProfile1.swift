@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct CreateProfile1: View {
+    @EnvironmentObject var userVM : UserViewModel
+
+    @State var startPressed = false
+    
     var body: some View {
         VStack (alignment: .center){
             Spacer()
@@ -27,7 +31,9 @@ struct CreateProfile1: View {
                 .padding(.horizontal,31)
                 .padding(.top, 40)
             Spacer()
-            Button(action: {}){
+            Button(action: {
+                startPressed = true
+            }){
                 Text("Start")
                     .font(.system(size: 24))
                     .foregroundColor(.white).padding(.horizontal, 133)
@@ -40,12 +46,14 @@ struct CreateProfile1: View {
             }
             
             
-        }
+        }.navigationDestination(isPresented: $startPressed, destination: {
+            CreateProfile2().environmentObject(userVM).navigationBarBackButtonHidden()
+        })
     }
 }
 
 struct CreateProfile1_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile1()
+        CreateProfile1().environmentObject(UserViewModel())
     }
 }

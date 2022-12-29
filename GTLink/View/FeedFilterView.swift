@@ -204,6 +204,6 @@ struct FeedFilterView: View {
 
 struct FeedFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedFilterView(viewModel: FeedViewModel(), tags: [Tags.homework, Tags.cs1301, Tags.ios, Tags.designer], projectType: Post_Type.project)
+        FeedFilterView(viewModel: FeedViewModel(userVM: UserViewModel()), tags: [Tags.homework, Tags.cs1301, Tags.ios, Tags.designer], projectType: Post_Type.project)
     }
 }

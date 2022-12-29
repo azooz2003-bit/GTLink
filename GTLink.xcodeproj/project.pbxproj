@@ -18,6 +18,7 @@
 		A31A0C452919D152006BC16C /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A0C442919D152006BC16C /* LandingPage.swift */; };
 		A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C25292E936D00F6B7A7 /* ProfilePage.swift */; };
 		A3384C282932DFB800F6B7A7 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */; };
+		A35AD89A293F140700D3C491 /* TestPostings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35AD899293F140700D3C491 /* TestPostings.swift */; };
 		A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */; };
 		A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36D8284291ABC9F0013897F /* SettingsView.swift */; };
 		A36E154028F8EE3400239E22 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */; };
@@ -30,6 +31,8 @@
 		A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */; };
 		A374CAC3291DD9F100C5A909 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C815232908C78600E4215F /* Card.swift */; };
 		A3795F542935B190007F3FEC /* GradientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3795F532935B190007F3FEC /* GradientTest.swift */; };
+		A3827835295CABA1005E3578 /* TabViewNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3827834295CABA1005E3578 /* TabViewNavigator.swift */; };
+		A3827837295CAE40005E3578 /* TabRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3827836295CAE40005E3578 /* TabRouter.swift */; };
 		A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */; };
 		A3FA2CA129089FFF00D80262 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA029089FFF00D80262 /* FirebaseAuth */; };
 		A3FA2CA329089FFF00D80262 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A3FA2CA229089FFF00D80262 /* FirebaseFirestore */; };
@@ -63,6 +66,7 @@
 		A31A0C442919D152006BC16C /* LandingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		A3384C25292E936D00F6B7A7 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		A35AD899293F140700D3C491 /* TestPostings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPostings.swift; sourceTree = "<group>"; };
 		A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		A36D8284291ABC9F0013897F /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -73,6 +77,8 @@
 		A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptedRequestCard.swift; sourceTree = "<group>"; };
 		A374CAC0291DD7D600C5A909 /* OwnedPostScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OwnedPostScreen.swift; sourceTree = "<group>"; };
 		A3795F532935B190007F3FEC /* GradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTest.swift; sourceTree = "<group>"; };
+		A3827834295CABA1005E3578 /* TabViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewNavigator.swift; sourceTree = "<group>"; };
+		A3827836295CAE40005E3578 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPagev1.swift; sourceTree = "<group>"; };
 		B23C37CB290B4334000B2B8A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
@@ -119,6 +125,7 @@
 				0DCEDD0029149243008E5521 /* Post.swift */,
 				A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */,
 				0D33806F291DC92200D7DE20 /* User.swift */,
+				A3827836295CAE40005E3578 /* TabRouter.swift */,
 			);
 			name = Model;
 			path = "New Group/Model";
@@ -152,6 +159,7 @@
 				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
 				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
 				A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */,
+				A3827834295CABA1005E3578 /* TabViewNavigator.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -198,6 +206,7 @@
 		A36BC9CB291B58FE00A8D3A8 /* BackendTesting */ = {
 			isa = PBXGroup;
 			children = (
+				A35AD899293F140700D3C491 /* TestPostings.swift */,
 			);
 			path = BackendTesting;
 			sourceTree = "<group>";
@@ -287,6 +296,7 @@
 				A31A0C452919D152006BC16C /* LandingPage.swift in Sources */,
 				5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */,
 				A36FDFDD293BDBA100727469 /* ImagePicker.swift in Sources */,
+				A35AD89A293F140700D3C491 /* TestPostings.swift in Sources */,
 				A374CAC2291DD9E100C5A909 /* FeedScreen.swift in Sources */,
 				A36FDFE1293BDD0D00727469 /* PendingRequestCard.swift in Sources */,
 				A36FDFDB293BDB4700727469 /* NewPostScreen.swift in Sources */,
@@ -308,8 +318,10 @@
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
 				DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */,
 				E8205654291DC5FA008104B1 /* MultipleSelectionRow.swift in Sources */,
+				A3827837295CAE40005E3578 /* TabRouter.swift in Sources */,
 				DA38B6D22914190100E1B4F2 /* CreateProfile2.swift in Sources */,
 				E8205652291DC1CC008104B1 /* CreateProfile4-4.swift in Sources */,
+				A3827835295CABA1005E3578 /* TabViewNavigator.swift in Sources */,
 				E8205650291B2681008104B1 /* CreateProfile2-4.swift in Sources */,
 				028B266A293BE9C20020E411 /* TriggerPage.swift in Sources */,
 				E86BD2422911E07800A9F078 /* CreateProfile1.swift in Sources */,

@@ -20,10 +20,10 @@ struct PostV1: Hashable, Identifiable {
 
 struct FeedScreen: View {
     
-    @ObservedObject var viewModel = FeedViewModel()
+    @EnvironmentObject var feedVM: FeedViewModel
     let phone_size = UIScreen.main.bounds.size
     
-    var postsFound: [PostV1]
+    var postsFound: [PostV1] = [] // CHANGE TO POST
     
     var body: some View {
         ZStack {
@@ -33,7 +33,7 @@ struct FeedScreen: View {
                         .font(.system(size: 17))
                     Spacer()
                     Button {
-                        viewModel.showFilterSheet.toggle()
+                        feedVM.showFilterSheet.toggle()
                     } label: {
                         Image(systemName: "slider.horizontal.3")
                             .font(.system(size: 32))
@@ -55,9 +55,9 @@ struct FeedScreen: View {
                 }.frame(width: phone_size.width)
                 
             }.frame(width: phone_size.width)
-                .sheet(isPresented: $viewModel.showFilterSheet) {
+                .sheet(isPresented: Binding(get: {feedVM.showFilterSheet}, set: { feedVM.showFilterSheet = $0 })) {
                     VStack {
-                        FeedFilterView(viewModel: self.viewModel, tags: viewModel.selectedTags, projectType: viewModel.selectedType)
+                        FeedFilterView(viewModel: self.feedVM, tags: feedVM.selectedTags, projectType: feedVM.selectedType)
                     }.padding(.leading)
                         .presentationDetents([.medium])
                 }

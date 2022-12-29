@@ -14,8 +14,8 @@ import FirebaseCore
 import FirebaseFirestore
 import Firebase
 
-struct Post {
-    var postingID: String
+struct Post: Identifiable {
+    var id: String
     var title: String
     var image: UIImage
     let owner: String // UserID/uid of whoever created the post
@@ -28,7 +28,7 @@ struct Post {
     var receivedRequests: [String : [String : Bool]]
     
     init(postingID: String, title: String, image: UIImage, owner: String, date: Timestamp, description: String, tags: [String : Bool], isProject: Bool, isStudy: Bool, members: [String], receivedRequests: [String : [String : Bool]]) {
-        self.postingID = postingID
+        self.id = postingID
         self.title = title
         self.image = image
         self.owner = owner

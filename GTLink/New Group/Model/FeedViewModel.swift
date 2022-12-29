@@ -17,12 +17,13 @@ import SwiftUI
 // NOTE: Feel free to create helper functions etc. ASK if you're unsure of anything instruction-wise or implementation-wise!
 
 class FeedViewModel: ObservableObject {
-    @Published var userVM: UserViewModel? //
+    @Published var userVM: UserViewModel //
     
-    @Published var postings: [Post]?
+    @Published var allPostings: [Post]?
+    @Published var filteredPostings: [Post]?
     private let db = Firestore.firestore()
     // Filtering stuff
-    @Published var showFilterSheet: Bool = false
+    @Published var showFilterSheet = false // make this work
     @Published var selectedTags: [Tags] = []
     @Published var selectedType: Post_Type = .project
     
@@ -30,6 +31,11 @@ class FeedViewModel: ObservableObject {
     //Firebase storage reference
     let storage = Storage.storage()
     var storedImageRef: String = ""
+    
+    init(userVM: UserViewModel, postings: [Post]? = nil) {
+        self.userVM = userVM
+        self.allPostings = postings
+    }
     
     /**
      This function will create a new post, store the received data in a Post object. FYI, the members array in the Post object should only include the owner. Be sure to add this Posting to the Postings collection in Firestore with the given data, go to the Notion document to see how the data is modeled in that collection Firestore. Within this function you will also call the createPosting function to handle the user side of things in the UserViewModel. Take the document ID that's created once you make a document in the Postings collection, and pass it into the function in the userViewModel.
@@ -62,13 +68,13 @@ class FeedViewModel: ObservableObject {
                 let newPost: [String : Any] = [
                     "title": title,
                     "image":  self.storedImageRef,
-                    "owner": self.userVM!.user!.userID,
+                    "owner": self.userVM.user!.userID,
                     "date": date,
                     "description": description,
                     "tags": tagDict,
                     "isProject": (type == Post_Type.project.rawValue) ,
                     "isStudy": (type == Post_Type.study_group.rawValue),
-                    "members": [self.userVM!.user!.userID]
+                    "members": [self.userVM.user!.userID]
                 ]
                 
                 
@@ -80,7 +86,7 @@ class FeedViewModel: ObservableObject {
                         completion(false)
                     }
                     
-                    self.userVM?.createPosting(requestID: newDoc.documentID, completion: { doc in
+                    self.userVM.createPosting(requestID: newDoc.documentID, completion: { doc in
                         completion(true)
                     })
                     
@@ -190,20 +196,27 @@ class FeedViewModel: ObservableObject {
                 print("Document not nil!")
                 // Accordingly, the do/catch is not needed
                 //do {
-                self.postings = documents?.documents.map({ docSnap in // arranges posts as Post objects in the array
+                self.allPostings = documents?.documents.map({ docSnap in // arranges posts as Post objects in the array
                     let docData = docSnap.data()
                     let postingId = docSnap.documentID
                     let title = docData["title"] as? String
-                    let image = docData["image"] as? UIImage
+                    let imageURL = docData["image"] as? String
                     let owner = docData["owner"] as? String // UserID/uid of whoever created the post
                     let date = docData["date"] as? Timestamp // The Date the Post was created
                     let description = docData["description"] as? String
-                    var tags = docData["tags"] as? [String : Bool]
+                    let tags = docData["tags"] as? [String : Bool]
                     let isProject = docData["isProject"] as? Bool
                     let isStudy = docData["isStudy"] as? Bool
-                    var members = docData["members"] as? [String] // All the uid/User ID's of the people associated with the Post
-                    var receivedRequests = docData["receivedRequests"] as? [String : [String : Bool]]
-                    return Post(postingID: postingId, title: title!, image: image!, owner: owner!, date: date!, description: description!, tags: tags!, isProject: isProject!, isStudy: isStudy!, members: members!, receivedRequests: receivedRequests!)
+                    let members = docData["members"] as? [String] // All the uid/User ID's of the people associated with the Post
+                    let receivedRequests = docData["receivedRequests"] as? [String : [String : Bool]]
+                    let post = Post(postingID: postingId, title: title!, image: UIImage(), owner: owner!, date: date!, description: description!, tags: tags!, isProject: isProject!, isStudy: isStudy!, members: members!, receivedRequests: receivedRequests!)
+                    self.getImageFromStorage(docID: postingId, url: imageURL!) { success in
+                        completion(success)
+                        if !success {
+                            return
+                        }
+                    }
+                    return post
                 })
                 
                 
@@ -287,8 +300,8 @@ class FeedViewModel: ObservableObject {
                 print("Image not found in storage: " + error.localizedDescription)
                 return
             } else {
-                let index = self.postings?.firstIndex(where: { post in
-                    post.postingID == docID
+                let index = self.allPostings?.firstIndex(where: { post in
+                    post.id == docID
                 })
                 
                 if index == -1 {
@@ -296,7 +309,7 @@ class FeedViewModel: ObservableObject {
                     return
                 }
                 
-                self.postings?[index!].image = url
+                self.allPostings?[index!].image = UIImage(data: data!)!
                 completion(true)
             }
         }

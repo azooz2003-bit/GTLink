@@ -67,7 +67,7 @@ class UserViewModel: ObservableObject {
             if credential != nil {
                 print("Credential loading")
                 self.auth.signIn(with: credential!) { (authResult, error) in
-                    guard let credential = authResult?.credential else {
+                    guard (authResult?.credential) != nil else {
                         print(error?.localizedDescription ?? "A failure occurs in Microsoft sign in.")
                         self.isAuthenticating = false
                         completion(false)
@@ -185,7 +185,9 @@ class UserViewModel: ObservableObject {
             completion(false)
             return
         }
-        let _ = db.collection("users").document(self.uuid!).setData(["pfpDecoded" : (self.user?.pfpDecoded)! ,"bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!])
+        
+        let data = ["pfpDecoded" : (self.user?.pfpDecoded)! ,"bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!] as [String : Any]
+        let _ = db.collection("users").document(self.uuid!).setData(data)
         print("Add Profile Data Works")
         completion(true)
     }
@@ -194,7 +196,7 @@ class UserViewModel: ObservableObject {
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
         // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
         if (data != nil) {
-            self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ?? ["None":"None"], interests: data!["interests"] as? [String] ?? ["None"], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String ?? "", name: data!["name"] as? String ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? "", projects: data?["projects"] as? [String] ?? [])
+            self.user = User(pfpDecoded: data?["pfpDecoded"] as? Data ?? user?.pfpDecoded ?? Data(), bio: data?["bio"] as? String ?? user?.bio ?? "", contact: data!["contact"] as? [String : String] ?? user?.contact ??  ["None":"None"], interests: data!["interests"] as? [String] ?? user?.interests ?? ["None"], link: data!["link"] as? String ?? user?.link ?? "", major: data!["major"] as? String ?? user?.major ?? "", minor: data!["minor"] as? String ?? user?.minor ?? "", name: data!["name"] as? String ?? user?.name ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? user?.sentRequests ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? user?.year ?? "", projects: data?["projects"] as? [String] ?? user?.projects ?? [])
             print("Assigned data locally.")
             completion(true)
         } else {

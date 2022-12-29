@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CreateProfile4_4: View {
+    @EnvironmentObject var userVM: UserViewModel
+    
     @State var progressValue: Float = 0.2
     @State var count: Int = 0
     @State var items: [String] = ["Python", "Java", "C++", "CAD", "Hardware", "App Dev", "UI/UX","Web Dev", "Game Dev"]
@@ -22,6 +24,7 @@ struct CreateProfile4_4: View {
 //        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
 //        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black]]
     @State var selections: [String] = []
+    @State var navigateNext = false
 
 //    LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
     
@@ -83,7 +86,13 @@ struct CreateProfile4_4: View {
                 .padding(.trailing,30)
             
             Spacer()
-            Button(action: {}){
+            Button(action: {
+                userVM.assignUserDataLocally(data: ["interests" : selections]) { success1 in
+                    userVM.addProfileData { success2 in
+                        navigateNext = success2
+                    }
+                }
+            }){
                 Text("Next")
                     .font(.system(size: 24))
                     .foregroundColor(.white).padding(.horizontal, 133)
@@ -95,7 +104,9 @@ struct CreateProfile4_4: View {
                     
             }
             
-        }
+        }.navigationDestination(isPresented: $navigateNext, destination: {
+            ContactCards().environmentObject(userVM)
+        })
     }
 }
 
