@@ -19,7 +19,7 @@ struct CreateProfile2_4: View {
     var placeholder2 = "Major"
     var placeholder3 = "Minor"
     
-    var dropdownYear = ["2022","2023","2024","2025","2026","2027"]
+    var dropdownYear = ["1st","2nd","3rd","4th","5th","6th"]
     var dropdownMajor  = ["Computer Science", "Computer Engineering", "Industrial Design", "Computational Media", "Mechanical Engineering", "Civil Engineering", "Electrical Engineering"]
     var dropdownMinor = ["Industrial Design", "Computing and Media", "Computing and Intelligence", "Computing and People", "Computing and Business","Architecture", "Aerospace Engineering", "Robotics"]
     
@@ -143,7 +143,7 @@ struct CreateProfile2_4: View {
             
             
         }.navigationDestination(isPresented: $navigateNext, destination: {
-            CreateProfile4_4()
+            CreateProfile4_4().environmentObject(userVM).navigationBarBackButtonHidden()
         })
     }
 }

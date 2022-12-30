@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @EnvironmentObject var feedVM : FeedViewModel
-
+    @Environment(\.dismiss) var dismiss
     
     @State private var test = true;
     @State private var dummy = false;
@@ -27,6 +27,12 @@ struct SettingsView: View {
 
             
             Button {
+                feedVM.userVM.signOut { success in
+                    if success {
+                        //dismiss()
+                        NavigationUtil.popToRootView()
+                    }
+                }
             } label: {
                 Text("Log Out").foregroundColor(.red).padding().overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.red))
             }.padding(50).padding(.bottom, 70)

@@ -20,6 +20,7 @@ struct PostV1: Hashable, Identifiable {
 
 struct FeedScreen: View {
     @EnvironmentObject var feedVM: FeedViewModel
+    @State var createPostNav = false
     
     let phone_size = UIScreen.main.bounds.size
     
@@ -69,7 +70,7 @@ struct FeedScreen: View {
                     Spacer()
                     Button {
                         //open create post screen
-                        
+                        createPostNav = false
                     } label: {
                         Image(systemName: "square.and.pencil")
                             .font(.system(size: 40))
@@ -85,7 +86,9 @@ struct FeedScreen: View {
                 }
             }
             
-        }
+        }.navigationDestination(isPresented: $createPostNav, destination: {
+            NewPostScreen().environmentObject(feedVM)
+        })
     }
     
     func generate_card(post: PostV1) -> Card {

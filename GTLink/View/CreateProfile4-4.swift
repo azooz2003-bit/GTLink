@@ -105,7 +105,7 @@ struct CreateProfile4_4: View {
             }
             
         }.navigationDestination(isPresented: $navigateNext, destination: {
-            ContactCards().environmentObject(userVM)
+            ContactCards().environmentObject(userVM).navigationBarBackButtonHidden()
         })
     }
 }

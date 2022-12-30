@@ -16,7 +16,7 @@ extension View {
  }
 
 
-struct PostScreen: View {
+struct NewPostScreen: View {
     
     @State private var image = UIImage()
     @State private var showSheet = false
@@ -167,7 +167,7 @@ struct PostScreen: View {
 
 struct PostScreen_Previews: PreviewProvider {
     static var previews: some View {
-        PostScreen()
+        NewPostScreen()
     }
 }
 

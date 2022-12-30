@@ -15,7 +15,7 @@ struct Tag: Identifiable, Hashable {
 
 struct TagView: View {
     //var maxLimit: Int
-    @Binding var tags: [Tag]
+    var tags: [Tag]
     
     var fontSize: CGFloat = 16
     
@@ -78,11 +78,11 @@ struct TagView: View {
             .lineLimit(1)
         // deleting
             .contentShape(Capsule())
-            .contextMenu {
-                Button("Delete") {
-                    tags.remove(at: getIndex(tag: tag))
-                }
-            }
+//            .contextMenu {
+//                Button("Delete") {
+//                    tags.remove(at: getIndex(tag: tag))
+//                }
+//            }
     }
     
     func getIndex(tag: Tag) -> Int {

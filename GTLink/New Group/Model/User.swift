@@ -14,6 +14,7 @@ import Firebase
 import SwiftUI
 
 class User: ObservableObject  {
+    var username: String
     var userID: String
     var pfpDecoded: Data // This data object can be passed into the UIImage componenet to display the image.
     var bio: String // Description
@@ -27,7 +28,8 @@ class User: ObservableObject  {
     var projects: [String]
     var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+    init(username: String, pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+        self.username = username
         self.pfpDecoded = pfpDecoded
         self.bio = bio
         self.contact = contact

@@ -10,6 +10,7 @@ import SwiftUI
 struct LandingPage: View {
     @State var ssoPressed = false
     @EnvironmentObject var userVM : UserViewModel
+    @StateObject var feedVM: FeedViewModel = FeedViewModel(userVM: UserViewModel())
     
     var body: some View {
         let gradient = LinearGradient(colors: [.cyan, Color("DarkBlue"), Color("DarkBlue")], startPoint: .leading, endPoint: .trailing)
@@ -67,8 +68,12 @@ struct LandingPage: View {
                 userVM.loginWithProvider() {
                     success in
                     print(success)
-                    print(userVM.user ?? "no user")
-                    ssoPressed = success
+                    if success {
+                        feedVM.userVM = userVM
+                                            print(userVM.user ?? "no user")
+                                            ssoPressed = success
+                    }
+                    
                 }
             }) {
                 
@@ -103,7 +108,8 @@ struct LandingPage: View {
                         }
                     }
                 } else {
-                    ProfileScreen()
+                    
+                    TabViewNavigator().environmentObject(feedVM).navigationBarBackButtonHidden()
                 }
                 
                 

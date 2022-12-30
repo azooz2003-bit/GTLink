@@ -15,6 +15,7 @@
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
+		A308EF1B295F4DDD00AC5A07 /* NavigationUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A308EF1A295F4DDD00AC5A07 /* NavigationUtil.swift */; };
 		A31A0C452919D152006BC16C /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A0C442919D152006BC16C /* LandingPage.swift */; };
 		A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C25292E936D00F6B7A7 /* ProfilePage.swift */; };
 		A3384C282932DFB800F6B7A7 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */; };
@@ -63,6 +64,7 @@
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A306257D28F22E4500919640 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		A308EF1A295F4DDD00AC5A07 /* NavigationUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUtil.swift; sourceTree = "<group>"; };
 		A31A0C442919D152006BC16C /* LandingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		A3384C25292E936D00F6B7A7 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
 		A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 		A3795F532935B190007F3FEC /* GradientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientTest.swift; sourceTree = "<group>"; };
 		A3827834295CABA1005E3578 /* TabViewNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewNavigator.swift; sourceTree = "<group>"; };
 		A3827836295CAE40005E3578 /* TabRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabRouter.swift; sourceTree = "<group>"; };
+		A3827838295F35FB005E3578 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A3C815232908C78600E4215F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPagev1.swift; sourceTree = "<group>"; };
 		B23C37CB290B4334000B2B8A /* Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tags.swift; sourceTree = "<group>"; };
@@ -147,6 +150,7 @@
 				205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */,
 				A3DD326F2911DF0600B870F2 /* LandingPagev1.swift */,
 				B2649E992918105200DD08EE /* FeedFilterView.swift */,
+				A36FDFDA293BDB4700727469 /* NewPostScreen.swift */,
 				5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */,
 				5B6DAA742911DD7E000CC08E /* TagView.swift */,
 				A3C815232908C78600E4215F /* Card.swift */,
@@ -154,12 +158,12 @@
 				A3384C25292E936D00F6B7A7 /* ProfilePage.swift */,
 				A3795F532935B190007F3FEC /* GradientTest.swift */,
 				A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */,
-				A36FDFDA293BDB4700727469 /* NewPostScreen.swift */,
 				A36FDFDC293BDBA100727469 /* ImagePicker.swift */,
 				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
 				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
 				A36FDFE2293BDD3700727469 /* AcceptedRequestCard.swift */,
 				A3827834295CABA1005E3578 /* TabViewNavigator.swift */,
+				A308EF1A295F4DDD00AC5A07 /* NavigationUtil.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -184,6 +188,7 @@
 		A306257528F22E4400919640 /* GTLink */ = {
 			isa = PBXGroup;
 			children = (
+				A3827838295F35FB005E3578 /* Info.plist */,
 				A36BC9CB291B58FE00A8D3A8 /* BackendTesting */,
 				A36E153F28F8EE3400239E22 /* GoogleService-Info.plist */,
 				A306257628F22E4400919640 /* GTLinkApp.swift */,
@@ -314,6 +319,7 @@
 				E8EAEC74292462C100ED7C02 /* ProgressBar.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,
 				A36FDFE3293BDD3700727469 /* AcceptedRequestCard.swift in Sources */,
+				A308EF1B295F4DDD00AC5A07 /* NavigationUtil.swift in Sources */,
 				A3795F542935B190007F3FEC /* GradientTest.swift in Sources */,
 				B2649E9A2918105200DD08EE /* FeedFilterView.swift in Sources */,
 				DA38B6D42914349000E1B4F2 /* ContactCards.swift in Sources */,

@@ -288,7 +288,7 @@ struct ContactCards: View {
             }
             .padding(.top, 40)
         }.navigationDestination(isPresented: $navigateNext, destination: {
-            TabViewNavigator().environmentObject(feedVM)
+            TabViewNavigator().environmentObject(feedVM).navigationBarBackButtonHidden()
         })
     }
     

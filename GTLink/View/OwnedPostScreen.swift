@@ -73,7 +73,7 @@ struct OwnedPostScreen: View {
                 
                 
                 
-                TagView(tags: $tags)
+                TagView(tags: tags)
                 
                 /*
                  let rows: [GridItem] =
