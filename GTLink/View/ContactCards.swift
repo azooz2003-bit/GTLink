@@ -28,7 +28,9 @@ struct ContactCards: View {
         VStack {
             
             // Back button
-            Button(action: {}){
+            Button(action: {
+                
+            }){
                 Image(systemName: "arrow.left")
                     .resizable()
                     .scaledToFit()
@@ -266,14 +268,14 @@ struct ContactCards: View {
             // Finish button
             Button(action: {
                 userVM.assignUserDataLocally(data: ["contact" : ["groupMe" : returnIfChosen(isTapped: didTapGroupMe, value: groupMe), "email" : returnIfChosen(isTapped: didTapEmail, value: email), "phone" : returnIfChosen(isTapped: didTapPhone, value: phone), "discord" : returnIfChosen(isTapped: didTapDiscord, value: discord)]]) { success1 in
-                    userVM.addProfileData { success2 in
-                        if success2 {
+                        if success1 {
                             feedVM.userVM = userVM
+                            userVM.addProfileData { success2 in
+                                navigateNext = success2
+                            }
                         }
-                        navigateNext = success2
                     }
-                }
-                
+                    
             }){
                 Text("Finish")
                     .font(.system(size: 24))

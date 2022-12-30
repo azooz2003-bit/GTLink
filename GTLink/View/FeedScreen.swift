@@ -19,8 +19,8 @@ struct PostV1: Hashable, Identifiable {
 }
 
 struct FeedScreen: View {
-    
     @EnvironmentObject var feedVM: FeedViewModel
+    
     let phone_size = UIScreen.main.bounds.size
     
     var postsFound: [PostV1] = [] // CHANGE TO POST
@@ -80,7 +80,7 @@ struct FeedScreen: View {
                             .clipShape(Circle())
                             
                             .padding(10).shadow(radius: 10)
-                    }
+                    }.padding(.bottom, 70)
                     
                 }
             }
@@ -104,6 +104,6 @@ struct FeedScreen_Previews: PreviewProvider {
             PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
             
         ]
-        )
+        ).environmentObject(FeedViewModel(userVM: UserViewModel()))
     }
 }

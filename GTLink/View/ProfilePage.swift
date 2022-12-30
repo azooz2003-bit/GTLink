@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ProfilePage: View {
+    @EnvironmentObject var feedVM : FeedViewModel
+    
     @State var tags = [
         addTag(text: "iOS", fontSize: 16),
         addTag(text: "Developer", fontSize: 16),

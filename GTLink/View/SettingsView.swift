@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var feedVM : FeedViewModel
+
+    
     @State private var test = true;
     @State private var dummy = false;
     var body: some View {
@@ -26,7 +29,7 @@ struct SettingsView: View {
             Button {
             } label: {
                 Text("Log Out").foregroundColor(.red).padding().overlay(RoundedRectangle(cornerRadius: 20).stroke(Color.red))
-            }.padding(50)
+            }.padding(50).padding(.bottom, 70)
             
         }
     }

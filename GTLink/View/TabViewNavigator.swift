@@ -36,7 +36,7 @@ struct TabViewNavigator: View {
     
     var body: some View {
         
-        VStack {
+        ZStack {
             ZStack {
                 switch router.screen {
                 case .FeedScreen:
@@ -52,7 +52,7 @@ struct TabViewNavigator: View {
                     withAnimation {
                         NavigationView {
                             VStack {
-                                ProfileScreen().environmentObject(feedVM)
+                                ProfilePage().environmentObject(feedVM)
                             }
                         }
                     }
@@ -69,23 +69,35 @@ struct TabViewNavigator: View {
                 
             }
             
-            Divider()
-            HStack {
-                ForEach(Screen.allCases, id: \.self) { screen in
-                    
-                    Spacer()
-                    Button(action: {
+            //Divider()
+            VStack {
+                HStack {
+                    ForEach(Screen.allCases, id: \.self) { screen in
                         
-                        withAnimation {
-                            router.change(to: screen)
+                        Spacer()
+                        Button(action: {
+                            
+                            withAnimation {
+                                router.change(to: screen)
+                            }
+                        }) {
+                            ZStack {
+                                screen != router.screen ? AnyView(EmptyView().cornerRadius(6).frame(width: 50, height: 50)) : AnyView(Rectangle().frame(width: 50, height: 50).overlay(
+                                    LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
+                                ).cornerRadius(6))
+                                Image(screen == router.screen ? screen.icon + "Selected" : screen.icon).font(.system(size: 25, weight: .regular, design: .default))
+                            }.frame(width: 50, height: 50).padding(.vertical, 10)
+                            
+                            
                         }
-                    }) {
-                        Image(systemName: screen.icon).overlay(screen != router.screen ? AnyView(EmptyView()) : AnyView(Rectangle().cornerRadius(6).opacity(0.3).frame(width: 50, height: 50))).font(.system(size: 25, weight: .regular, design: .default)).padding(.top).foregroundColor(Color(LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing) as! CGColor))
+                        Spacer()
                     }
-                    Spacer()
-                }
-            }
-        }
+                }.background(content: {
+                    Color.white
+                }).cornerRadius(20).shadow(radius: 4, x: 0, y: 0).padding(25)
+            }.frame(maxHeight: .infinity, alignment: .bottom)
+            
+        }.ignoresSafeArea()
         
         
         
