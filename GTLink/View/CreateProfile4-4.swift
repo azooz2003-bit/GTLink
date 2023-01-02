@@ -113,6 +113,6 @@ struct CreateProfile4_4: View {
 
 struct CreateProfile4_4_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfile4_4()
+        CreateProfile4_4().environmentObject(UserViewModel())
     }
 }

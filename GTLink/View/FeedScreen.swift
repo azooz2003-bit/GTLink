@@ -42,9 +42,10 @@ struct FeedScreen: View {
                     }.padding(.trailing, 14)
 
                 }
-                .padding([.leading], 39)
+                .padding([.leading, .top], 39)
                 ScrollView {
-                    ForEach(postsFound, id: \.self) { post in
+                    let postings = feedVM.allPostings ?? []
+                    ForEach(postings, id: \.self) { post in
                         Button(action: {
                             // opens detailed view of post
                         }, label: {
@@ -70,7 +71,7 @@ struct FeedScreen: View {
                     Spacer()
                     Button {
                         //open create post screen
-                        createPostNav = false
+                        createPostNav = true
                     } label: {
                         Image(systemName: "square.and.pencil")
                             .font(.system(size: 40))
@@ -91,8 +92,8 @@ struct FeedScreen: View {
         })
     }
     
-    func generate_card(post: PostV1) -> Card {
-        let card = Card(post_picture: Image(uiImage: (post.post_picture ?? UIImage(systemName: "person.fill"))!), title: post.title, username: post.username, post_date: post.post_date, tags: post.tags, description: post.description)
+    func generate_card(post: Post) -> Card {
+        let card = Card(post_picture: Image(uiImage: ((post.image ?? UIImage(systemName: "person.fill"))!)), title: post.title, username: post.owner, post_date: post.date, tags: [Tags](post.tags.filter({$0.value == true}).keys), description: post.description)
         return card
     }
 }
@@ -105,7 +106,6 @@ struct FeedScreen_Previews: PreviewProvider {
             PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
             PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma."),
             PostV1(post_picture: UIImage(named: "penguin"), title: "CS 1999: Exam 3 Study", username: "georgeBurd", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.")
-            
         ]
         ).environmentObject(FeedViewModel(userVM: UserViewModel()))
     }

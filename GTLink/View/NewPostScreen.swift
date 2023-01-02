@@ -17,9 +17,19 @@ extension View {
 
 
 struct NewPostScreen: View {
+    @EnvironmentObject var feedVM: FeedViewModel
+    
+    @Environment(\.dismiss) var dismiss
     
     @State private var image = UIImage()
     @State private var showSheet = false
+    @State var studyClicked = false
+    @State var projectClicked = false
+    @State var createPostSuccess = false
+    
+    @State var title = ""
+    @State var description = ""
+    @State var additionalInfo = ""
     
     var body: some View {
         NavigationView {
@@ -56,7 +66,7 @@ struct NewPostScreen: View {
                         // When showSheet is true, let the user pick an image from their photo gallery
                         .sheet(isPresented: $showSheet) {
                             ImagePicker(sourceType: .photoLibrary, selectedImage: self.$image)
-                        }
+                        }.opacity(image.hashValue == UIImage().hashValue ? 1 : 0)
 
 
 //                    RoundedRectangle(cornerRadius: 10)
@@ -65,7 +75,7 @@ struct NewPostScreen: View {
 //                        .frame(width: 181, height: 39)
                 }
                 // Title text field
-                TextField("Title", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                TextField("Title", text: $title)
                     .multilineTextAlignment(.center)
                     .font(.title)
                     .foregroundColor(.black)
@@ -80,7 +90,7 @@ struct NewPostScreen: View {
                         .foregroundColor(.black)
                         .font(.system(size: 20.0))
                     Text("gburdell")
-                    Text(Date(), style: .date)
+                    Text(Date.now.addingTimeInterval(600), style: .date)
                         .frame(maxWidth: .infinity, alignment: .trailing)
                         .padding(.trailing, 20)
                 }
@@ -93,7 +103,7 @@ struct NewPostScreen: View {
                         .padding(.top, 20)
                         .padding(.leading, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    TextField("Enter project description here.", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                    TextField("Enter project description here.", text: $description)
                         .padding(.leading, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
@@ -106,22 +116,41 @@ struct NewPostScreen: View {
                         .padding(.leading, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     HStack {
-                        Button("Study") {
-                            print("Project button clicked.")
-                        }
-                        .frame(width: 90, height: 30)
-                        .foregroundColor(Color.black)
-                        .overlay(RoundedRectangle(cornerRadius: 25) .stroke(Color.black) )
-                        .padding(.leading, 20)
+                        Button() {
+                            withAnimation {
+                                studyClicked.toggle()
+                                projectClicked = false
+                            }
+                            
+                            print("Study button clicked.")
+                        } label: {
+                            Text("Study").background(content: {
+                                if (studyClicked) {
+                                    Color.blue.cornerRadius(25)
+                                }
+                                RoundedRectangle(cornerRadius: 25).stroke(Color.black).frame(width: 90, height: 30)
+                            }).foregroundColor(.black)
+                        }.padding(.trailing, 20)
+                       
                         
-                        Button("Project") {
+                        Button() {
+                            withAnimation {
+                                projectClicked.toggle()
+                                studyClicked = false
+                            }
+                            
                             print("Project button clicked.")
-                        }
-                        .frame(width: 90, height: 30)
-                        .foregroundColor(Color.black)
-                        .overlay(RoundedRectangle(cornerRadius: 25) .stroke(Color.black) )
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    }
+                        } label: {
+                            Text("Project").background(content: {
+                                if (projectClicked) {
+                                    Color.red.cornerRadius(25)
+                                }
+                                RoundedRectangle(cornerRadius: 25).stroke(Color.black).frame(width: 90, height: 30)
+                            }).foregroundColor(Color.black)
+                        }.padding(.leading, 20)
+                        
+                    }.frame(maxWidth: .infinity, alignment: .leading).padding(.leading, 45).padding(.top, 8)
+
                 }
                 // Additional Information
                 VStack {
@@ -131,12 +160,17 @@ struct NewPostScreen: View {
                         .padding(.top, 50)
                         .padding(.leading, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    TextField("Enter any additional information here.", text: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Value@*/.constant("")/*@END_MENU_TOKEN@*/)
+                    TextField("Enter any additional information here.", text: $additionalInfo)
                         .padding(.leading, 20)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 Button("Post") {
-                    print("Next button clicked.")
+                    feedVM.createPosting(title: title, date: Date.now, description: description, type: studyClicked ? "Study" : "Project", tags: [], image: image) { success in
+                        
+                        createPostSuccess = success
+                        dismiss()
+                    }
+                    print("Post button clicked.")
                 }
                     .frame(width: 120, height: 50)
                     .foregroundColor(Color.black)
@@ -144,22 +178,24 @@ struct NewPostScreen: View {
                     .padding(.top, 20)
                 
             }
-                    .navigationBarTitleDisplayMode(.inline)
-                    .toolbar {
-                        ToolbarItem(placement: .principal) {
-                            HStack {
-                                Image(systemName: "arrow.left")
-                                    .foregroundColor(.black)
-                                    .bold()
-                                    .scaleEffect(1.2)
-                                Spacer()
-                                Text("Create a Post").font(.system(size: 25, weight: .bold))
-                                    .font(.largeTitle.bold())
-                                    .accessibilityAddTraits(.isHeader)
-                                Spacer()
-                            }
-                        }
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    HStack {
+                        Image(systemName: "arrow.left")
+                            .foregroundColor(.black)
+                            .bold()
+                            .scaleEffect(1.2)
+                        Spacer()
+                        Text("Create a Post").font(.system(size: 25, weight: .bold))
+                            .font(.largeTitle.bold())
+                            .accessibilityAddTraits(.isHeader)
+                        Spacer()
                     }
+                }
+            }
+            
+            
         }
 
     }
@@ -167,7 +203,7 @@ struct NewPostScreen: View {
 
 struct PostScreen_Previews: PreviewProvider {
     static var previews: some View {
-        NewPostScreen()
+        NewPostScreen().environmentObject(FeedViewModel(userVM: UserViewModel()))
     }
 }
 

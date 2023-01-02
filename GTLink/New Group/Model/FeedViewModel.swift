@@ -42,12 +42,12 @@ class FeedViewModel: ObservableObject {
      REMINDER to also use completion handlers.
      
      */
-    func createPosting(id: UUID, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
+    func createPosting(title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
         
-        let docID = id
+        let docID = db.collection("postings").document().documentID
         
         //Convert tags to Dictionary of Strings and Bools
-        uploadToRef(docID: docID.uuidString, image: image) { success in
+        uploadToRef(docID: docID, image: image) { success in
             if success {
                 var tagDict: [String : Bool] = [:]
                 
@@ -67,31 +67,34 @@ class FeedViewModel: ObservableObject {
                 
                 let newPost: [String : Any] = [
                     "title": title,
-                    "image":  self.storedImageRef,
-                    "owner": self.userVM.user!.userID,
-                    "date": date,
+                    "owner": self.userVM.uuid!,
+                    "date":  date,
                     "description": description,
                     "tags": tagDict,
-                    "isProject": (type == Post_Type.project.rawValue) ,
-                    "isStudy": (type == Post_Type.study_group.rawValue),
+                    "isProject": (type == "Project"),
+                    "isStudy": (type == "Study"),
                     "members": [self.userVM.user!.userID]
                 ]
                 
                 
-                let newDoc = Firestore.firestore().collection("postings").document(docID.uuidString)
+                let newDoc = Firestore.firestore().collection("postings").document(docID)
                 
-                newDoc.setData(newPost) { err in
+                newDoc.setData(newPost, merge: true) { err in
                     if let err = err {
                         print("Error: \(err)")
                         completion(false)
+                    } else {
+                        self.userVM.createPosting(postID: newDoc.documentID, completion: { doc in
+                            completion(true)
+                        })
                     }
                     
-                    self.userVM.createPosting(requestID: newDoc.documentID, completion: { doc in
-                        completion(true)
-                    })
+                    
                     
                     
                 }
+            } else {
+                completion(false)
             }
         }
     }
@@ -199,18 +202,28 @@ class FeedViewModel: ObservableObject {
                 self.allPostings = documents?.documents.map({ docSnap in // arranges posts as Post objects in the array
                     let docData = docSnap.data()
                     let postingId = docSnap.documentID
-                    let title = docData["title"] as? String
-                    let imageURL = docData["image"] as? String
-                    let owner = docData["owner"] as? String // UserID/uid of whoever created the post
-                    let date = docData["date"] as? Timestamp // The Date the Post was created
-                    let description = docData["description"] as? String
-                    let tags = docData["tags"] as? [String : Bool]
-                    let isProject = docData["isProject"] as? Bool
-                    let isStudy = docData["isStudy"] as? Bool
-                    let members = docData["members"] as? [String] // All the uid/User ID's of the people associated with the Post
-                    let receivedRequests = docData["receivedRequests"] as? [String : [String : Bool]]
-                    let post = Post(postingID: postingId, title: title!, image: UIImage(), owner: owner!, date: date!, description: description!, tags: tags!, isProject: isProject!, isStudy: isStudy!, members: members!, receivedRequests: receivedRequests!)
-                    self.getImageFromStorage(docID: postingId, url: imageURL!) { success in
+                    let title = docData["title"] as? String ?? "empty"
+                    let imageURL = docData["image"] as? String ?? "empty"
+                    let owner = docData["owner"] as? String ?? "empty" // UserID/uid of whoever created the post
+                    let date = (docData["date"] as? Timestamp)?.dateValue() ?? Date() // The Date the Post was created
+                    let description = docData["description"] as? String ?? "empty"
+                    let tags: [String : Bool] = docData["tags"] as? [String : Bool] ?? ["empty" : false]
+                    let tagsAsTags = Dictionary<Tags, Bool>(uniqueKeysWithValues: tags.map ({ key, val in
+                        print(key)
+                        print(Tags.self)
+                        return (
+                            Tags.allCases.first(where: {
+                                $0.rawValue.elementsEqual(key.description)
+                            })!, val
+                        )
+                    }))
+                   
+                    let isProject = docData["isProject"] as? Bool ?? false
+                    let isStudy = docData["isStudy"] as? Bool ?? false
+                    let members = docData["members"] as? [String] ?? ["empty"] // All the uid/User ID's of the people associated with the Post
+                    let receivedRequests = docData["receivedRequests"] as? [String : [String : Bool]] ?? ["none" : ["none" : false]]
+                    let post = Post(postingID: postingId, title: title, image: UIImage(), owner: owner, date: date, description: description, tags: tagsAsTags, isProject: isProject, isStudy: isStudy, members: members, receivedRequests: receivedRequests)
+                    self.getImageFromStorage(docID: postingId, url: imageURL) { success in
                         completion(success)
                         if !success {
                             return
@@ -249,7 +262,7 @@ class FeedViewModel: ObservableObject {
                         print("Image not uploaded: " + error.localizedDescription)
                         return
                     } else {
-                        self.uploadToDB(docID: refID, url: url!.absoluteString) { success in
+                        self.uploadToDB(docID: docID, url: url!.absoluteString) { success in
                             completion(success)
                         }
                     }

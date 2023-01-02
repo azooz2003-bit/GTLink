@@ -79,6 +79,9 @@ struct TabViewNavigator: View {
                             
                             withAnimation {
                                 router.change(to: screen)
+                                feedVM.syncFeedData { success in
+                                    //print(fvm.allPostings![0].title)
+                                }
                             }
                         }) {
                             ZStack {

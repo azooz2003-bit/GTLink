@@ -34,10 +34,13 @@ struct Card: View {
             HStack(alignment: .top) {
                 
                 //post image
-                post_picture ?? Image(systemName: "book.fill")
+                post_picture!.resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 140, height: 140) ??
+                Image(systemName: "book.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                    .frame(width: 140, height: 140) as! Image
+                    .frame(width: 140, height: 140)
                 
                 //right side VStack
                 VStack(alignment: .leading, spacing: 14) {
