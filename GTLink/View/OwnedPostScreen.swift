@@ -9,12 +9,12 @@ import SwiftUI
 
 struct OwnedPostScreen: View {
     @State var tags: [Tag] = [
-        addTag(text: "iOS", fontSize: 16),
-        addTag(text: "Developer", fontSize: 16),
-        addTag(text: "Beginner", fontSize: 16),
-        addTag(text: "Swift", fontSize: 16),
-        addTag(text: "iOS Club", fontSize: 16),
-        addTag(text: "UI/UX", fontSize: 16)
+        addTag(text: "iOS", color: .red, fontSize: 16),
+        addTag(text: "Developer", color: .red, fontSize: 16),
+        addTag(text: "Beginner", color: .red, fontSize: 16),
+        addTag(text: "Swift", color: .red, fontSize: 16),
+        addTag(text: "iOS Club", color: .red, fontSize: 16),
+        addTag(text: "UI/UX", color: .red, fontSize: 16)
     ]
     
     let tagColors: [Color] = [Color.init(red: 0 / 255, green: 163 / 255, blue: 255 / 255), Color.init(red: 5 / 255, green: 0 / 255, blue: 252 / 255), Color.init(red: 255 / 255, green: 153 / 255, blue: 0 / 255)]

@@ -20,7 +20,11 @@ struct PostV1: Hashable, Identifiable {
 
 struct FeedScreen: View {
     @EnvironmentObject var feedVM: FeedViewModel
+    
     @State var createPostNav = false
+    @State var postClicked = false
+    
+    @State var selectedPost: Post?
     
     let phone_size = UIScreen.main.bounds.size
     
@@ -48,6 +52,10 @@ struct FeedScreen: View {
                     ForEach(postings, id: \.self) { post in
                         Button(action: {
                             // opens detailed view of post
+                            selectPost(post: post) { success in
+                                postClicked = success
+                            }
+                            
                         }, label: {
                             generate_card(post: post)
                                 .foregroundColor(.black)
@@ -89,6 +97,8 @@ struct FeedScreen: View {
             
         }.navigationDestination(isPresented: $createPostNav, destination: {
             NewPostScreen().environmentObject(feedVM)
+        }).navigationDestination(isPresented: $postClicked, destination: {
+            PostViewScreen(post: selectedPost ?? Post(postingID: "", title: "", image: UIImage(), owner: "", date: Date(), description: "", tags: [.beginner : true], isProject: false, isStudy: true, members: ["none"], receivedRequests: [""  :["" : true]])).environmentObject(feedVM)
         })
     }
     
@@ -96,6 +106,12 @@ struct FeedScreen: View {
         let card = Card(post_picture: Image(uiImage: ((post.image ?? UIImage(systemName: "person.fill"))!)), title: post.title, username: post.owner, post_date: post.date, tags: [Tags](post.tags.filter({$0.value == true}).keys), description: post.description)
         return card
     }
+    
+    func selectPost(post: Post, completion: @escaping (Bool) -> Void) {
+        self.selectedPost = post
+        completion(true)
+    }
+    
 }
 
 struct FeedScreen_Previews: PreviewProvider {

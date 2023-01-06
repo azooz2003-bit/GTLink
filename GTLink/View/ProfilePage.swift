@@ -11,12 +11,12 @@ struct ProfilePage: View {
     @EnvironmentObject var feedVM : FeedViewModel
     
     @State var tagsDummy = [
-        addTag(text: "iOS", fontSize: 16),
-        addTag(text: "Developer", fontSize: 16),
-        addTag(text: "Beginner", fontSize: 16),
-        addTag(text: "Swift", fontSize: 16),
-        addTag(text: "iOS Club", fontSize: 16),
-        addTag(text: "UI/UX", fontSize: 16)
+        addTag(text: "iOS", color: .red, fontSize: 16),
+        addTag(text: "Developer", color: .red, fontSize: 16),
+        addTag(text: "Beginner", color: .red, fontSize: 16),
+        addTag(text: "Swift", color: .red, fontSize: 16),
+        addTag(text: "iOS Club", color: .red, fontSize: 16),
+        addTag(text: "UI/UX", color: .red, fontSize: 16)
     ]
     @State var activeClicked = true
     @State var whiteBlockOffset: CGFloat = 0
@@ -24,7 +24,7 @@ struct ProfilePage: View {
     var body: some View {
         let user = feedVM.userVM.user
         let tags = user?.interests.map {
-            addTag(text: $0.description, fontSize: 16)
+            addTag(text: $0.key.rawValue, color: $0.key.color, fontSize: 16)
         }
         
         ZStack {

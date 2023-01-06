@@ -31,6 +31,7 @@ struct SettingsView: View {
                     if success {
                         //dismiss()
                         NavigationUtil.popToRootView()
+                        dismiss()
                     }
                 }
             } label: {

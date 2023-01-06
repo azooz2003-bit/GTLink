@@ -10,7 +10,6 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
-import SwiftUI
 import FirebaseFirestoreSwift
 
 /*
@@ -186,7 +185,7 @@ class UserViewModel: ObservableObject {
             return
         }
         
-        let data = ["username" : (self.user?.username)!, "pfpDecoded" : (self.user?.pfpDecoded)! ,"bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": (self.user?.interests)!, "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!] as [String : Any]
+        let data = ["username" : (self.user?.username)!, "pfpDecoded" : (self.user?.pfpDecoded)! ,"bio": (self.user?.bio)!, "contact": (self.user?.contact)!, "interests": DataConversion.interestsToStrings(interests: (self.user?.interests)!), "link": (self.user?.link)!, "major": (self.user?.major)!, "minor": (self.user?.minor)!, "name": (self.user?.name)!, "sentRequests": (self.user?.sentRequests)!, "userID": (self.user?.userID)!, "year": (self.user?.year)!] as [String : Any]
         let _ = db.collection("users").document(self.uuid!).setData(data)
         print("Add Profile Data Works")
         completion(true)
@@ -196,7 +195,11 @@ class UserViewModel: ObservableObject {
     func assignUserDataLocally(data: [String : Any]?, completion: @escaping (Bool) -> Void) {
         // Need default values for Strings in arrays/dictionaries, so we'll just put "None" for now
         if (data != nil) {
-            self.user = User(username: data?["username"] as? String ?? user?.username ?? "", pfpDecoded: data?["pfpDecoded"] as? Data ?? user?.pfpDecoded ?? Data(), bio: data?["bio"] as? String ?? user?.bio ?? "", contact: data!["contact"] as? [String : String] ?? user?.contact ??  ["None":"None"], interests: data!["interests"] as? [String] ?? user?.interests ?? ["None"], link: data!["link"] as? String ?? user?.link ?? "", major: data!["major"] as? String ?? user?.major ?? "", minor: data!["minor"] as? String ?? user?.minor ?? "", name: data!["name"] as? String ?? user?.name ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? user?.sentRequests ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? user?.year ?? "", projects: data?["projects"] as? [String] ?? user?.projects ?? [])
+            let interests: [String : Bool] = data!["interests"] as? [String : Bool] ?? Dictionary<String, Bool>(uniqueKeysWithValues: user?.interests.map({ k, v in
+                return (k.rawValue , v)
+            }) ?? [("Beginner" , false)])
+            let interestsAsInterests: [Interests : Bool]? = DataConversion.stringToInterests(interests: interests)
+            self.user = User(username: data?["username"] as? String ?? user?.username ?? "", pfpDecoded: data?["pfpDecoded"] as? Data ?? user?.pfpDecoded ?? Data(), bio: data?["bio"] as? String ?? user?.bio ?? "", contact: data!["contact"] as? [String : String] ?? user?.contact ??  ["None":"None"], interests: interestsAsInterests ?? user?.interests ?? [.beginner : false], link: data!["link"] as? String ?? user?.link ?? "", major: data!["major"] as? String ?? user?.major ?? "", minor: data!["minor"] as? String ?? user?.minor ?? "", name: data!["name"] as? String ?? user?.name ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? user?.sentRequests ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? user?.year ?? "", projects: data?["projects"] as? [String] ?? user?.projects ?? [])
             print("Assigned data locally.")
             completion(true)
         } else {
@@ -320,8 +323,18 @@ class UserViewModel: ObservableObject {
     /**
      Creates a request to join a project, only handle the user side of things. You will be given the postID which represents the post's document in the Firestore Postings collection. HINT: change things in the sentRequests array of the user.
      */
-    func sendRequest(postID: String) {
-        
+    func sendRequest(postID: String, completion: @escaping (Bool) -> Void) {
+        // curr user in session -> requester
+        user?.sentRequests[postID] = ["accepted" : false, "rejected" : false]
+        print("sentRequests field set!")
+        addProfileData { success in
+            completion(success)
+            if (!success) {
+                print("sendRequest() failed!")
+            } else {
+                print("sendRequest() success!!")
+            }
+        }
     }
     
 }

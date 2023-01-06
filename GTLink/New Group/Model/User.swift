@@ -11,7 +11,6 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
-import SwiftUI
 
 class User: ObservableObject  {
     var username: String
@@ -19,7 +18,7 @@ class User: ObservableObject  {
     var pfpDecoded: Data // This data object can be passed into the UIImage componenet to display the image.
     var bio: String // Description
     var contact: [String: String] // Map for i.e. "discord": Someone's Discord IGN
-    var interests: [String]
+    var interests: [Interests : Bool]
     var link: String
     var major: String
     var minor: String
@@ -28,7 +27,7 @@ class User: ObservableObject  {
     var projects: [String]
     var year: String // Current year i.e. freshman/first-year, sophomore/second-year, etc. Formatting depends on what we'll use.
     
-    init(username: String, pfpDecoded: Data, bio: String, contact: [String : String], interests: [String], link: String, major: String, minor: String, name: String, sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
+    init(username: String, pfpDecoded: Data, bio: String, contact: [String : String], interests: [Interests : Bool], link: String, major: String, minor: String, name: String, sentRequests: [String : [String : Bool]], userID: String, year: String, projects: [String]) {
         self.username = username
         self.pfpDecoded = pfpDecoded
         self.bio = bio

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Tag: Identifiable, Hashable {
     let id = UUID().uuidString
+    var color: Color
     var text: String
     var size: CGFloat = 0
 }
@@ -132,17 +133,19 @@ struct TagView: View {
 
 struct TagView_Previews: PreviewProvider {
     static var previews: some View {
-        PostViewScreen()
+        PostViewScreen(post: Post(postingID: "92570", title: "AppDev: GTLink", image: UIImage(imageLiteralResourceName: "xcode 1"), owner: "gburdell", date: Date(), description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.", tags: [
+            .beginner: true,
+        ], isProject: true, isStudy: false, members: ["gburdell"], receivedRequests: [" " : [:]]))
     }
 }
 
 // global addtag function
-func addTag(text: String, fontSize: CGFloat) -> Tag {
+func addTag(text: String, color: Color, fontSize: CGFloat) -> Tag {
     
     // getting text size
     let font = UIFont.systemFont(ofSize: fontSize)
     let attributes = [NSAttributedString.Key.font: font]
     let size = (text as NSString).size(withAttributes: attributes)
     
-    return Tag(text: text, size: size.width)
+    return Tag(color: color, text: text, size: size.width)
 }

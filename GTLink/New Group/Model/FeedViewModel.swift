@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseCore
 import FirebaseFirestore
+import FirebaseFirestoreSwift
 import FirebaseAuth
 import Firebase
 import FirebaseStorage
@@ -105,35 +106,39 @@ class FeedViewModel: ObservableObject {
      This function will edit an existing post, use the posting ID given to access the posting's document in Firestore and change the data associated with it with the one's in the parameter. Within this function you will also call the editPosting function in the UserViewModel to handle the user side of things.
      REMINDER to also use completion handlers.
      */
-    func editPosting(postingID: String, title: String, date: Date, description: String, type: String, tags: [Tags], image: UIImage, completion: @escaping (Bool) -> Void) {
-        db.collection("postings").document(postingID).getDocument { (document, error) in
-            print(document!)
-            if (document == nil || error != nil) {
-                print("Error pre-sync")
-                completion(false)
-                return
-            }
+    func editPosting(postingID: String, title: String, date: Date, description: String, isProject: Bool, isStudy: Bool, tags: [String : Bool], receivedRequests: [String : [String : Bool]], completion: @escaping (Bool) -> Void) {
 
-            let posting = self.db.collection("postings").document(postingID)
-            posting.updateData(["title": title, "date": date, "description": description, "type": type, "tags": tags, "image": image]) { (error) in
-                if (error == nil) {
-                    print("Updated Posting")
-                    //self.userVM!.editPosting()
-                    completion(true)
-                } else {
-                    print("Failed to Update Posting")
-                    completion(false)
+        let posting = self.db.collection("postings").document(postingID)
+        posting.updateData(["title": title, "date": Timestamp(date: date), "description": description, "isProject": isProject, "isStudy": isStudy, "tags": tags, "receivedRequests" : receivedRequests]) { (error) in
+            if (error == nil) {
+                print("Updated Posting")
+                //self.userVM!.editPosting()
+                completion(true)
+            } else {
+                print("Failed to Update Posting")
+                completion(false)
+            }
+        }
+        
+    }
+    
+    /**
+     Creates a request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
+     */
+    func requestToJoinProject(posting: Post, completion: @escaping (Bool) -> Void) {
+        userVM.sendRequest(postID: posting.id) { success in
+            if (success) {
+                print("sendRequest func is success")
+                posting.receivedRequests[self.userVM.uuid!] = ["accepted" : false, "rejected" : false]
+                self.editPosting(postingID: posting.id, title: posting.title, date: posting.date, description: posting.description, isProject: posting.isProject, isStudy: posting.isStudy, tags: DataConversion.tagsToString(tags: posting.tags), receivedRequests: posting.receivedRequests) { success in
+                    completion(success)
                 }
+            } else {
+                print("Failed to add to receivedRequests.")
             }
         }
     }
     
-    /**
-     Creates request to join a specified posting/project. Look at the Notion database table, helps you understand what you should change, etc. Within this function you will also call the sendRequest function in the UserViewModel to handle the user side of things.
-     */
-    func requestToJoinProject(postingID: String, completion: @escaping (Bool) -> Void) {
-        
-    }
     
     /*
      Responds to a particular request with an accept or decline. Updates things from the sender's side of things only.
@@ -207,17 +212,8 @@ class FeedViewModel: ObservableObject {
                     let owner = docData["owner"] as? String ?? "empty" // UserID/uid of whoever created the post
                     let date = (docData["date"] as? Timestamp)?.dateValue() ?? Date() // The Date the Post was created
                     let description = docData["description"] as? String ?? "empty"
-                    let tags: [String : Bool] = docData["tags"] as? [String : Bool] ?? ["empty" : false]
-                    let tagsAsTags = Dictionary<Tags, Bool>(uniqueKeysWithValues: tags.map ({ key, val in
-                        print(key)
-                        print(Tags.self)
-                        return (
-                            Tags.allCases.first(where: {
-                                $0.rawValue.elementsEqual(key.description)
-                            })!, val
-                        )
-                    }))
-                   
+                    let tags: [String : Bool] = docData["tags"] as? [String : Bool] ?? ["Beginner" : false]
+                    let tagsAsTags = DataConversion.stringToTags(tags: tags)
                     let isProject = docData["isProject"] as? Bool ?? false
                     let isStudy = docData["isStudy"] as? Bool ?? false
                     let members = docData["members"] as? [String] ?? ["empty"] // All the uid/User ID's of the people associated with the Post
