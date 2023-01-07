@@ -48,13 +48,16 @@ struct FeedScreen: View {
                 }
                 .padding([.leading, .top], 39)
                 ScrollView {
-                    let postings = feedVM.allPostings ?? []
-                    ForEach(postings, id: \.self) { post in
+                    let postings = feedVM.filteredPostings == nil ? feedVM.allPostings : feedVM.filteredPostings
+                    
+                    ForEach(postings ?? [], id: \.self) { post in // Postings will be momentarily nil.
                         Button(action: {
                             // opens detailed view of post
                             selectPost(post: post) { success in
                                 postClicked = success
                             }
+                            
+                            print(post.tags)
                             
                         }, label: {
                             generate_card(post: post)
@@ -62,6 +65,12 @@ struct FeedScreen: View {
                                 .padding()
                         })
                     }
+                    
+                    // In case of no filter results:
+                    if postings == nil || (postings?.isEmpty)! {
+                        Text("None!")
+                    }
+                    
                 }.frame(width: phone_size.width)
                 
             }.frame(width: phone_size.width)

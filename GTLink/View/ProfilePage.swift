@@ -10,7 +10,7 @@ import SwiftUI
 struct ProfilePage: View {
     @EnvironmentObject var feedVM : FeedViewModel
     
-    @State var tagsDummy = [
+    let tagsDummy = [
         addTag(text: "iOS", color: .red, fontSize: 16),
         addTag(text: "Developer", color: .red, fontSize: 16),
         addTag(text: "Beginner", color: .red, fontSize: 16),
@@ -19,6 +19,7 @@ struct ProfilePage: View {
         addTag(text: "UI/UX", color: .red, fontSize: 16)
     ]
     @State var activeClicked = true
+    @State var settingsPressed = false
     @State var whiteBlockOffset: CGFloat = 0
     
     var body: some View {
@@ -55,7 +56,7 @@ struct ProfilePage: View {
                 .blendMode(.multiply)
                 .clipped()
                 .cornerRadius(10)
-               .offset(y: -280).padding(.top) .ignoresSafeArea()
+               .offset(y: -280).padding(.top).ignoresSafeArea()
 
                
             }
@@ -78,7 +79,18 @@ struct ProfilePage: View {
                 
                 
                 VStack {
-                    Image("penguin").resizable().scaledToFill().frame(width: 130, height: 130).clipShape(Ellipse()).shadow(radius: 5,y: 4).overlay(Ellipse().stroke(.white, lineWidth: 4)).offset(y:  whiteBlockOffset < 600 ? -whiteBlockOffset + 600 : 0)
+                    HStack {
+                        Image(systemName: "gearshape.fill").font(.system(size: 25)).opacity(0)
+                        Spacer().font(.system(size: 25))
+                        Image("penguin").resizable().scaledToFill().frame(width: 130, height: 130).clipShape(Ellipse()).shadow(radius: 5,y: 4).overlay(Ellipse().stroke(.white, lineWidth: 4)).offset(y:  whiteBlockOffset < 600 ? -whiteBlockOffset + 600 : 0).frame(maxWidth: .infinity, alignment: .center).padding(.horizontal)
+                        
+                        Button(action: {
+                            settingsPressed = true
+                        }, label: {
+                            Image(systemName: "gearshape.fill").font(.system(size: 25)).foregroundColor(.black)
+                        }).padding([.top, .trailing])
+                    }
+                    
                     
                     VStack {
                         ScrollView(.vertical, showsIndicators: true) {
@@ -141,7 +153,9 @@ struct ProfilePage: View {
                             
                             
                         }.padding(.top, 60).ignoresSafeArea()
-                    })
+                }).navigationDestination(isPresented: $settingsPressed, destination: {
+                    SettingsView().environmentObject(feedVM)
+                })
                     
                 }
                 

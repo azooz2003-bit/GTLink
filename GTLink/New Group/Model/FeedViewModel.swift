@@ -26,7 +26,7 @@ class FeedViewModel: ObservableObject {
     // Filtering stuff
     @Published var showFilterSheet = false // make this work
     @Published var selectedTags: [Tags] = []
-    @Published var selectedType: Post_Type = .project
+    @Published var selectedType: Post_Type = .none
     
     
     //Firebase storage reference
@@ -324,4 +324,45 @@ class FeedViewModel: ObservableObject {
         }
         
     }
+    
+    func setFilter(completion: @escaping (Bool) -> Void) {
+        withAnimation {
+            self.filteredPostings = allPostings?.filter({ post in
+                return self.doesMatchFilter(post: post)
+            })
+        }
+    
+    }
+    
+    func doesMatchFilter(post: Post) -> Bool {
+        if !selectedTags.isEmpty && !(selectedType == Post_Type.none) {
+            print("first")
+            var tagIncluded = false
+            var ind = 0
+            while !tagIncluded && ind < selectedTags.count {
+                tagIncluded = post.tags[selectedTags[ind]] ?? false
+                ind += 1
+            }
+            let sameType = (selectedType == .project && post.isProject) || (selectedType == .study_group && post.isStudy)
+            return sameType && tagIncluded
+        } else if !selectedTags.isEmpty && selectedType == Post_Type.none {
+            print("second")
+            var tagIncluded = false
+            var ind = 0
+            while !tagIncluded && ind < selectedTags.count {
+                tagIncluded = post.tags[selectedTags[ind]] ?? false
+                ind += 1
+            }
+            return tagIncluded
+        } else if selectedTags.isEmpty && !(selectedType == Post_Type.none) {
+            print("third")
+            let sameType = (selectedType == .project && post.isProject) || (selectedType == .study_group && post.isStudy)
+            return sameType
+        } else {
+            print("last")
+            return true
+        }
+    }
+
 }
+

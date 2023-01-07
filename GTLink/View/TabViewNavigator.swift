@@ -9,8 +9,8 @@ import SwiftUI
 
 enum Screen: CaseIterable {
     case FeedScreen
+    case RequestsView
     case ProfileScreen
-    case SettingsView
     
     var icon: String {
         var i: String
@@ -19,7 +19,7 @@ enum Screen: CaseIterable {
             i = "feedIcon" // icon name
         case .ProfileScreen:
             i = "profileIcon"
-        case .SettingsView:
+        case .RequestsView:
             i = "settingsIcon"
         
         }
@@ -48,6 +48,17 @@ struct TabViewNavigator: View {
                         }
                     }
                     
+                
+                    
+                case .RequestsView:
+                    withAnimation {
+                        NavigationView {
+                            VStack {
+                                SettingsView().environmentObject(feedVM)
+                            }
+                        }
+                    }
+                    
                 case .ProfileScreen:
                     withAnimation {
                         NavigationView {
@@ -56,16 +67,9 @@ struct TabViewNavigator: View {
                             }
                         }
                     }
-                    
-                case .SettingsView:
-                    withAnimation {
-                        NavigationView {
-                            VStack {
-                                SettingsView().environmentObject(feedVM)
-                            }
-                        }
-                    }
                 }
+                
+                
                 
             }
             

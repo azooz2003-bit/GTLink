@@ -11,11 +11,12 @@ import Foundation
 enum Post_Type: String, Hashable, CaseIterable {
     case project = "Project"
     case study_group = "Study Group"
+    case none = "None"
 }
 
 struct FeedFilterView: View {
     
-    @ObservedObject var viewModel: FeedViewModel
+    @ObservedObject var feedVM: FeedViewModel
     
     @State private var tagsSelected: [Tags]
     @State private var projectType: Post_Type = Post_Type.project
@@ -24,7 +25,7 @@ struct FeedFilterView: View {
     init(viewModel: FeedViewModel, tags: [Tags], projectType: Post_Type) {
         self.tagsSelected = tags
         self.projectType  = projectType
-        self.viewModel = viewModel
+        self.feedVM = viewModel
         
     }
     
@@ -65,6 +66,16 @@ struct FeedFilterView: View {
                 HStack {
                     Spacer()
                     Button {
+                        switchProjectType(newType: .none)
+                    } label: {
+                        Text(Post_Type.none.rawValue).padding(10).background(projectType == Post_Type.none ? Color.cyan : Color.clear).cornerRadius(15).foregroundColor(projectType == Post_Type.none ? Color.white : Color.gray)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(projectType == Post_Type.none ? Color.clear : Color.cyan)
+                            )
+                            .padding(10)
+                    }
+                    Button {
                         switchProjectType(newType: .project)
                     } label: {
                         Text(Post_Type.project.rawValue).padding(10).background(projectType == Post_Type.project ? Color.cyan : Color.clear).cornerRadius(15).foregroundColor(projectType == Post_Type.project ? Color.white : Color.gray)
@@ -92,6 +103,12 @@ struct FeedFilterView: View {
                 // "Apply" button
                 Button {
                     self.applyChanges()
+                    feedVM.setFilter { success in
+                        if (success) {
+                            print("filter set")
+                    
+                        }
+                    }
                 } label: {
                     Text("Apply")
                         .font(.system(size: 16))
@@ -111,11 +128,14 @@ struct FeedFilterView: View {
     }
     
     func applyChanges() {
-        viewModel.selectedTags = self.tagsSelected
-        viewModel.selectedType = self.projectType
-        viewModel.showFilterSheet = false
+        withAnimation {
+            feedVM.selectedTags = self.tagsSelected
+            feedVM.selectedType = self.projectType
+        }
+        
+        feedVM.showFilterSheet = false
     }
-    func buttonClicked(tag: Tags) {
+    func tagButtonClicked(tag: Tags) {
         if(tagsSelected.contains(tag)) {
             tagsSelected.removeAll { thisTag in
                 thisTag == tag
@@ -124,13 +144,14 @@ struct FeedFilterView: View {
             tagsSelected.append(tag)
         }
     }
+    
     @ViewBuilder
     func RowView(tag: Tags) -> some View {
         // applying same font size
         // else size will vary
         VStack {
             Button(action: {
-                buttonClicked(tag: tag)
+                tagButtonClicked(tag: tag)
             }, label: { Text(tag.rawValue).padding(10).background(tagsSelected.contains(tag) ? tag.color : Color.white).cornerRadius(15).foregroundColor( tagsSelected.contains(tag) ? Color.white : Color(red: 121/255, green: 121/255, blue: 121/255))
                     .overlay(
                         RoundedRectangle(cornerRadius: 15)
