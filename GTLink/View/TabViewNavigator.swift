@@ -60,10 +60,11 @@ struct TabViewNavigator: View {
                     }
                     
                 case .ProfileScreen:
+                    let user = feedVM.userVM.user
                     withAnimation {
                         NavigationView {
                             VStack {
-                                ProfilePage().environmentObject(feedVM)
+                                ProfilePage(user: user!).environmentObject(feedVM)
                             }
                         }
                     }
@@ -84,6 +85,11 @@ struct TabViewNavigator: View {
                             withAnimation {
                                 router.change(to: screen)
                                 feedVM.syncFeedData { success in
+                                    if success {
+                                        feedVM.assignRequests { success in
+                                            print("Assign requests was successful: \(success)")
+                                        }
+                                    }
                                     //print(fvm.allPostings![0].title)
                                 }
                             }

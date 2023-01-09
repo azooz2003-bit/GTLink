@@ -22,9 +22,15 @@ struct ProfilePage: View {
     @State var settingsPressed = false
     @State var whiteBlockOffset: CGFloat = 0
     
+    var user: User
+    
+    init(user: User) {
+        self.user = user
+    }
+    
     var body: some View {
-        let user = feedVM.userVM.user
-        let tags = user?.interests.map {
+        //let user = feedVM.userVM.user
+        let tags = user.interests.map {
             addTag(text: $0.key.rawValue, color: $0.key.color, fontSize: 16)
         }
         
@@ -69,10 +75,10 @@ struct ProfilePage: View {
             VStack {
                 
                 VStack {
-                    Text(user?.name ?? "George Burdell").foregroundColor(.white).font(.system(size: 30, weight: .bold))
-                    Text(user?.username ?? "@gburdell").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
-                    Text(user?.major ?? "Computer Science").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
-                    Text((user?.year ?? "3rd") + " year").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
+                    Text(user.name ?? "George Burdell").foregroundColor(.white).font(.system(size: 30, weight: .bold))
+                    Text(user.username ?? "@gburdell").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
+                    Text(user.major ?? "Computer Science").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
+                    Text((user.year ?? "3rd") + " year").foregroundColor(.white).font(.system(size: 25)).padding(.vertical, 0.1)
                     
                 }.padding(.vertical, 30)
                 
@@ -96,10 +102,10 @@ struct ProfilePage: View {
                         ScrollView(.vertical, showsIndicators: true) {
                             Text("Bio:").font(.system(size: 18, weight: .bold)).frame(maxWidth: .infinity, alignment: .leading).padding(.top).padding(.leading)
                             
-                            Text(user?.bio ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget blandit id nibh eget dolor tincidunt quis vitae. Donec cursus volutpat turpis sed.").multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
+                            Text(user.bio ?? "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Eget blandit id nibh eget dolor tincidunt quis vitae. Donec cursus volutpat turpis sed.").multilineTextAlignment(.leading).frame(maxWidth: .infinity, alignment: .leading).padding(.leading)
                             Text("Tags:").font(.system(size: 18, weight: .bold)).frame(maxWidth: .infinity, alignment: .leading).padding(.top, 10).padding(.leading)
                             
-                            TagView(tags: tags ?? tagsDummy, fontSize: 15).frame(maxWidth: .infinity, alignment: .center)
+                            TagView(tags: tags , fontSize: 15).frame(maxWidth: .infinity, alignment: .center)
 
                             HStack {
                                 Button(action:{
@@ -168,6 +174,6 @@ struct ProfilePage: View {
 
 struct ProfilePage_Previews: PreviewProvider {
     static var previews: some View {
-        ProfilePage().environmentObject(FeedViewModel(userVM: UserViewModel()))
+        ProfilePage(user: User(username: "", pfpDecoded: .init(), bio: "", contact: ["" : ""], interests: [.beginner : true], link: "", major: "", minor: "", name: "", sentRequests: ["" : ["" : true]], userID: "", year: "", projects: [])).environmentObject(FeedViewModel(userVM: UserViewModel()))
     }
 }

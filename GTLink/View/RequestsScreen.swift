@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct RequestsScreen: View {
+    @EnvironmentObject var feedVM: FeedViewModel
     
-    var prs: [PendingRequestCard]
-    var ars: [AcceptedRequestCard]
+    //var pendingRequests: [PendingRequestCard] = []
+    //var acceptedRequests: [AcceptedRequestCard] = []
     
     var body: some View {
         //Gets phone size to create appropriate sizes for elements
@@ -30,8 +31,8 @@ struct RequestsScreen: View {
             //ScrollView representing the available pending requests
             VStack {
                 ScrollView {
-                    ForEach(prs, id:\.pruuid) { pr in
-                        PendingRequestCard(pfp: pr.pfp!, student_name: pr.student_name, major: pr.major, year: pr.year, pname: pr.pname)
+                    ForEach(pendingRequests, id:\.pruuid) { pr in
+                        PendingRequestCard(user: <#User#>, pfp: pr.pfp!, student_name: pr.student_name, major: pr.major, year: pr.year, pname: pr.pname)
                     }
                 }
             }.frame(maxWidth: .infinity, maxHeight: 370).padding(.bottom, 15)
@@ -47,7 +48,7 @@ struct RequestsScreen: View {
             //ScrollView representing the available accepted requests
             VStack {
                 ScrollView {
-                    ForEach(ars, id:\.aruuid) { ar in
+                    ForEach(acceptedRequests, id:\.aruuid) { ar in
                         AcceptedRequestCard(pfp: ar.pfp!, student: ar.student, pname: ar.pname)
                     }
                 }
@@ -62,7 +63,7 @@ struct RequestsScreen: View {
 
 struct RequestsScreen_Previews: PreviewProvider {
     static var previews: some View {
-        RequestsScreen(prs: [PendingRequestCard(pfp: Image("os1"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink"), PendingRequestCard(pfp: Image("os1"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")], ars:[AcceptedRequestCard(pfp: Image("os1"), student: "George Burdell", pname: "WebDev: GT Dashboard"),
+        RequestsScreen(pendingRequests: [PendingRequestCard(pfp: Image("os1"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink"), PendingRequestCard(pfp: Image("os1"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")], acceptedRequests:[AcceptedRequestCard(pfp: Image("os1"), student: "George Burdell", pname: "WebDev: GT Dashboard"),
            AcceptedRequestCard(pfp: Image("os1"), student: "George Burdell", pname: "CS 1999: Exam 1 Study")])
     }
 }

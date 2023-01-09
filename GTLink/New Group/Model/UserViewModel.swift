@@ -19,6 +19,7 @@ import FirebaseFirestoreSwift
 
 class UserViewModel: ObservableObject {
     @Published var user: User?
+    
     @Published var isAuthenticating: Bool = false
     
     private let auth = Auth.auth()
@@ -198,8 +199,12 @@ class UserViewModel: ObservableObject {
             let interests: [String : Bool] = data!["interests"] as? [String : Bool] ?? Dictionary<String, Bool>(uniqueKeysWithValues: user?.interests.map({ k, v in
                 return (k.rawValue , v)
             }) ?? [("Beginner" , false)])
+            
             let interestsAsInterests: [Interests : Bool]? = DataConversion.stringToInterests(interests: interests)
-            self.user = User(username: data?["username"] as? String ?? user?.username ?? "", pfpDecoded: data?["pfpDecoded"] as? Data ?? user?.pfpDecoded ?? Data(), bio: data?["bio"] as? String ?? user?.bio ?? "", contact: data!["contact"] as? [String : String] ?? user?.contact ??  ["None":"None"], interests: interestsAsInterests ?? user?.interests ?? [.beginner : false], link: data!["link"] as? String ?? user?.link ?? "", major: data!["major"] as? String ?? user?.major ?? "", minor: data!["minor"] as? String ?? user?.minor ?? "", name: data!["name"] as? String ?? user?.name ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? user?.sentRequests ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? user?.year ?? "", projects: data?["projects"] as? [String] ?? user?.projects ?? [])
+            
+            self.user = User(username: data?["username"] as? String ?? user?.username ?? "", pfpDecoded: data?["pfpDecoded"] as? Data ?? user?.pfpDecoded ?? Data(), bio: data?["bio"] as? String ?? user?.bio ?? "", contact: data!["contact"] as? [String : String] ?? user?.contact ??  ["None":"None"], interests: interestsAsInterests ?? user?.interests ?? [.beginner : false], link: data!["link"] as? String ?? user?.link ?? "", major: data!["major"] as? String ?? user?.major ?? "", minor: data!["minor"] as? String ?? user?.minor ?? "", name: data!["name"] as? String ?? user?.name ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ?? user?.sentRequests ?? ["None":["None":false]], userID: uuid!, year: data!["year"] as? String ?? user?.year ?? "", projects:
+                    data?["projects"] as? [String] ?? user?.projects ?? []
+            )
             print("Assigned data locally.")
             completion(true)
         } else {
@@ -208,6 +213,52 @@ class UserViewModel: ObservableObject {
         }
         
     }
+    
+    func downloadImageURL(docID: String, completion: @escaping (Bool) -> Void) {
+        Firestore.firestore().document(docID).getDocument { document, error in
+            if let error = error {
+                completion(false)
+                print("Image not received: " + error.localizedDescription)
+                return
+            } else {
+                let data = document?.data()
+                let url = data!["image"] as! String
+                if !url.contains("postImages") {
+                    completion(false)
+                    return
+                } else {
+                    self.getImageFromStorage(docID: docID, url: url) { success in
+                        completion(success)
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    func getImageFromStorage(docID: String, url: String, completion: @escaping (Bool) -> Void) {
+        storage.reference(forURL: url).getData(maxSize: 1*1500*1500) { data, error in
+            if let error = error {
+                completion(false)
+                print("Image not found in storage: " + error.localizedDescription)
+                return
+            } else {
+                let index = self.allPostings?.firstIndex(where: { post in
+                    post.id == docID
+                })
+                
+                if index == -1 {
+                    completion(false)
+                    return
+                }
+                
+                self.allPostings?[index!].image = UIImage(data: data!)!
+                completion(true)
+            }
+        }
+        
+    }
+    
     /*
      Simply signs the user out, when that's done, make sure to reset variables such as user to nil.
      Notes:
@@ -337,4 +388,8 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    
+    
 }
+
+

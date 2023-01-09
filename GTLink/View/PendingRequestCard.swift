@@ -45,6 +45,7 @@ struct PendingRequestCard: View {
     //the profile picture, the student information, & the project name;
     //UUID used for iteration purposes
     
+    let user: User
     let pfp: Image?
     let student_name: String
     let major: String
@@ -52,7 +53,8 @@ struct PendingRequestCard: View {
     let pname: String
     let pruuid = UUID()
 
-    init(pfp: Image, student_name: String, major: String, year: String, pname: String) {
+    init(user: User, pfp: Image, student_name: String, major: String, year: String, pname: String) {
+        self.user = user
         self.pfp = pfp
         self.student_name = student_name
         self.major = major
@@ -82,12 +84,12 @@ struct PendingRequestCard: View {
 
                 //Vertical stack created for the information about the student along with the request made & name of the project
                 VStack(alignment: .center) {
-                    Text(student_name).font(.system(size: 16)).bold()
-                    Text(major).font(.system(size: 12))
-                    Text("\(year) Year").font(.system(size: 12))
+                    Text(user.name).font(.system(size: 16)).bold()
+                    Text(user.major).font(.system(size: 12))
+                    Text("\(user.year) Year").font(.system(size: 12))
                     Text("Wants to work with you on")
                         .font(.system(size: 16)).bold().frame(alignment: .center)
-                    Text(pname).font(.system(size: 36)).bold()
+                    Text(user.name).font(.system(size: 36)).bold()
                 }
 
                 //Contains the buttons to accept or decline
@@ -121,6 +123,6 @@ struct PendingRequestCard: View {
 
 struct PendingRequestCard_Previews: PreviewProvider {
     static var previews: some View {
-        PendingRequestCard(pfp: Image("penguin"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")
+        PendingRequestCard(user: User(username: "", pfpDecoded: Data(), bio: "", contact: [:], interests: [:], link: "", major: "", minor: "", name: "", sentRequests: ["":[:]], userID: "", year: "", projects: []), pfp: Image("penguin"), student_name: "George Burdell", major: "Computer Scientist", year: "Nth", pname: "AppDev: GTLink")
     }
 }

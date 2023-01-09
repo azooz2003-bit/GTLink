@@ -22,12 +22,17 @@ class FeedViewModel: ObservableObject {
     
     @Published var allPostings: [Post]?
     @Published var filteredPostings: [Post]?
+    
+    @Published var allReceivedRequests: [Post : [Request]] = [:]
+    @Published var pendingRequests: [Post : [Request]] = [:]
+    @Published var acceptedRequests: [Post : [Request]] = [:]
+    
     private let db = Firestore.firestore()
+    
     // Filtering stuff
     @Published var showFilterSheet = false // make this work
     @Published var selectedTags: [Tags] = []
     @Published var selectedType: Post_Type = .none
-    
     
     //Firebase storage reference
     let storage = Storage.storage()
@@ -139,6 +144,50 @@ class FeedViewModel: ObservableObject {
         }
     }
     
+    func assignRequests(completion: @escaping (Bool) -> Void) {
+        let owned = allPostings?.filter({ post in
+            post.owner == userVM.uuid
+        }) // looking at the requests of projects current user created
+        for project in owned! {
+            // check received req. of each
+            let receivedReq = project.receivedRequests
+            let mapped: [Request] = receivedReq.map({ sender, status in
+                let senderAsUser = getUser(user: sender)
+                let targetProj = project
+                let accepted = status["accepted"]
+                let rejected = status["rejected"]
+                
+                let request = Request(sender: senderAsUser, targetProject: project, accepted: accepted!, rejected: rejected!)
+                
+                return request
+                
+            })
+            
+            allReceivedRequests[project] = mapped
+            
+            let currAccepted = mapped.filter({ req in
+                req.accepted
+            })
+            
+            acceptedRequests[project] = currAccepted
+        }
+    }
+    
+    func getUser(user: String) -> User {
+        // access data, assign accordingly
+        var currUser
+        db.collection("users").document(user).getDocument { (document, error) in
+            if (document == nil || error != nil) {
+                print("Error pre-sync")
+                return
+            }
+            
+            // Accordingly, the do/catch is not needed
+            //do {
+            let data = document!.data()
+            currUse
+        }
+    }
     
     /*
      Responds to a particular request with an accept or decline. Updates things from the sender's side of things only.
@@ -185,7 +234,6 @@ class FeedViewModel: ObservableObject {
             
         }
     }
-    
     
     /**
      Fetches all the posts in the postings collection from Firestore and stores it in the postings array in this class. Basically make the data available locally. Be sure to call the syncUserData() function in the UserViewModel as well to update the user side of things.
