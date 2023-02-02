@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 import FirebaseFirestoreSwift
+import FirebaseStorage
 
 /*
  NOTE:
@@ -24,6 +25,7 @@ class UserViewModel: ObservableObject {
     
     private let auth = Auth.auth()
     private let db = Firestore.firestore()
+    let storage = Storage.storage()
     
     var provider: OAuthProvider? = nil
     
@@ -214,6 +216,7 @@ class UserViewModel: ObservableObject {
         
     }
     
+    /*
     func downloadImageURL(docID: String, completion: @escaping (Bool) -> Void) {
         Firestore.firestore().document(docID).getDocument { document, error in
             if let error = error {
@@ -236,6 +239,7 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    
     func getImageFromStorage(docID: String, url: String, completion: @escaping (Bool) -> Void) {
         storage.reference(forURL: url).getData(maxSize: 1*1500*1500) { data, error in
             if let error = error {
@@ -257,7 +261,7 @@ class UserViewModel: ObservableObject {
             }
         }
         
-    }
+    }*/
     
     /*
      Simply signs the user out, when that's done, make sure to reset variables such as user to nil.

@@ -34,7 +34,7 @@ struct FeedScreen: View {
         ZStack {
             VStack {
                 HStack {
-                    Text("\(postsFound.count) project\(postsFound.count > 1 ? "s" : "") found based on your tags")
+                    Text("\(feedVM.allPostings?.count ?? 0) project\(feedVM.allPostings?.count ?? 0 > 1 ? "s" : "") found based on your tags")
                         .font(.system(size: 17))
                     Spacer()
                     Button {

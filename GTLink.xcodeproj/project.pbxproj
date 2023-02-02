@@ -12,6 +12,7 @@
 		0DCEDD0129149243008E5521 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCEDD0029149243008E5521 /* Post.swift */; };
 		5B47D6A928F8D3AC009A32C1 /* PostViewScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */; };
 		5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B6DAA742911DD7E000CC08E /* TagView.swift */; };
+		A3057DC6298C271900BCD7F0 /* TestingEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3057DC5298C271900BCD7F0 /* TestingEnum.swift */; };
 		A306257728F22E4400919640 /* GTLinkApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A306257628F22E4400919640 /* GTLinkApp.swift */; };
 		A306257B28F22E4500919640 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257A28F22E4500919640 /* Assets.xcassets */; };
 		A306257E28F22E4500919640 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A306257D28F22E4500919640 /* Preview Assets.xcassets */; };
@@ -20,7 +21,7 @@
 		A308EF20296C899000AC5A07 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = A308EF1F296C899000AC5A07 /* Request.swift */; };
 		A31A0C452919D152006BC16C /* LandingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31A0C442919D152006BC16C /* LandingPage.swift */; };
 		A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C25292E936D00F6B7A7 /* ProfilePage.swift */; };
-		A3384C282932DFB800F6B7A7 /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */; };
+		A3384C282932DFB800F6B7A7 /* SlowProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3384C272932DFB800F6B7A7 /* SlowProfileScreen.swift */; };
 		A35AD89A293F140700D3C491 /* TestPostings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35AD899293F140700D3C491 /* TestPostings.swift */; };
 		A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */; };
 		A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A36D8284291ABC9F0013897F /* SettingsView.swift */; };
@@ -62,6 +63,7 @@
 		205BBAE128F8BDE3001C00F7 /* FeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedScreen.swift; sourceTree = "<group>"; };
 		5B47D6A828F8D3AC009A32C1 /* PostViewScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewScreen.swift; sourceTree = "<group>"; };
 		5B6DAA742911DD7E000CC08E /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		A3057DC5298C271900BCD7F0 /* TestingEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingEnum.swift; sourceTree = "<group>"; };
 		A306257328F22E4400919640 /* GTLink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GTLink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A306257628F22E4400919640 /* GTLinkApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GTLinkApp.swift; sourceTree = "<group>"; };
 		A306257A28F22E4500919640 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,7 +73,7 @@
 		A308EF1F296C899000AC5A07 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		A31A0C442919D152006BC16C /* LandingPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandingPage.swift; sourceTree = "<group>"; };
 		A3384C25292E936D00F6B7A7 /* ProfilePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePage.swift; sourceTree = "<group>"; };
-		A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
+		A3384C272932DFB800F6B7A7 /* SlowProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlowProfileScreen.swift; sourceTree = "<group>"; };
 		A35AD899293F140700D3C491 /* TestPostings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestPostings.swift; sourceTree = "<group>"; };
 		A36BC9C9291B55DC00A8D3A8 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		A36D8284291ABC9F0013897F /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -161,7 +163,7 @@
 				A374CAC0291DD7D600C5A909 /* OwnedPostScreen.swift */,
 				A3384C25292E936D00F6B7A7 /* ProfilePage.swift */,
 				A3795F532935B190007F3FEC /* GradientTest.swift */,
-				A3384C272932DFB800F6B7A7 /* ProfileScreen.swift */,
+				A3384C272932DFB800F6B7A7 /* SlowProfileScreen.swift */,
 				A36FDFDC293BDBA100727469 /* ImagePicker.swift */,
 				A36FDFDE293BDCCE00727469 /* RequestsScreen.swift */,
 				A36FDFE0293BDD0D00727469 /* PendingRequestCard.swift */,
@@ -226,6 +228,7 @@
 			isa = PBXGroup;
 			children = (
 				A35AD899293F140700D3C491 /* TestPostings.swift */,
+				A3057DC5298C271900BCD7F0 /* TestingEnum.swift */,
 			);
 			path = BackendTesting;
 			sourceTree = "<group>";
@@ -321,7 +324,7 @@
 				A36FDFDB293BDB4700727469 /* NewPostScreen.swift in Sources */,
 				A36BC9CA291B55DC00A8D3A8 /* UserViewModel.swift in Sources */,
 				5B6DAA752911DD7E000CC08E /* TagView.swift in Sources */,
-				A3384C282932DFB800F6B7A7 /* ProfileScreen.swift in Sources */,
+				A3384C282932DFB800F6B7A7 /* SlowProfileScreen.swift in Sources */,
 				B2649EA02918677300DD08EE /* FeedViewModel.swift in Sources */,
 				A374CAC3291DD9F100C5A909 /* Card.swift in Sources */,
 				A36FDFDF293BDCCE00727469 /* RequestsScreen.swift in Sources */,
@@ -330,6 +333,7 @@
 				A36D8285291ABC9F0013897F /* SettingsView.swift in Sources */,
 				A3384C26292E936D00F6B7A7 /* ProfilePage.swift in Sources */,
 				A3DD32702911DF0700B870F2 /* LandingPagev1.swift in Sources */,
+				A3057DC6298C271900BCD7F0 /* TestingEnum.swift in Sources */,
 				0D338070291DC92200D7DE20 /* User.swift in Sources */,
 				E8EAEC74292462C100ED7C02 /* ProgressBar.swift in Sources */,
 				0DCEDD0129149243008E5521 /* Post.swift in Sources */,

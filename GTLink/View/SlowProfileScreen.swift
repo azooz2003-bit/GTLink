@@ -19,7 +19,7 @@ class ScrollItemManager: ObservableObject {
 
 }
 
-struct ProfileScreen: View {
+struct SlowProfileScreen: View {
     @StateObject var scrollIM = ScrollItemManager()
     
     @State var infoOffset: CGFloat = 0
@@ -275,6 +275,6 @@ extension View {
 
 struct ProfileScreen_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileScreen()
+        SlowProfileScreen()
     }
 }

@@ -20,7 +20,7 @@ enum Screen: CaseIterable {
         case .ProfileScreen:
             i = "profileIcon"
         case .RequestsView:
-            i = "settingsIcon"
+            i = "requestsIcon"
         
         }
         
@@ -54,7 +54,7 @@ struct TabViewNavigator: View {
                     withAnimation {
                         NavigationView {
                             VStack {
-                                SettingsView().environmentObject(feedVM)
+                                RequestsScreen().environmentObject(feedVM)
                             }
                         }
                     }
@@ -86,6 +86,7 @@ struct TabViewNavigator: View {
                                 router.change(to: screen)
                                 feedVM.syncFeedData { success in
                                     if success {
+                                        
                                         feedVM.assignRequests { success in
                                             print("Assign requests was successful: \(success)")
                                         }
