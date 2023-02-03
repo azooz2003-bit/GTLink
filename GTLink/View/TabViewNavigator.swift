@@ -5,6 +5,7 @@
 //  Created by Abdulaziz Albahar on 12/28/22.
 //
 
+import Firebase
 import SwiftUI
 
 enum Screen: CaseIterable {
@@ -87,9 +88,18 @@ struct TabViewNavigator: View {
                                 feedVM.syncFeedData { success in
                                     if success {
                                         
-                                        feedVM.assignRequests { success in
-                                            print("Assign requests was successful: \(success)")
+                                        Task {
+                                            do {
+                                                try await feedVM.assignRequests { success in
+                                                    print("Assign requests was successful: \(success)")
+                                                }
+                                            } catch {
+                                                print("Assign requests call in tab click not working.")
+                                                throw NSError()
+                                            }
+                                            
                                         }
+                                        
                                     }
                                     //print(fvm.allPostings![0].title)
                                 }

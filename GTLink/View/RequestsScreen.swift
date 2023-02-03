@@ -37,7 +37,7 @@ struct RequestsScreen: View {
                         let reqs: [Request] = pending[post]!
                         ForEach(reqs, id:\.id) { pr in
                             let user = pr.sender
-                            PendingRequestCard(user: user, pfp: Image(uiImage: UIImage(data: user.pfpDecoded)!), student_name: user.name, major: user.major, year: user.year, pname: pr.targetProject.title)
+                            PendingRequestCard(user: user, pfp: Image(uiImage: UIImage(data: user.pfpDecoded) ?? UIImage()), student_name: user.name, major: user.major, year: user.year, pname: pr.targetProject.title)
                         }
                         
                     }
@@ -55,9 +55,13 @@ struct RequestsScreen: View {
             //ScrollView representing the available accepted requests
             VStack {
                 ScrollView {
-                    // HARDCODE THIS
-                    ForEach(acceptedRequests, id:\.aruuid) { ar in
-                        AcceptedRequestCard(pfp: ar.pfp!, student: ar.student, pname: ar.pname)
+                    let accepted = feedVM.acceptedRequests
+                    ForEach(Array<Post>(accepted.keys) , id:\.id) { post in
+                        let reqs: [Request] = accepted[post]!
+                        ForEach(reqs, id:\.id) { ar in
+                            let user = ar.sender
+                            AcceptedRequestCard(pfp: Image(uiImage: UIImage(data: user.pfpDecoded) ?? UIImage()), student: user.name, pname: ar.targetProject.title)
+                        }
                     }
                 }
             }.frame(maxWidth: .infinity, maxHeight: 220).padding(.bottom, 80)

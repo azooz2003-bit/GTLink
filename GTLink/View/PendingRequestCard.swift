@@ -89,7 +89,7 @@ struct PendingRequestCard: View {
                     Text("\(user.year) Year").font(.system(size: 12))
                     Text("Wants to work with you on")
                         .font(.system(size: 16)).bold().frame(alignment: .center)
-                    Text(user.name).font(.system(size: 36)).bold()
+                    Text(self.pname).font(.system(size: 36)).bold()
                 }
 
                 //Contains the buttons to accept or decline

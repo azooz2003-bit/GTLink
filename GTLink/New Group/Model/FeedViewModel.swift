@@ -20,6 +20,8 @@ import SwiftUI
 class FeedViewModel: ObservableObject {
     @Published var userVM: UserViewModel //
     
+    @Published var allUsers: [User]?
+    
     @Published var allPostings: [Post]?
     @Published var filteredPostings: [Post]?
     
@@ -143,74 +145,94 @@ class FeedViewModel: ObservableObject {
             }
         }
     }
-    
+        
     /*
      Assigns requests pertaining to current user by scraping current posts.
      */
-    func assignRequests(completion: @escaping (Bool) -> Void) {
+    func assignRequests(completion: @escaping (Bool) -> Void) async throws {
         let owned = allPostings?.filter({ post in
             post.owner == userVM.uuid
         }) // looking at the requests of projects current user created
-        for project in owned! {
-            // check received req. of each
-            let receivedReq = project.receivedRequests
-            let mapped: [Request] = receivedReq.map({ sender, status in
-                let senderAsUser = getUser(user: sender) { success in
-                    completion(success)
-                } // Gets the user object of sender, to represent sender data in UI
-                
-                let targetProj = project
-                let accepted = status["accepted"]
-                let rejected = status["rejected"]
-                
-                let request = Request(sender: senderAsUser, targetProject: project, accepted: accepted!, rejected: rejected!)
-                
-                return request
-                
-            })
-            
-            allReceivedRequests[project] = mapped
-            
-            let currAccepted = mapped.filter({ req in
-                req.accepted
-            })
-            
-            acceptedRequests[project] = currAccepted
-        }
-    }
-    
-    
-    func getUserHelper(user: String, completion: @escaping (Bool, User?) -> Void) {
-        let _ =  db.collection("users").document(user).getDocument { (document, error) in
-            if (document == nil || error != nil) {
-                print("Error pre-sync")
-                completion(false, nil)
-                return
-            }
-            
-            // Accordingly, the do/catch is not needed
-            //do {
-            
-            let data = document!.data()
-            let uuid = document!.documentID
-            
-            let interests: [String : Bool] = data!["interests"] as? [String : Bool] ?? [Tags.beginner.rawValue: true]
-            
-            let interestsAsInterests: [Interests : Bool]? = DataConversion.stringToInterests(interests: interests)
-            
-            let userObject = User(username: data?["username"] as? String ?? "", pfpDecoded: data?["pfpDecoded"] as? Data ?? Data(), bio: data?["bio"] as? String ?? "", contact: data!["contact"] as? [String : String] ??  ["None":"None"], interests: interestsAsInterests ?? [.beginner : false], link: data!["link"] as? String ?? "", major: data!["major"] as? String ?? "", minor: data!["minor"] as? String  ?? "", name: data!["name"] as? String ?? "", sentRequests: data!["sentRequests"] as? [String : [String : Bool]] ??  ["None":["None":false]], userID: uuid, year: data!["year"] as? String ?? "", projects:
-                    data?["projects"] as? [String] ?? []
-            )
-            completion(true, userObject)
-        }
-    }
-    
-    func getUser(user: String, completion: @escaping (Bool) -> Void) async -> User {
-        // access data of User, assign accordingly to User object and return it.
-        getUserHelper(user: user) { success, userObject in
+        
+        getUsers { success in
             if (success) {
+                print(self.allUsers)
+                for project in owned! {
+                    // check received req. of each
+                    let receivedReq = project.receivedRequests
+                    
+                    let mapped: [Request] = receivedReq.map({ sender, status in
+                    
+                        let senderAsUser = self.allUsers?.first(where: { user in
+                            user.userID.elementsEqual(sender)
+                        })
+                        
+                        print(sender)
+                        print(self.allUsers!.map({ user in
+                            return user.userID
+                        }))
+                        // Gets the user object of sender, to represent sender data in UI
+                        
+                        let targetProj = project
+                        let accepted = status["accepted"]
+                        let rejected = status["rejected"]
+                        
+                        let request = Request(sender: senderAsUser!, targetProject: project, accepted: accepted!, rejected: rejected!)
+                        
+                        return request
+                        
+                    })
+                    
+                    self.allReceivedRequests[project] = mapped
+                    
+                    let currAccepted = mapped.filter({ req in
+                        req.accepted
+                    })
+                    
+                    self.acceptedRequests[project] = currAccepted
+                    
+                    self.pendingRequests[project] = mapped.filter({ req in
+                        !req.accepted && !req.rejected
+                    })
+                }
+            } else {
+                print("Failure getting user(s).")
             }
         }
+        
+        print(allReceivedRequests)
+        
+    }
+    
+    
+    func getUsers(completion: @escaping (Bool) -> Void)  {
+        // access data of User, assign accordingly to User object and return it.
+        self.allUsers = []
+        let _ = db.collection("users").getDocuments { docs, err  in
+            if err == nil {
+                self.allUsers = docs!.documents.map({ docSnap in
+                    let data = docSnap.data()
+                    let uuid = docSnap.documentID
+                    
+                    let interests: [String : Bool] = data["interests"] as? [String : Bool] ?? [Tags.beginner.rawValue: true]
+                    let interestsAsInterests: [Interests : Bool]? = DataConversion.stringToInterests(interests: interests)
+
+                    let userObject = User(
+                        username: data["username"] as? String ?? "", pfpDecoded: data["pfpDecoded"] as? Data ?? Data(), bio: data["bio"] as? String ?? "", contact: data["contact"] as? [String : String] ??  ["None":"None"], interests: interestsAsInterests ?? [.beginner : false], link: data["link"] as? String ?? "", major: data["major"] as? String ?? "", minor: data["minor"] as? String  ?? "", name: data["name"] as? String ?? "", sentRequests: data["sentRequests"] as? [String : [String : Bool]] ??  ["None":["None":false]], userID: uuid, year: data["year"] as? String ?? "", projects:
+                            data["projects"] as? [String] ?? []
+                    )
+                    return userObject
+                })
+                completion(true)
+
+            } else {
+                completion(false)
+            }
+            
+            
+        }
+        
+
     }
     
     /*
