@@ -73,7 +73,7 @@ struct TagView: View {
             .background (
                 // need to figure out how to classify specific tags by color and implement it here or may need to add parameter to each Tag instance
                 Capsule()
-                    .fill(.blue)
+                    .fill(tag.color)
             )
             .foregroundColor(.white)
             .lineLimit(1)

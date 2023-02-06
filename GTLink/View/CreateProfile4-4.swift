@@ -23,7 +23,7 @@ struct CreateProfile4_4: View {
 //        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
 //        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black],
 //        [.init(red: 121 / 255, green: 121 / 255, blue: 121 / 255), .black]]
-    @State var selections: [String] = []
+    @State var selections: [String : Bool] = [:]
     @State var navigateNext = false
 
 //    LinearGradient(gradient: Gradient(colors: [Color.init(red: 62 / 255, green: 127 / 255, blue: 204 / 255), Color.init(red: 38 / 255, green: 87 / 255, blue: 145 / 255)]), startPoint: .leading, endPoint: .trailing)
@@ -59,18 +59,18 @@ struct CreateProfile4_4: View {
             // NOTE: GREAT WORK! Reminder to make this more efficient by using a map, where the values to each key indicates if the tag is selected.
             LazyHGrid(rows: rows, alignment: .center) {
                 ForEach(self.items, id: \.self) { item in
-                    MultipleSelectionRow(title: item, color: [.green,.yellow], isSelected: self.selections.contains(item)) {
-                        if self.selections.contains(item) {
-                            self.selections.removeAll(where: { $0 == item })
+                    MultipleSelectionRow(title: item, color: [.green,.yellow], isSelected: self.selections.contains(where: {$0.key == item}), action: {
+                        if self.selections.contains(where: {$0.key == item}) {
+                            self.selections.removeValue(forKey: item)
                             count = self.selections.count
                             progressValue = Float(count) * 0.2
                         }
                         else {
-                            self.selections.append(item)
+                            self.selections[item] = true
                             count = self.selections.count
                             progressValue = Float(count) * 0.2
                         }
-                    }
+                    })
 //                    count += 1
                 }
             }

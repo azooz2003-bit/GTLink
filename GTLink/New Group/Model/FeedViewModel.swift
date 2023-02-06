@@ -149,22 +149,28 @@ class FeedViewModel: ObservableObject {
     /*
      Assigns requests pertaining to current user by scraping current posts.
      */
-    func assignRequests(completion: @escaping (Bool) -> Void) async throws {
+    func assignRequests(completion: @escaping (Bool) -> Void) {
         let owned = allPostings?.filter({ post in
             post.owner == userVM.uuid
         }) // looking at the requests of projects current user created
         
         getUsers { success in
             if (success) {
-                print(self.allUsers)
+                print("Get Users success.")
+                print(self.allUsers?.map({$0.userID}))
                 for project in owned! {
                     // check received req. of each
                     
-                    let receivedReq: [String : [String : Bool]] = project.receivedRequests
+                    var receivedReq: [String : [String : Bool]] = project.receivedRequests
                     
-                    if (receivedReq.count > 1) {
-                        let mapped: [Request] = receivedReq.map({ sender, status in
+                    if (receivedReq["none"] != nil) {
+                        receivedReq.removeValue(forKey: "none")
+                    }
+                    
+                    if (receivedReq.count >= 1) {
                         
+                        let mapped: [Request] = receivedReq.map({ sender, status in
+                            
                             let senderAsUser = self.allUsers?.first(where: { user in
                                 user.userID.elementsEqual(sender)
                             })
@@ -183,6 +189,8 @@ class FeedViewModel: ObservableObject {
                             
                             return request
                             
+                            
+                            
                         })
                         
                         self.allReceivedRequests[project] = mapped
@@ -197,11 +205,12 @@ class FeedViewModel: ObservableObject {
                             !req.accepted && !req.rejected
                         })
                     }
-                    
+                    completion(success)
                     
                 }
             } else {
                 print("Failure getting user(s).")
+                completion(false)
             }
         }
         

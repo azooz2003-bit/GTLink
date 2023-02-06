@@ -105,7 +105,7 @@ struct FeedScreen: View {
             }
             
         }.navigationDestination(isPresented: $createPostNav, destination: {
-            NewPostScreen().environmentObject(feedVM)
+            NewPostScreen().environmentObject(feedVM).navigationBarBackButtonHidden()
         }).navigationDestination(isPresented: $postClicked, destination: {
             PostViewScreen(post: selectedPost ?? Post(postingID: "", title: "", image: UIImage(), owner: "", date: Date(), description: "", tags: [.beginner : true], isProject: false, isStudy: true, members: ["none"], receivedRequests: [""  :["" : true]])).environmentObject(feedVM)
         })

@@ -21,6 +21,9 @@ struct ProfilePage: View {
     @State var activeClicked = true
     @State var settingsPressed = false
     @State var whiteBlockOffset: CGFloat = 0
+    @State var postClicked = false
+    
+    @State var selectedPost: Post?
     
     var user: User
     
@@ -93,8 +96,8 @@ struct ProfilePage: View {
                         Button(action: {
                             settingsPressed = true
                         }, label: {
-                            Image(systemName: "gearshape.fill").font(.system(size: 25)).foregroundColor(.black)
-                        }).padding([.top, .trailing])
+                            Image(systemName: "gearshape.fill").font(.system(size: 30)).foregroundColor(.black)
+                        }).padding(.top, 50).offset(x: -10)
                     }
                     
                     
@@ -131,13 +134,31 @@ struct ProfilePage: View {
                                 
                                 
                             VStack {
-                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                
-                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                
-                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
-                                
-                                Card(post_picture: Image("penguin"), title: "CS 1999: Exam 1 Study", username: "gburdell", post_date: Date(), tags: [Tags.class_project, Tags.c_cplusplus, Tags.cs1301], description: "Lorem ipsum dolor sit amet, sed do eiusmod tempor quis nos vas de roma.").padding(.bottom)
+                                ScrollView {
+                                    let postings = feedVM.allPostings?.filter({
+                                        $0.owner == feedVM.userVM.uuid
+                                    }) ?? []
+                                    
+                                    ForEach(postings, id: \.self) { post in // Postings will be momentarily nil.
+                                        Button(action: {
+                                            // opens detailed view of post
+                                            selectPost(post: post) { success in
+                                                postClicked = success
+                                            }
+                                            
+                                            print(post.tags)
+                                            
+                                        }, label: {
+                                            generate_card(post: post)
+                                                .foregroundColor(.black)
+                                                .padding()
+                                        })
+                                    }
+                                    
+                                    // In case of no filter results:
+                                   
+                                    
+                                }
                             }.padding(.bottom, 100)
                             
                         }
@@ -161,14 +182,25 @@ struct ProfilePage: View {
                         }.padding(.top, 60).ignoresSafeArea()
                 }).navigationDestination(isPresented: $settingsPressed, destination: {
                     SettingsView().environmentObject(feedVM)
+                }).navigationDestination(isPresented: $postClicked, destination: {
+                    PostViewScreen(post: selectedPost ?? Post(postingID: "", title: "", image: UIImage(), owner: "", date: Date(), description: "", tags: [.beginner : true], isProject: false, isStudy: true, members: ["none"], receivedRequests: [""  :["" : true]])).environmentObject(feedVM)
                 })
                     
                 }
                 
             
             }
-            
         
+    }
+    
+    func generate_card(post: Post) -> Card {
+        let card = Card(post_picture: Image(uiImage: ((post.image ?? UIImage(systemName: "person.fill"))!)), title: post.title, username: post.owner, post_date: post.date, tags: [Tags](post.tags.filter({$0.value == true}).keys), description: post.description)
+        return card
+    }
+    
+    func selectPost(post: Post, completion: @escaping (Bool) -> Void) {
+        self.selectedPost = post
+        completion(true)
     }
 }
 

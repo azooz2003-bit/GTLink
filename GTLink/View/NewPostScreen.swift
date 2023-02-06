@@ -182,10 +182,15 @@ struct NewPostScreen: View {
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     HStack {
-                        Image(systemName: "arrow.left")
-                            .foregroundColor(.black)
-                            .bold()
-                            .scaleEffect(1.2)
+                        Button(action: {
+                            dismiss()
+                        }, label: {
+                            Image(systemName: "arrow.left")
+                                .foregroundColor(.black)
+                                .bold()
+                                .scaleEffect(1.2)
+                        })
+                        
                         Spacer()
                         Text("Create a Post").font(.system(size: 25, weight: .bold))
                             .font(.largeTitle.bold())

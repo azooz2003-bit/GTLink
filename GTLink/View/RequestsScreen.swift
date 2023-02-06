@@ -37,7 +37,8 @@ struct RequestsScreen: View {
                         let reqs: [Request] = pending[post]!
                         ForEach(reqs, id:\.id) { pr in
                             let user = pr.sender
-                            PendingRequestCard(user: user, pfp: Image(uiImage: UIImage(data: user.pfpDecoded) ?? UIImage()), student_name: user.name, major: user.major, year: user.year, pname: pr.targetProject.title)
+                            PendingRequestCard(user: user, pfp: Image("penguin"), student_name: user.name, major: user.major, year: user.year, pname: pr.targetProject.title)
+                            // Image(uiImage: UIImage(data: user.pfpDecoded) ?? UIImage()) for working images.
                         }
                         
                     }
