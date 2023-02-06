@@ -159,41 +159,46 @@ class FeedViewModel: ObservableObject {
                 print(self.allUsers)
                 for project in owned! {
                     // check received req. of each
-                    let receivedReq = project.receivedRequests
                     
-                    let mapped: [Request] = receivedReq.map({ sender, status in
+                    let receivedReq: [String : [String : Bool]] = project.receivedRequests
                     
-                        let senderAsUser = self.allUsers?.first(where: { user in
-                            user.userID.elementsEqual(sender)
+                    if (receivedReq.count > 1) {
+                        let mapped: [Request] = receivedReq.map({ sender, status in
+                        
+                            let senderAsUser = self.allUsers?.first(where: { user in
+                                user.userID.elementsEqual(sender)
+                            })
+                            
+                            print(sender)
+                            print(self.allUsers!.map({ user in
+                                return user.userID
+                            }))
+                            // Gets the user object of sender, to represent sender data in UI
+                            
+                            let targetProj = project
+                            let accepted = status["accepted"]
+                            let rejected = status["rejected"]
+                            
+                            let request = Request(sender: senderAsUser!, targetProject: project, accepted: accepted!, rejected: rejected!)
+                            
+                            return request
+                            
                         })
                         
-                        print(sender)
-                        print(self.allUsers!.map({ user in
-                            return user.userID
-                        }))
-                        // Gets the user object of sender, to represent sender data in UI
+                        self.allReceivedRequests[project] = mapped
                         
-                        let targetProj = project
-                        let accepted = status["accepted"]
-                        let rejected = status["rejected"]
+                        let currAccepted = mapped.filter({ req in
+                            req.accepted
+                        })
                         
-                        let request = Request(sender: senderAsUser!, targetProject: project, accepted: accepted!, rejected: rejected!)
+                        self.acceptedRequests[project] = currAccepted
                         
-                        return request
-                        
-                    })
+                        self.pendingRequests[project] = mapped.filter({ req in
+                            !req.accepted && !req.rejected
+                        })
+                    }
                     
-                    self.allReceivedRequests[project] = mapped
                     
-                    let currAccepted = mapped.filter({ req in
-                        req.accepted
-                    })
-                    
-                    self.acceptedRequests[project] = currAccepted
-                    
-                    self.pendingRequests[project] = mapped.filter({ req in
-                        !req.accepted && !req.rejected
-                    })
                 }
             } else {
                 print("Failure getting user(s).")
