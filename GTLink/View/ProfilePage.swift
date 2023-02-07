@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct ProfilePage: View {
     @EnvironmentObject var feedVM : FeedViewModel
     
@@ -36,6 +38,10 @@ struct ProfilePage: View {
         let tags = user.interests.map {
             addTag(text: $0.key.rawValue, color: $0.key.color, fontSize: 16)
         }
+        
+        let myPostings = feedVM.allPostings?.filter({
+            $0.owner == feedVM.userVM.uuid
+        }) ?? []
         
         ZStack {
                         
@@ -115,7 +121,7 @@ struct ProfilePage: View {
                                     activeClicked = true
                                 }) {
                                     VStack {
-                                        Text("2 " +  "Active").font(.system(size: 23, weight: .bold)).foregroundColor(!activeClicked ? .gray : .black).padding(.bottom, -4)
+                                        Text("\(myPostings.count) Active").font(.system(size: 23, weight: .bold)).foregroundColor(!activeClicked ? .gray : .black).padding(.bottom, -4)
                                         Rectangle().frame(width: 100, height: 4).cornerRadius(6).foregroundColor(!activeClicked ? .white : .black)
                                     }
                                 }.padding(.horizontal)
@@ -124,7 +130,7 @@ struct ProfilePage: View {
                                     activeClicked = false
                                 }) {
                                     VStack {
-                                        Text("1 " +  "Completed").font(.system(size: 23, weight: .bold)).foregroundColor(activeClicked ? .gray : .black).padding(.bottom, -4)
+                                        Text("0 " +  "Completed").font(.system(size: 23, weight: .bold)).foregroundColor(activeClicked ? .gray : .black).padding(.bottom, -4)
                                         
                                         Rectangle().frame(width: 135, height: 4).cornerRadius(6).foregroundColor(activeClicked ? .white : .black)
                                         
@@ -135,11 +141,9 @@ struct ProfilePage: View {
                                 
                             VStack {
                                 ScrollView {
-                                    let postings = feedVM.allPostings?.filter({
-                                        $0.owner == feedVM.userVM.uuid
-                                    }) ?? []
                                     
-                                    ForEach(postings, id: \.self) { post in // Postings will be momentarily nil.
+                                    
+                                    ForEach(myPostings, id: \.self) { post in // Postings will be momentarily nil.
                                         Button(action: {
                                             // opens detailed view of post
                                             selectPost(post: post) { success in
