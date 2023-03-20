@@ -26,5 +26,4 @@ https://www.notion.so/Git-w-Xcode-iOS-Club-13b872c9574541618b2a73f074c31206
 - SwiftUI + Firebase tutorial: https://github.com/azooz2003-bit/swiftui-tutorial
 
 # Demo:
-<img width="323" alt="image" src="https://user-images.githubusercontent.com/67667005/226389269-51d07b8f-8703-4087-86e0-065258d3e93a.png">
 
